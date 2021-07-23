@@ -1,6 +1,5 @@
 ﻿namespace HCM.Data.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using HCM.Common;
     using HCM.Data.Common;
@@ -8,12 +7,8 @@
     /// <summary>
     /// Parental status means whether or not a person is a parent. It includes the status of not having children.
     /// </summary>
-    public class ParentalStatus : BaseDeletableModel<string>
+    public class ParentalStatus : BaseDeletableModel<int>
     {
-        public ParentalStatus()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
 
         /// <summary>
         /// Gets or sets the type of parental status. For example: parent, step-parent, adoptive parent, foster parent, guardian and not having children.

@@ -1,6 +1,7 @@
 ﻿namespace HCM.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HCM.Common;
     using HCM.Data.Common;
@@ -13,12 +14,15 @@
         public Gender()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Users = new HashSet<User>();
         }
 
         /// <summary>
-        /// Gets or sets type of gender. Values may be: masculine, feminine or other.
+        /// Gets or sets type of gender. Values may be masculine, feminine or other.
         /// </summary>
         [Required(ErrorMessage = GlobalConstants.GenderTypeIsRequired)]
         public string Type { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace HCM.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HCM.Common;
     using HCM.Data.Common;
@@ -13,6 +14,7 @@
         public Possition()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.EmployeeContracts = new HashSet<EmployeeContract>();
         }
 
         /// <summary>
@@ -20,5 +22,7 @@
         /// </summary>
         [Required(ErrorMessage = GlobalConstants.PossitionNameIsRequired)]
         public string Name { get; set; }
+
+        public virtual ICollection<EmployeeContract> EmployeeContracts { get; set; }
     }
 }

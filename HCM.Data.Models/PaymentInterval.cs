@@ -1,6 +1,6 @@
 ﻿namespace HCM.Data.Models
 {
-    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HCM.Common;
     using HCM.Data.Common;
@@ -8,11 +8,11 @@
     /// <summary>
     /// Payment interval of salary.
     /// </summary>
-    public class PaymentInterval : BaseDeletableModel<string>
+    public class PaymentInterval : BaseDeletableModel<int>
     {
         public PaymentInterval()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Salaries = new HashSet<Salary>();
         }
 
         /// <summary>
@@ -20,5 +20,7 @@
         /// </summary>
         [Required(ErrorMessage = GlobalConstants.PaymentIntervalTypeIsRequired)]
         public string Type { get; set; }
+
+        public virtual ICollection<Salary> Salaries { get; set; }
     }
 }
