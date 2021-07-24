@@ -24,13 +24,14 @@
         public string Email { get; set; }
 
         [Display(Name = GlobalConstants.PhoneNumberDisplay)]
-        [Required(ErrorMessage = "Phone number is required")]
-        [Phone(ErrorMessage = "Phone number is not valid")]
+        [Required(ErrorMessage = GlobalConstants.PhoneNumberIsRequired)]
+        [Phone(ErrorMessage = GlobalConstants.PhoneNumberIsInvalid)]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.LogoIsRequired)]
         public string Logo { get; set; }
 
+        [Display(Name = GlobalConstants.AboutUsDisplay)]
         [Required(ErrorMessage = GlobalConstants.AboutUsIsRequired)]
         public string AboutUs { get; set; }
 

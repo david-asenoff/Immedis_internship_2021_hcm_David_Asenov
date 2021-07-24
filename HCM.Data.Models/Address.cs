@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using HCM.Common;
     using HCM.Data.Common;
 
     /// <summary>
@@ -20,6 +22,8 @@
         /// <summary>
         /// Gets or sets location of the address of an employee.
         /// </summary>
+        [Display(Name = GlobalConstants.LocationDisplay)]
+        [Required(ErrorMessage = GlobalConstants.LocationIsRequired)]
         public string Location { get; set; }
 
         public virtual ICollection<UserAddress> UserAddresses { get; set; }

@@ -74,6 +74,8 @@
 
         // Address
         public const string AddressIsRequired = "Address is required";
+        public const string LocationDisplay = "Location";
+        public const string LocationIsRequired = "Location is required";
 
         // Portrait
         public const string PortraitIsRequired = "Portrait is required";
@@ -85,6 +87,7 @@
         public const string DepartmentIsRequired = "Department is required";
         public const string DepartmentNameIsRequired = "Name of the department is required";
         public const string CompanyIsRequired = "Company is required";
+        public const string DepartmentNameDisplay = "Department name";
 
         // Possition
         public const string PossitionIsRequired = "Possition is required";
@@ -124,11 +127,27 @@
         public const int CompanyNameMaxLength = 70;
         public const string CompanyNameIsInvalid = "Company name is invalid. Company name should be between 1 and 70 characters";
         public const string CompanyNameIsRequired = "Company name is required";
+        public const string LogoDisplay = "Logo";
         public const string LogoIsRequired = "Logo is required";
+        public const string AboutUsDisplay = "About us";
         public const string AboutUsIsRequired = "About us is required";
 
         // QualificationCourse
         public const string EndDateDisplay = "End date";
         public const string EndDateIsRequired = "End date is required";
+
+        // Currency
+        public const string DescriptionDisplay = "Description";
+        public const string DescriptionIsRequired = "Description is required";
+        public const string AbbreviationDisplay = "Abbreviation";
+        public const string AbbreviationIsRequired = "Abbreviation is required";
+
+        // EvaluationScore
+        public const string RateDisplay = "Rate";
+        public const string RateIsRequired = "Rate is required";
+
+        // IdentityRole
+        public const string IdentityRoleTypeDisplay = "Identity role type";
+        public const string IdentityRoleTypeIsRequired = "Identity role type is required";
     }
 }

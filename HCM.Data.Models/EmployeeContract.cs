@@ -91,8 +91,8 @@
         /// <summary>
         /// Gets or sets whether the contract type is full time or not.
         /// </summary>
-        [Display(Name = GlobalConstants.EndOfTheWorkingHoursDisplay)]
-        [Required(ErrorMessage = GlobalConstants.StartOfTheWorkingHoursDisplay)]
+        [Display(Name = GlobalConstants.IsContractTypeFullTimeDisplay)]
+        [Required(ErrorMessage = GlobalConstants.IsContractTypeFullTimeIsRequired)]
         public bool IsContractTypeFullTime { get; set; }
 
         /// <summary>

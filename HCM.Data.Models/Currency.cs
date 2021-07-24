@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using HCM.Common;
     using HCM.Data.Common;
 
     /// <summary>
@@ -18,13 +19,15 @@
         /// <summary>
         /// Gets or sets currency description.
         /// </summary>
-        [Required]
+        [Display(Name = GlobalConstants.DescriptionDisplay)]
+        [Required(ErrorMessage = GlobalConstants.DescriptionIsRequired)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets currency abbreviation.
         /// </summary>
-        [Required]
+        [Display(Name = GlobalConstants.AbbreviationDisplay)]
+        [Required(ErrorMessage = GlobalConstants.AbbreviationIsRequired)]
         public string Abbreviation { get; set; }
 
         public virtual ICollection<Salary> Salaries { get; set; }

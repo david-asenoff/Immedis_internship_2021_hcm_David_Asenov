@@ -21,6 +21,7 @@
         /// <summary>
         /// Gets or sets name of the department. It may include Marketing, Finance, Operations management, Human Resource, IT or other.
         /// </summary>
+        [Display(Name = GlobalConstants.DepartmentNameDisplay)]
         [Required(ErrorMessage = GlobalConstants.DepartmentNameIsRequired)]
         public string Name { get; set; }
 

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using HCM.Common;
     using HCM.Data.Common;
 
     /// <summary>
@@ -17,13 +18,15 @@
         /// <summary>
         /// Gets or sets the description of the evaluation score of an employee.
         /// </summary>
-        [Required]
+        [Display(Name = GlobalConstants.DescriptionDisplay)]
+        [Required(ErrorMessage = GlobalConstants.DescriptionIsRequired)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the rate of the evaluation score of an employee.
         /// </summary>
-        [Required]
+        [Display(Name = GlobalConstants.RateDisplay)]
+        [Required(ErrorMessage = GlobalConstants.RateIsRequired)]
         public string Rate { get; set; }
 
         public virtual ICollection<PerformanceReview> PerformanceReviews { get; set; }
