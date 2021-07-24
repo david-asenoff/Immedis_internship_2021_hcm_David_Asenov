@@ -1,7 +1,9 @@
 ﻿namespace HCM.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using HCM.Common;
     using HCM.Data.Common;
 
@@ -20,6 +22,18 @@
         /// </summary>
         [Display(Name = GlobalConstants.PaymentIntervalDisplay)]
         [Required(ErrorMessage = GlobalConstants.MaritalStatusIsRequired)]
-        public PaymentInterval PaymentInterval { get; set; }
+        [ForeignKey(nameof(PaymentInterval))]
+        public int PaymentIntervalId { get; set; }
+
+        public virtual PaymentInterval PaymentInterval { get; set; }
+
+        public decimal GrossSalary { get; set; }
+
+        public decimal NetSalary { get; set; }
+
+        [ForeignKey(nameof(Currency))]
+        public int CurrencyId { get; set; }
+
+        public Currency Currency { get; set; }
     }
 }
