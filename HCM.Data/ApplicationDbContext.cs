@@ -56,8 +56,6 @@
 
         public DbSet<IdentityRole> IdentityRoles { get; set; }
 
-        public DbSet<IdentityUser> IdentityUsers { get; set; }
-
         public DbSet<MaritalStatus> MaritalStatuses { get; set; }
 
         public DbSet<ParentalStatus> ParentalStatuses { get; set; }

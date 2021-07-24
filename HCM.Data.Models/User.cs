@@ -7,7 +7,7 @@
     using HCM.Common;
     using HCM.Data.Common;
 
-    public class User : BaseDeletableModel<string>
+    public class User : IdentityUser<string>
     {
         public User()
         {
@@ -46,11 +46,6 @@
 
         [Required(ErrorMessage = GlobalConstants.CVIsRequired)]
         public string CV { get; set; }
-
-        [ForeignKey(nameof(IdentityUser))]
-        public string IdentityUserId { get; set; }
-
-        public virtual IdentityUser IdentityUser { get; set; }
 
         public virtual ICollection<EmployeeContract> EmployeeContracts { get; set; }
 

@@ -6,13 +6,8 @@
     using HCM.Common;
     using HCM.Data.Common;
 
-    public class IdentityUser : BaseDeletableModel<string>
+    public class IdentityUser<T> : BaseDeletableModel<T>
     {
-        public IdentityUser()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
-
         /// <summary>
         /// Gets or sets the username of an identity user.
         /// </summary>
