@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace HCM.Data.Migrations
+﻿namespace HCM.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddRequiredAttributeToDbModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,5 +1,6 @@
 ﻿namespace HCM.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HCM.Common;
@@ -9,6 +10,7 @@
     {
         public Company()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.Departments = new HashSet<Department>();
             this.CompanyAddresses = new HashSet<CompanyAddress>();
             this.OrderedProjects = new HashSet<Project>();

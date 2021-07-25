@@ -2,38 +2,18 @@
 {
     using HCM.Data.Models;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
 
     public class ApplicationDbContext : DbContext
     {
-        private readonly IConfiguration configuration;
 
         public ApplicationDbContext()
         {
 
         }
 
-        public ApplicationDbContext(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
-
         public ApplicationDbContext(DbContextOptions options)
     : base(options)
         {
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                /* To do:
-                optionsBuilder.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
-                throws Value cannot be null. (Parameter 'connectionString')
-                 */
-
-                optionsBuilder.UseSqlServer("Server=.;Database=HCM;Trusted_Connection=True;MultipleActiveResultSets=true");
-            }
         }
 
         public DbSet<Address> Addresses { get; set; }

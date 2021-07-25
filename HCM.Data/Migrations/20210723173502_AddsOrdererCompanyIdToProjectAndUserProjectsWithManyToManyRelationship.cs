@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace HCM.Data.Migrations
+﻿namespace HCM.Data.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddsOrdererCompanyIdToProjectAndUserProjectsWithManyToManyRelationship : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
