@@ -20,6 +20,9 @@
 
             var seeders = new List<ISeeder>
                           {
+                              new CompanySeeder(),
+                              new AddressSeeder(),
+                              new CompanyAdressSeeder(),
                               new DepartmentSeeder(),
                               new GenderSeeder(),
                               new MaritalStatusSeeder(),
