@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HCM.Data.Models\HCM.Data.Models.csproj" />
+    <ProjectReference Include="..\HCM.Data\HCM.Data.csproj" />
+    <ProjectReference Include="..\HCM.Web.ViewModels\HCM.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
