@@ -20,5 +20,7 @@
         Task<bool> IsAdmin(string userId);
 
         Task<bool> IsValid(string username, string password);
+
+        Task<bool> DoesUserNameExist(string userName);
     }
 }

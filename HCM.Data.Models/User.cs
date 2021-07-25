@@ -34,7 +34,10 @@
         public string LastName { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.GenderIsRequired)]
-        public Gender Gender { get; set; }
+        [ForeignKey(nameof(Gender))]
+        public string GenderId { get; set; }
+
+        public virtual Gender Gender { get; set; }
 
         [Display(Name = GlobalConstants.DateOfBirthDisplay)]
         [Required(ErrorMessage = GlobalConstants.DateOfBirthIsRequired)]

@@ -15,652 +15,815 @@
                 return;
             }
 
-            var currencies = new List<Currency> {
-        new Currency {
+            var currencies = new List<Currency>
+            {
+        new Currency
+        {
                 Description = "United Arab Emirates Dirham",
                 Abbreviation = "AED",
         },
-        new Currency {
+        new Currency
+        {
                 Description = " Afghanistan Afghani",
                 Abbreviation = "AFN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Albania Lek",
                 Abbreviation = "ALL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Armenia Dram",
                 Abbreviation = "AMD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Netherlands Antilles Guilder",
                 Abbreviation = "ANG",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Angola Kwanza",
                 Abbreviation = "AOA",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Argentina Peso",
                 Abbreviation = "ARS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Australia Dollar",
                 Abbreviation = "AUD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Aruba Guilder",
                 Abbreviation = "AWG",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Azerbaijan New Manat",
                 Abbreviation = "AZN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bosnia and Herzegovina Convertible Marka",
                 Abbreviation = "BAM",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Barbados Dollar",
                 Abbreviation = "BBD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bangladesh Taka",
                 Abbreviation = "BDT",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bulgaria Lev",
                 Abbreviation = "BGN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bahrain Dinar",
                 Abbreviation = "BHD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Burundi Franc",
                 Abbreviation = "BIF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bermuda Dollar",
                 Abbreviation = "BMD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Brunei Darussalam Dollar",
                 Abbreviation = "BND",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bolivia Boliviano",
                 Abbreviation = "BOB",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Brazil Real",
                 Abbreviation = "BRL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bahamas Dollar",
                 Abbreviation = "BSD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Bhutan Ngultrum",
                 Abbreviation = "BTN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Botswana Pula",
                 Abbreviation = "BWP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Belarus Ruble",
                 Abbreviation = "BYR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Belize Dollar",
                 Abbreviation = "BZD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Canada Dollar",
                 Abbreviation = "CAD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Congo/Kinshasa Franc",
                 Abbreviation = "CDF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Switzerland Franc",
                 Abbreviation = "CHF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Chile Peso",
                 Abbreviation = "CLP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "China Yuan Renminbi",
                 Abbreviation = "CNY",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Colombia Peso",
                 Abbreviation = "COP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Costa Rica Colon",
                 Abbreviation = "CRC",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Cuba Convertible Peso",
                 Abbreviation = "CUC",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Cuba Peso",
                 Abbreviation = "CUP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Cape Verde Escudo",
                 Abbreviation = "CVE",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Czech Republic Koruna",
                 Abbreviation = "CZK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Djibouti Franc",
                 Abbreviation = "DJF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Denmark Krone",
                 Abbreviation = "DKK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Dominican Republic Peso",
                 Abbreviation = "DOP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Algeria Dinar",
                 Abbreviation = "DZD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Egypt Pound",
                 Abbreviation = "EGP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Eritrea Nakfa",
                 Abbreviation = "ERN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Ethiopia Birr",
                 Abbreviation = "ETB",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Euro Member Countries",
                 Abbreviation = "EUR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Fiji Dollar",
                 Abbreviation = "FJD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Falkland Islands (Malvinas) Pound",
                 Abbreviation = "FKP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "United Kingdom Pound",
                 Abbreviation = "GBP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Georgia Lari",
                 Abbreviation = "GEL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Guernsey Pound",
                 Abbreviation = "GGP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Ghana Cedi",
                 Abbreviation = "GHS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Gibraltar Pound",
                 Abbreviation = "GIP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Gambia Dalasi",
                 Abbreviation = "GMD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Guinea Franc",
                 Abbreviation = "GNF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Guatemala Quetzal",
                 Abbreviation = "GTQ",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Guyana Dollar",
                 Abbreviation = "GYD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Hong Kong Dollar",
                 Abbreviation = "HKD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Honduras Lempira",
                 Abbreviation = "HNL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Croatia Kuna",
                 Abbreviation = "HRK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Haiti Gourde",
                 Abbreviation = "HTG",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Hungary Forint",
                 Abbreviation = "HUF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Indonesia Rupiah",
                 Abbreviation = "IDR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Israel Shekel",
                 Abbreviation = "ILS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Isle of Man Pound",
                 Abbreviation = "IMP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "India Rupee",
                 Abbreviation = "INR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Iraq Dinar",
                 Abbreviation = "IQD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Iran Rial",
                 Abbreviation = "IRR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Iceland Krona",
                 Abbreviation = "ISK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Jersey Pound",
                 Abbreviation = "JEP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Jamaica Dollar",
                 Abbreviation = "JMD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Jordan Dinar",
                 Abbreviation = "JOD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Japan Yen",
                 Abbreviation = "JPY",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Kenya Shilling",
                 Abbreviation = "KES",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Kyrgyzstan Som",
                 Abbreviation = "KGS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Cambodia Riel",
                 Abbreviation = "KHR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Comoros Franc",
                 Abbreviation = "KMF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Korea (North) Won",
                 Abbreviation = "KPW",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Korea (South) Won",
                 Abbreviation = "KRW",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Kuwait Dinar",
                 Abbreviation = "KWD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Cayman Islands Dollar",
                 Abbreviation = "KYD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Kazakhstan Tenge",
                 Abbreviation = "KZT",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Laos Kip",
                 Abbreviation = "LAK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Lebanon Pound",
                 Abbreviation = "LBP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Sri Lanka Rupee",
                 Abbreviation = "LKR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Liberia Dollar",
                 Abbreviation = "LRD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Lesotho Loti",
                 Abbreviation = "LSL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Libya Dinar",
                 Abbreviation = "LYD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Morocco Dirham",
                 Abbreviation = "MAD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Moldova Leu",
                 Abbreviation = "MDL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Madagascar Ariary",
                 Abbreviation = "MGA",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Macedonia Denar",
                 Abbreviation = "MKD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Myanmar (Burma) Kyat",
                 Abbreviation = "MMK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Mongolia Tughrik",
                 Abbreviation = "MNT",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Macau Pataca",
                 Abbreviation = "MOP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Mauritania Ouguiya",
                 Abbreviation = "MRO",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Mauritius Rupee",
                 Abbreviation = "MUR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Maldives (Maldive Islands) Rufiyaa",
                 Abbreviation = "MVR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Malawi Kwacha",
                 Abbreviation = "MWK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Mexico Peso",
                 Abbreviation = "MXN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Malaysia Ringgit",
                 Abbreviation = "MYR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Mozambique Metical",
                 Abbreviation = "MZN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Namibia Dollar",
                 Abbreviation = "NAD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Nigeria Naira",
                 Abbreviation = "NGN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Nicaragua Cordoba",
                 Abbreviation = "NIO",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Norway Krone",
                 Abbreviation = "NOK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Nepal Rupee",
                 Abbreviation = "NPR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "New Zealand Dollar",
                 Abbreviation = "NZD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Oman Rial",
                 Abbreviation = "OMR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Panama Balboa",
                 Abbreviation = "PAB",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Peru Nuevo Sol",
                 Abbreviation = "PEN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Papua New Guinea Kina",
                 Abbreviation = "PGK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Philippines Peso",
                 Abbreviation = "PHP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Pakistan Rupee",
                 Abbreviation = "PKR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Poland Zloty",
                 Abbreviation = "PLN",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Paraguay Guarani",
                 Abbreviation = "PYG",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Qatar Riyal",
                 Abbreviation = "QAR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Romania New Leu",
                 Abbreviation = "RON",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Serbia Dinar",
                 Abbreviation = "RSD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Russia Ruble",
                 Abbreviation = "RUB",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Rwanda Franc",
                 Abbreviation = "RWF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Saudi Arabia Riyal",
                 Abbreviation = "SAR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Solomon Islands Dollar",
                 Abbreviation = "SBD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Seychelles Rupee",
                 Abbreviation = "SCR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Sudan Pound",
                 Abbreviation = "SDG",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Sweden Krona",
                 Abbreviation = "SEK",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Singapore Dollar",
                 Abbreviation = "SGD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Saint Helena Pound",
                 Abbreviation = "SHP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Sierra Leone Leone",
                 Abbreviation = "SLL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Somalia Shilling",
                 Abbreviation = "SOS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Seborga Luigino",
                 Abbreviation = "SPL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Suriname Dollar",
                 Abbreviation = "SRD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "São Tomé and Príncipe Dobra",
                 Abbreviation = "STD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "El Salvador Colon",
                 Abbreviation = "SVC",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Syria Pound",
                 Abbreviation = "SYP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Swaziland Lilangeni",
                 Abbreviation = "SZL",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Thailand Baht",
                 Abbreviation = "THB",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Tajikistan Somoni",
                 Abbreviation = "TJS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Turkmenistan Manat",
                 Abbreviation = "TMT",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Tunisia Dinar",
                 Abbreviation = "TND",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Tonga Pa'anga",
                 Abbreviation = "TOP",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Turkey Lira",
                 Abbreviation = "TRY",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Trinidad and Tobago Dollar",
                 Abbreviation = "TTD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Tuvalu Dollar",
                 Abbreviation = "TVD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Taiwan New Dollar",
                 Abbreviation = "TWD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Tanzania Shilling",
                 Abbreviation = "TZS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Ukraine Hryvnia",
                 Abbreviation = "UAH",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Uganda Shilling",
                 Abbreviation = "UGX",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "United States Dollar",
                 Abbreviation = "USD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Uruguay Peso",
                 Abbreviation = "UYU",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Uzbekistan Som",
                 Abbreviation = "UZS",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Venezuela Bolivar",
                 Abbreviation = "VEF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Viet Nam Dong",
                 Abbreviation = "VND",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Vanuatu Vatu",
                 Abbreviation = "VUV",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Samoa Tala",
                 Abbreviation = "WST",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Communauté Financière Africaine (BEAC) CFA Franc BEAC",
                 Abbreviation = "XAF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "East Caribbean Dollar",
                 Abbreviation = "XCD",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "International Monetary Fund (IMF) Special Drawing Rights",
                 Abbreviation = "XDR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Communauté Financière Africaine (BCEAO) Franc",
                 Abbreviation = "XOF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Comptoirs Français du Pacifique (CFP) Franc",
                 Abbreviation = "XPF",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Yemen Rial",
                 Abbreviation = "YER",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "South Africa Rand",
                 Abbreviation = "ZAR",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Zambia Kwacha",
                 Abbreviation = "ZMW",
         },
-        new Currency {
+        new Currency
+        {
                 Description = "Zimbabwe Dollar",
                 Abbreviation = "ZWD",
         },
