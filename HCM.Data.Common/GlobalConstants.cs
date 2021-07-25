@@ -21,6 +21,9 @@
         // IdentityUser
         public const int PasswordMinLength = 5;
         public const int PasswordMaxLength = 255;
+        public const string ConfirmPasswordDisplay = "Confirm Password";
+        public const string ConfirmPasswordIsRequired = "Confirm Password is required";
+        public const string PasswordsDontMatch = "Passwords don't match";
         public const string PasswordIsRequired = "Password is required";
         public const string PasswordIsInvalid = "Password is invalid. Password must contain between 5 and 255 characters";
         public const string RememberMeDisplay = "Remember on this computer";

@@ -1,0 +1,164 @@
+﻿@using HCM.Web.ViewModels.Employee
+@model EmployeeRegistrationViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+@*Work in progress*@
+<h1>Cookie Auth</h1>
+<a asp-action="Login">Login</a>
+<br />
+Secured Page: <a asp-action="Index" asp-controller="Employee">Employee Page</a>
+@*Work in progress*@
+
+<div class="min-vh-100 mb-12">
+    <div class="page-header align-items-start pt-5 pb-11 m-1 border-radius-lg" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 text-center mx-auto">
+                    <h1 class="text-white mb-1 mt-1">Welcome!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="min-vh-100 mb-2">
+        <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+            <div class="col-xl-6 col-lg-9 col-md-12 mx-auto">
+                <div class="card z-index-0">
+                    <div class="card-header text-center pt-4">
+                        <h5>Register</h5>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="card-body">
+                        <form class="form text-left"
+                              asp-controller="Home"
+                              asp-action="Register"
+                              method="post">
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="FirstName"></label>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                <input asp-for="FirstName" class="form-control" placeholder="David" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0" asp-for="MiddleName"></label>
+                                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                                <input asp-for="MiddleName" class="form-control" placeholder="Rosenov" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="LastName"></label>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <input asp-for="LastName" class="form-control" placeholder="Asenov" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="Email"></label>
+                                <span asp-validation-for="Email" class="text-danger" id="emailSpan"></span>
+                                <input asp-for="Email" class="form-control" placeholder="david.asenoff@gmail.com" onkeyup="checkMailDublicate(this)" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="Username"></label>
+                                <span asp-validation-for="Username" class="text-danger" id="userNameSpan"></span>
+                                <input asp-for="Username" class="form-control" placeholder="david.asenoff" onkeyup="checkUserNameDublicate(this)" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="Gender"></label>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                                <select id="dropdown" class="form-control" asp-for="Gender">
+                                    <option disabled selected>Select Your Gender</option>
+                                    @foreach (var gender in ViewBag.Genders)
+                                    {
+                                        <option value="@gender.Id" class="rounded">@gender.Type</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="datepicker mb-0 required" asp-for="DateOfBirth"></label>
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                <input type="date" value="1990-01-01" asp-for="DateOfBirth" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text" asp-for="PhoneNumber"></label>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                <input asp-for="PhoneNumber" class="phoneNumber form-control" placeholder="+359876543210" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="Password"></label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input type="password" asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="ConfirmPassword"></label>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" />
+                            </div>
+                            <div class="form-check form-check-info text-left">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        function checkMailDublicate(event) {
+
+            var emailString = event.value;
+            var errorMessage = document.getElementById(`emailSpan`);
+
+
+            if (emailString.includes('@@')) {
+                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
+                $.ajax({
+                    url: "/Home/DoesUserEmailExist",
+                    data: { email: emailString },
+                    datatype: "json",
+                    //headers: { 'X-CSRF-TOKEN': token },
+                    success: function (response) {
+
+                        if (response == false) {
+                            errorMessage.innerText = 'Email is free';
+                        } else {
+                            errorMessage.innerText = 'Email is already taken';
+                        }
+                    },
+                })
+            }
+        }
+        function checkUserNameDublicate(event) {
+
+            var userNameString = event.value;
+            var errorMessage = document.getElementById(`userNameSpan`);
+
+
+            if (userNameString.length != 0) {
+                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
+                $.ajax({
+                    url: "/Home/DoesUserNameExist",
+                    data: { email: userNameString },
+                    datatype: "json",
+                    //headers: { 'X-CSRF-TOKEN': token },
+                    success: function (response) {
+
+                        if (response == false) {
+                            errorMessage.innerText = 'Username is free';
+                        } else {
+                            errorMessage.innerText = 'Username is already taken';
+                        }
+                    },
+                })
+            }
+        }
+    </script>
+}
