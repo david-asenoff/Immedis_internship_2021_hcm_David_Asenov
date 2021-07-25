@@ -1,9 +1,8 @@
 ﻿namespace HCM.Data
 {
+    using System.ComponentModel.DataAnnotations;
     using HCM.Common;
     using HCM.Data.Common;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public class IdentityRole : BaseDeletableModel<int>
     {

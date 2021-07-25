@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using HCM.Data.Common.Contracts;
 
     public abstract class BaseModel<TKey> : IAuditInfo
     {

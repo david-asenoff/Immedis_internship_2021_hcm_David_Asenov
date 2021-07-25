@@ -7,7 +7,7 @@
         public const string AdministratorRoleName = "Administrator";
         public const string EmployeeRoleName = "Employee";
         public const string SystemEmail = "immedis.internship.2021.hcm@gmail.com";
-        public const string SessionCookieName = "HCM_SID";
+        public const string AuthenticationCookieName = "HCM_AUTH";
 
         // Email
         public const string EmailDisplay = "E-mail";

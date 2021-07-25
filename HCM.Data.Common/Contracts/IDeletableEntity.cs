@@ -1,4 +1,4 @@
-﻿namespace HCM.Data.Common
+﻿namespace HCM.Data.Common.Contracts
 {
     using System;
 
