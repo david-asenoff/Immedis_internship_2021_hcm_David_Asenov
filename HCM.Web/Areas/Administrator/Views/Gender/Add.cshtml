@@ -1,0 +1,39 @@
+﻿@using HCM.Web.ViewModels.Gender
+@using HCM.Data.Common;
+@model GenderAddViewModel
+@{
+    ViewData["Title"] = "Add Gender";
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area="Administrator"
+      asp-controller="Gender"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Type"></label>
+            <span asp-validation-for="@Model.Type" class="text-danger"></span>
+            <input asp-for="@Model.Type" class="form-control" placeholder="Man" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area="Administrator"
+           asp-controller="Gender"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/js/genderTable.js"></script>
+} 
