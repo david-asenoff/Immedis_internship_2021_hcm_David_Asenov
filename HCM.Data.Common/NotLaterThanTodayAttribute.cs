@@ -16,7 +16,7 @@
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult(ErrorMessage ?? "Make sure the date is not later than today");
+            return new ValidationResult(this.ErrorMessage ?? "Make sure the date is not later than today");
         }
 
     }
