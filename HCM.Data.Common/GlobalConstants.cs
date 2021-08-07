@@ -1,4 +1,4 @@
-﻿namespace HCM.Common
+﻿namespace HCM.Data.Common
 {
     public static class GlobalConstants
     {
@@ -6,8 +6,11 @@
         public const string SystemName = "HCM";
         public const string AdministratorRoleName = "Administrator";
         public const string EmployeeRoleName = "Employee";
+        public const string ManagerRoleName = "Manager";
+        public const string HRRoleName = "HR";
         public const string SystemEmail = "immedis.internship.2021.hcm@gmail.com";
         public const string AuthenticationCookieName = "HCM_AUTH";
+        public const string AntiforgeryCookieName = "HCM_ANTIFORGERY";
 
         // Email
         public const string EmailDisplay = "E-mail";
@@ -65,6 +68,11 @@
         public const string ParentalStatusDisplay = "Parental status";
         public const string ParentalStatusIsRequired = "Parental status is required";
         public const string ParentalStatusTypeIsRequired = "Type of the parental status is required";
+
+        // ProjectStatusCategory
+        public const string ProjectStatusCategoryDisplay = "Project status category";
+        public const string ProjectStatusCategoryIsRequired = "Project status category is required";
+        public const string ProjectStatusCategoryTypeIsRequired = "Type of the project status category is required";
 
         // DateOfBirth
         public const string DateOfBirthDisplay = "Date of birth";
