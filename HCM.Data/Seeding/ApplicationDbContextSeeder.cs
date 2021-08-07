@@ -25,9 +25,15 @@
                               new CompanyAdressSeeder(),
                               new DepartmentSeeder(),
                               new GenderSeeder(),
+                              new CurrencySeeder(),
+                              new EvaluationScoreSeeder(),
+                              new IdentityRoleSeeder(),
                               new MaritalStatusSeeder(),
                               new ParentalStatusSeeder(),
                               new PaymentIntervalSeeder(),
+                              new ProjectStatusCategorySeeder(),
+                              new AdminSeeder(),
+                              new EmployeeSeeder(),
                           };
 
             foreach (var seeder in seeders)

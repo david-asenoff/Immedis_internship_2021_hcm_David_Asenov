@@ -17,9 +17,9 @@
 
             var genders = new List<Gender>
             {
-                new Gender { Type = "masculine" },
-                new Gender { Type = "feminine" },
-                new Gender { Type = "other" },
+                new Gender { Type = "Man" },
+                new Gender { Type = "Woman" },
+                new Gender { Type = "Other" },
             };
 
             await dbContext.Genders.AddRangeAsync(genders);

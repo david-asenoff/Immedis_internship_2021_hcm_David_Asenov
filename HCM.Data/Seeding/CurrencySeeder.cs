@@ -827,7 +827,7 @@
                 Description = "Zimbabwe Dollar",
                 Abbreviation = "ZWD",
         },
-};
+            };
 
             await dbContext.Currencies.AddRangeAsync(currencies);
             await dbContext.SaveChangesAsync();
