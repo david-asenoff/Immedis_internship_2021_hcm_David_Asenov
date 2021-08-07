@@ -4,14 +4,16 @@ using HCM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HCM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210801143132_ChangeTotalHoursDataType")]
+    partial class ChangeTotalHoursDataType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -539,7 +541,7 @@ namespace HCM.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Possitions");
+                    b.ToTable("Possition");
                 });
 
             modelBuilder.Entity("HCM.Data.Models.Project", b =>
@@ -559,14 +561,14 @@ namespace HCM.Data.Migrations
                     b.Property<decimal>("EstimatedBudget")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("EstimatedWorkHours")
-                        .HasColumnType("int");
+                    b.Property<TimeSpan>("EstimatedWorkHours")
+                        .HasColumnType("time");
 
                     b.Property<decimal>("FinalBudget")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("FinalWorkHours")
-                        .HasColumnType("int");
+                    b.Property<TimeSpan>("FinalWorkHours")
+                        .HasColumnType("time");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
