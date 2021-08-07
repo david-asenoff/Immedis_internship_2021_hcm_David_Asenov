@@ -1,8 +1,6 @@
 ﻿namespace HCM.Services.Contracts
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
     using HCM.Web.ViewModels.ProjectStatusCategory;
 

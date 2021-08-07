@@ -1,9 +1,7 @@
 ﻿namespace HCM.Services.Contracts
 {
     using HCM.Web.ViewModels.PaymentInterval;
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
     public interface IPaymentIntervalService

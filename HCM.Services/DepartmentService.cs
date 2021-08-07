@@ -7,7 +7,6 @@
     using HCM.Data;
     using HCM.Data.Models;
     using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.Company;
     using HCM.Web.ViewModels.Department;
     using Microsoft.EntityFrameworkCore;
 

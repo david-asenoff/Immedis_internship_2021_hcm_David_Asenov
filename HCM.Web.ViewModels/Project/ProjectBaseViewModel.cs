@@ -1,8 +1,6 @@
 ﻿using HCM.Web.ViewModels.Company;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace HCM.Web.ViewModels.Project
 {
