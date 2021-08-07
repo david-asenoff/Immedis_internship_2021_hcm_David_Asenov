@@ -107,6 +107,8 @@
                     NetSalary = x.NetSalary,
                     PaymentIntervalType = x.PaymentInterval.Type,
                     CurrencyDescription = x.Currency.Description,
+                    DeletedOn = x.DeletedOn,
+                    IsDeleted = x.IsDeleted,
                 }).ToListAsync();
 
             return result;
