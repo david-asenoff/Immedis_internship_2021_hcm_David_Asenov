@@ -1,0 +1,182 @@
+﻿@using HCM.Web.ViewModels.Gender
+@using HCM.Data.Common;
+@model List<GenderViewModel>
+@{
+    ViewData["Title"] = "Gender";
+    string[] TableHeaders = new string[] {"Id",
+                        "Type",
+                        "Created On",
+                        "Modified On",
+                        "Actions",
+    };
+}
+<!-- Button Add -->
+<a type="button" class="btn btn-dark"
+   asp-area="Administrator"
+   asp-controller="Gender"
+   asp-action="Add">
+    <i class="fas fa-plus"></i>
+    Add @ViewData["Title"]
+</a>
+<!-- Gender Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr style="text-decoration:@(Data.IsDeleted?"line-through":"none")">
+                            <td>@Data.Id</td>
+                            <td>@Data.Type</td>
+                            <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
+                            <td>
+                                <!-- Button trigger delete modal -->
+                                @if (Data.IsDeleted == false)
+                                {
+                                    <!-- Button Edit -->
+                                    <a type="button" class="btn btn-primary"
+                                       asp-area="Administrator"
+                                       asp-controller="Gender"
+                                       asp-action="Edit"
+                                       asp-route-id="@Data.Id">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-gender-id="@Data.Id"
+                                            data-gender-type="@Data.Type">
+                                        <i class="far fa-trash-alt"></i>
+                                        Delete
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button"
+                                            style="width: -webkit-fill-available"
+                                            class="btn btn-warning"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#restoreModal"
+                                            data-gender-id="@Data.Id"
+                                            data-gender-type="@Data.Type"
+                                            data-gender-deletedon="@Data.DeletedOn?.ToString("yyyy-MM-dd")">
+                                        <i class="fas fa-trash-restore"></i>
+                                        Restore
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal Delete-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Gender</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form text-left"
+                  asp-area="Administrator"
+                  asp-controller="Gender"
+                  asp-action="Delete"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
+                        <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
+                        <input name="Id" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Type"></label>
+                        <span asp-validation-for="@Model[0].Type" class="text-danger"></span>
+                        <input name="Type" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                        <i class="far fa-window-close"></i>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                    Delete
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Restore-->
+<div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="restoreModalLabel">Restore Gender</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form text-left"
+                  asp-area="Administrator"
+                  asp-controller="Gender"
+                  asp-action="Restore"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
+                        <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
+                        <input name="Id" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Type"></label>
+                        <span asp-validation-for="@Model[0].Type" class="text-danger"></span>
+                        <input name="Type" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].DeletedOn"></label>
+                        <span asp-validation-for="@Model[0].DeletedOn" class="text-danger"></span>
+                        <input name="DeletedOn" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="far fa-window-close"></i>
+                    Close
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-trash-restore"></i>
+                        Restore
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/genderTable.js"></script>
+} 
