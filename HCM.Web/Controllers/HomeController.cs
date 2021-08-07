@@ -1,7 +1,6 @@
 ﻿using HCM.Services.Contracts;
 using HCM.Web.Models;
 using HCM.Web.ViewModels.Employee;
-using HCM.Web.ViewModels.Gender;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -49,20 +48,25 @@ namespace HCM.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string txtPassword, string txtUserName)
+        public async Task<IActionResult> Login(EmployeeLoginViewModel model)
         {
-            if (txtPassword.ToLower() == "admin" && txtUserName.ToLower() == "admin")
+            var result = await this.usersService.DoesUserNameAndPasswordCombinationExist(model);
+            if (result)
             {
+                var dbUser = await this.usersService.GetUserByUserName(model.Username);
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, txtUserName)
+                    new Claim(ClaimTypes.Name, model.Username),
+                    new Claim(ClaimTypes.Role, dbUser.Role.Type),
+                    new Claim(ClaimTypes.Email, dbUser.Email),
+                    new Claim("FullName", dbUser.FirstName + " " + dbUser.LastName),
                 };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
 
-                return RedirectToAction("Index", "Employee");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -78,7 +82,7 @@ namespace HCM.Web.Controllers
         public async Task<IActionResult> Register()
         {
             var model = new EmployeeRegistrationViewModel();
-            var genders = await this.genderService.GetAllGenders();
+            var genders = await this.genderService.GetAllAsync();
             ViewBag.Genders = genders;
             return View(model);
         }
@@ -88,10 +92,13 @@ namespace HCM.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-
+                var genders = await this.genderService.GetAllAsync();
+                ViewBag.Genders = genders;
+                return View(model);
             }
 
-                return this.RedirectToAction("login", "home", model);
+            var user = await usersService.CreateEmployeeAsync(model);
+            return this.RedirectToAction("Login", "Home", user.Username);
         }
 
         /// <summary>
