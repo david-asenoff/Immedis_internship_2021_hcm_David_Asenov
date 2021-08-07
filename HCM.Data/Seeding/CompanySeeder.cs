@@ -26,6 +26,14 @@
                     AboutUs = @"Immedis is a specialist division of The Taxback Group, a multi award-winning global financial services group. The company is a specialist provider of enterprise technology solutions for global payroll and mobility tax services. With over 170 experts worldwide, It delivers fully managed multi-country payroll and employment tax solutions fororganizations with overseas staff – whether local or expatriate. Its cloud-based payroll platform, iConnect provides a consolidated view of global payrolls, improves process efficiency, and ensures data, payroll, and tax compliance in over 130 countries worldwide.
 Immedis was founded in 2016 and has offices in Dublin, Kilkenny, New Jersey, Sydney, and Varna.",
                 },
+                new Company
+                {
+                    Name = "Taxback",
+                    Email = "info@taxback.com",
+                    PhoneNumber = "+35952686868",
+                    Logo = "https://www.taxback.com/resources/image/TaxBack_logo.png",
+                    AboutUs = @"Many people pay too much tax because they don’t understand their entitlements. Our ISO 9001 certified team of tax experts are dedicated to helping you file fully compliant returns and ensuring you claim back any overpaid tax, guaranteeing peace of mind and more money in your pocket. With 20+ years of experience and over 1 million taxes filed, our team will respond to your queries promptly with the same professionalism and integrity we use to do your taxes.",
+                },
             };
 
             await dbContext.Companies.AddRangeAsync(companies);

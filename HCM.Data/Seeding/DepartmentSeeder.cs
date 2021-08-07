@@ -15,15 +15,22 @@
                 return;
             }
 
-            var company = dbContext.Companies.FirstOrDefault().Id;
+            var manager = dbContext.Users.FirstOrDefault().Id;
+            var immedis = dbContext.Companies.FirstOrDefault().Id;
+            var taxback = dbContext.Companies.FirstOrDefault().Id;
 
             var departments = new List<Department>
             {
-                new Department { Name = "Marketing", CompanyId = company },
-                new Department { Name = "Finance", CompanyId = company },
-                new Department { Name = "Operations management", CompanyId = company },
-                new Department { Name = "Human Resource", CompanyId = company },
-                new Department { Name = "IT", CompanyId = company },
+                new Department { Name = "Marketing", CompanyId = immedis, DepartmentManagerId = manager },
+                new Department { Name = "Finance", CompanyId = immedis },
+                new Department { Name = "Operations management", CompanyId = immedis },
+                new Department { Name = "Human Resource", CompanyId = immedis },
+                new Department { Name = "IT", CompanyId = immedis },
+                new Department { Name = "Marketing", CompanyId = taxback },
+                new Department { Name = "Finance", CompanyId = taxback, DepartmentManagerId = manager },
+                new Department { Name = "Operations management", CompanyId = taxback },
+                new Department { Name = "Human Resource", CompanyId = taxback },
+                new Department { Name = "IT", CompanyId = taxback },
             };
 
             await dbContext.Departments.AddRangeAsync(departments);

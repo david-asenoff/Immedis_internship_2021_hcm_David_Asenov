@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using HCM.Data.Common;
 
     class IdentityRoleSeeder : ISeeder
     {
@@ -16,10 +17,10 @@
 
             var identityRoles = new List<IdentityRole>
             {
-                new IdentityRole { Type = "Admin" },
-                new IdentityRole { Type = "Manager" },
-                new IdentityRole { Type = "HR" },
-                new IdentityRole { Type = "Employee" },
+                new IdentityRole { Type = GlobalConstants.AdministratorRoleName },
+                new IdentityRole { Type = GlobalConstants.ManagerRoleName },
+                new IdentityRole { Type = GlobalConstants.HRRoleName },
+                new IdentityRole { Type = GlobalConstants.EmployeeRoleName },
             };
 
             await dbContext.IdentityRoles.AddRangeAsync(identityRoles);

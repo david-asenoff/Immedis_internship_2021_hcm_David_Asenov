@@ -16,6 +16,19 @@
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                /* To do:
+                optionsBuilder.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection"));
+                throws Value cannot be null. (Parameter 'connectionString')
+                 */
+
+                optionsBuilder.UseSqlServer("Server=.;Database=HCM;Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
+        }
+
         public DbSet<Address> Addresses { get; set; }
 
         public DbSet<Company> Companies { get; set; }
@@ -69,5 +82,7 @@
         public DbSet<UserParentalStatus> UserParentalStatuses { get; set; }
 
         public DbSet<ProjectUser> ProjectUsers { get; set; }
+
+        public DbSet<Possition> Possitions { get; set; }
     }
 }
