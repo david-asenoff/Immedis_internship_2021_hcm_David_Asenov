@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using HCM.Common;
 
     /// <summary>
     /// Validates DateTime object that are before 18-150 years from today. Any other date will not be valid.
@@ -13,17 +12,20 @@
         {
             if (value is DateTime)
             {
-                DateTime date = Convert.ToDateTime(value);
+                // Value as birthdate
+                DateTime birthdate = Convert.ToDateTime(value);
 
-                // 365 days * 18 years ~ 6570 days
-                var minYears = new TimeSpan((365 * GlobalConstants.MinAge), 0, 0, 0, 0);
-                var maxYears = new TimeSpan((365 * GlobalConstants.MaxAge), 0, 0, 0, 0);
+                // Save today's date.
+                var today = DateTime.Today;
 
-                if (date >= DateTime.Today - minYears)
+                // Calculate the age.
+                var age = today.Year - birthdate.Year;
+
+                if (age < GlobalConstants.MinAge)
                 {
                     return new ValidationResult($"You must be {GlobalConstants.MinAge} years or older to register.");
                 }
-                else if (date >= DateTime.Today - maxYears)
+                else if (age > GlobalConstants.MaxAge)
                 {
                     return new ValidationResult($"You must be below {GlobalConstants.MaxAge} years old to register.");
                 }
