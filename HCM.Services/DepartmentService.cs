@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using HCM.Data;
+    using HCM.Data.Common;
     using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Department;
@@ -21,6 +22,13 @@
 
         public async Task<bool> AddAsync(DepartmentAddViewModel model)
         {
+            var dublicate = this.db.Departments.Include(x => x.Company).Any(x => x.Name == model.Name && x.Company.Name == model.CompanyName);
+
+            if (dublicate)
+            {
+                throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
+            }
+
             var company = this.db.Companies.FirstOrDefault(x => x.Id == model.CompanyId);
 
             var result = new Department
@@ -55,7 +63,7 @@
             var department = await this.db.Departments.FirstOrDefaultAsync(x => x.Id == model.Id);
             var company = this.db.Companies.FirstOrDefault(x => x.Id == model.CompanyId);
 
-            if (department != null)
+            if (department != null && company != null)
             {
                 department.Name = model.Name;
 

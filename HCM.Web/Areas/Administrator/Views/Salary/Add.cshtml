@@ -1,0 +1,56 @@
+﻿@using HCM.Web.ViewModels.Salary
+@using HCM.Data.Common;
+@model SalaryAddViewModel
+@{
+    ViewData["Title"] = "Add Salary";
+    var paymentIntervals = Model.PaymentIntervals.Select(x => new SelectListItem(x.Type, x.Id.ToString()));
+    var currencies = Model.Currencies.Select(x => new SelectListItem(x.Description, x.Id.ToString()));
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area="Administrator"
+      asp-controller="Salary"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.PaymentIntervalId"></label>
+            <span asp-validation-for="@Model.PaymentIntervalId" class="text-danger"></span>
+            <select asp-for="@Model.PaymentIntervalId" asp-items="paymentIntervals"  class="form-control"></select>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.GrossSalary"></label>
+            <span asp-validation-for="@Model.GrossSalary" class="text-danger"></span>
+            <input asp-for="@Model.GrossSalary" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.NetSalary"></label>
+            <span asp-validation-for="@Model.NetSalary" class="text-danger"></span>
+            <input asp-for="@Model.NetSalary" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.CurrencyId"></label>
+            <span asp-validation-for="@Model.CurrencyId" class="text-danger"></span>
+            <select asp-for="@Model.CurrencyId" asp-items="currencies"  class="form-control"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area="Administrator"
+           asp-controller="Salary"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/js/departmentTable.js"></script>
+} 

@@ -8,6 +8,7 @@
     using HCM.Data.Common;
     using HCM.Data.Models;
     using HCM.Services.Contracts;
+    using HCM.Web.ViewModels.Company;
     using HCM.Web.ViewModels.PaymentInterval;
     using Microsoft.EntityFrameworkCore;
 
@@ -123,6 +124,11 @@
             }
 
             return false;
+        }
+
+        public ICollection<PaymentIntervalDropDownViewModel> GetPaymentIntervalsAsDropDown()
+        {
+            return this.db.PaymentIntervals.Select(x => new PaymentIntervalDropDownViewModel { Id = x.Id, Type = x.Type }).ToArray();
         }
     }
 }
