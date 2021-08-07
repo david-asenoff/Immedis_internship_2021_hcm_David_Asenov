@@ -1,0 +1,61 @@
+﻿@using HCM.Web.ViewModels.Training
+@using HCM.Data.Common;
+@model TrainingAddViewModel
+@{
+    ViewData["Title"] = "Add Training";
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area="Administrator"
+      asp-controller="Training"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Name"></label>
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            <input asp-for="@Model.Name" class="form-control" placeholder="HCM" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Description"></label>
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            <textarea asp-for="@Model.Description" class="form-control"
+                   placeholder="Organize, plan, schedule & analyze your projects using HCM's modern interface." >
+        </textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.StartDate"></label>
+            <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+            <input type="date" asp-for="@Model.StartDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.EndDate"></label>
+            <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
+            <input type="date" asp-for="@Model.EndDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.TotalHours"></label>
+            <span asp-validation-for="@Model.TotalHours" class="text-danger"></span>
+            <input type="number" asp-for="@Model.TotalHours" class="form-control" placeholder="40" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area="Administrator"
+           asp-controller="Training"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/js/trainingTable.js"></script>
+} 

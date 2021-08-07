@@ -1,0 +1,40 @@
+﻿@using HCM.Web.ViewModels.Position
+@using HCM.Data.Common;
+@model PositionEditViewModel
+@{
+    ViewData["Title"] = "Edit Position";
+}
+
+
+<!-- Edit-->
+            <form class="form text-left"
+                  asp-area="Administrator"
+                  asp-controller="Position"
+                  asp-action="Edit"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.Name"></label>
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="Company Name" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary"
+                       asp-area="Administrator"
+                       asp-controller="Position"
+                       asp-action="Index">
+                        <i class="far fa-window-close"></i>
+                        Close
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="far fa-save"></i>
+                        Save changes
+                    </button>
+                </div>
+            </form>
+
+@section Scripts{
+    <script src="~/js/positionTable.js"></script>
+} 
