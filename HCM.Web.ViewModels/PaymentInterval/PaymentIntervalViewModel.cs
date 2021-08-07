@@ -1,9 +1,7 @@
 ﻿namespace HCM.Web.ViewModels.PaymentInterval
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     public class PaymentIntervalViewModel : PaymentIntervalViewBaseModel
     {

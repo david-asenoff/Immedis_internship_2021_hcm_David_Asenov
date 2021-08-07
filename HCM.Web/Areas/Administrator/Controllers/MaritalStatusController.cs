@@ -1,17 +1,11 @@
 ﻿namespace HCM.Web.Areas.Administrator.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using HCM.Data;
     using HCM.Data.Common;
-    using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.MaritalStatus;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     [Area("Administrator")]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]

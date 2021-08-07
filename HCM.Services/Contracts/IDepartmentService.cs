@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using HCM.Web.ViewModels.Company;
     using HCM.Web.ViewModels.Department;
 
     public interface IDepartmentService

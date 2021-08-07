@@ -1,6 +1,5 @@
 ﻿namespace HCM.Web.ViewModels.EvaluationScore
 {
-    using HCM.Data.Common;
     using System.ComponentModel.DataAnnotations;
 
     public abstract class EvaluationScoreViewBaseModel

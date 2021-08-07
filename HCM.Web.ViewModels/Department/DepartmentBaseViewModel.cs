@@ -4,7 +4,6 @@
     using HCM.Web.ViewModels.Company;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public abstract class DepartmentBaseViewModel
     {
