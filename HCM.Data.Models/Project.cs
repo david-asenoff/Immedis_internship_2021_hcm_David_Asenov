@@ -29,12 +29,12 @@
         /// <summary>
         /// Gets or sets the estimated work hours for the project. The amount of time that is calculated and planned to take to complete the project.
         /// </summary>
-        public TimeSpan EstimatedWorkHours { get; set; }
+        public int EstimatedWorkHours { get; set; }
 
         /// <summary>
         /// Gets or sets the final work hours for the project. The amount of time that actualy took to complete the project.
         /// </summary>
-        public TimeSpan FinalWorkHours { get; set; }
+        public int FinalWorkHours { get; set; }
 
         /// <summary>
         /// Gets or sets the estimated budget for the project. The amount of budget that is calculated and planned to spend to complete the project.

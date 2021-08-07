@@ -1,7 +1,6 @@
 ﻿namespace HCM.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using HCM.Common;
     using HCM.Data.Common;
 
     /// <summary>
