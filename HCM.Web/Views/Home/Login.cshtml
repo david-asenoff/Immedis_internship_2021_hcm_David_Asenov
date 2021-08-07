@@ -1,13 +1,120 @@
-﻿@{
+﻿@using HCM.Web.ViewModels.Employee
+@model EmployeeLoginViewModel
+@{
     ViewData["Title"] = "Login Page";
 }
+<section>
+    <div class="page-header min-vh-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                    <div class="card card-plain mt-8">
+                        <div class="card-header pb-0 text-left bg-transparent">
+                            <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                            <p class="mb-0">Enter your email and password to sign in</p>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="card-body">
+                            <form role="form"
+                                  asp-controller="Home"
+                                  asp-action="Login"
+                                  method="post">
+                                <label class="text mb-0 required" asp-for="Username"></label>
+                                <div class="mb-3">
+                                    <span asp-validation-for="Username" class="text-danger" id="emailSpan"></span>
+                                    <input asp-for="Username" class="form-control" placeholder="david.asenoff" onkeyup="checkUserNameDublicate(this)" />
+                                </div>
+                                <label class="text mb-0 required" asp-for="Password"></label>
+                                <div class="mb-3">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <input type="password" asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" />
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                            <p class="mb-4 text-sm mx-auto">
+                                Don't have an account?
+                                <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                        <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved6.jpg')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts
+{
+    <script type="text/javascript">
+        function checkMailDublicate(event) {
+
+            var emailString = event.value;
+            var errorMessage = document.getElementById(`emailSpan`);
 
 
- <h1>Login</h1>
+            if (emailString.includes('@@')) {
+                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
+                $.ajax({
+                    url: "/Home/DoesUserEmailExist",
+                    data: { email: emailString },
+                    datatype: "json",
+                    //headers: { 'X-CSRF-TOKEN': token },
+                    success: function (response) {
 
- <form method="post">
-     <input class"form-control" type="text" name="txtUserName" placeholder="UserName" />
-     <input class"form-control" type="password" name="txtPassword" placeholder="Password" />
-     <br />
-     <button class="btn btn-success">Sign In</button>
- </form>
+                        if (response == false) {
+                            errorMessage.innerText = 'Email is free';
+                        } else {
+                            errorMessage.innerText = 'Email is already taken';
+                        }
+                    },
+                })
+            }
+        }
+        function checkUserNameDublicate(event) {
+
+            var userNameString = event.value;
+            var errorMessage = document.getElementById(`userNameSpan`);
+
+
+            if (userNameString.length != 0) {
+                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
+                $.ajax({
+                    url: "/Home/DoesUserNameExist",
+                    data: { email: userNameString },
+                    datatype: "json",
+                    //headers: { 'X-CSRF-TOKEN': token },
+                    success: function (response) {
+
+                        if (response == false) {
+                            errorMessage.innerText = 'Username is free';
+                        } else {
+                            errorMessage.innerText = 'Username is already taken';
+                        }
+                    },
+                })
+            }
+        }
+    </script>
+    <script>
+        // self executing function here
+        (function () {
+            var username = document.URL.split("#")[1];
+            var input = document.querySelector("#Username");
+            if (username!==undefined) {
+                input.value = username;
+            }
+        })();
+    </script>
+    }

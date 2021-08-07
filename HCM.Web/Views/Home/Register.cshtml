@@ -65,7 +65,7 @@ Secured Page: <a asp-action="Index" asp-controller="Employee">Employee Page</a>
                             <div class="mb-3">
                                 <label class="text mb-0 required" asp-for="Gender"></label>
                                 <span asp-validation-for="Gender" class="text-danger"></span>
-                                <select id="dropdown" class="form-control" asp-for="Gender">
+                                <select id="dropdown" class="form-control" asp-for="Gender" name="Gender">
                                     <option disabled selected>Select Your Gender</option>
                                     @foreach (var gender in ViewBag.Genders)
                                     {
@@ -109,56 +109,3 @@ Secured Page: <a asp-action="Index" asp-controller="Employee">Employee Page</a>
         </div>
     </div>
 </div>
-@section Scripts
-{
-    <script type="text/javascript">
-        function checkMailDublicate(event) {
-
-            var emailString = event.value;
-            var errorMessage = document.getElementById(`emailSpan`);
-
-
-            if (emailString.includes('@@')) {
-                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
-                $.ajax({
-                    url: "/Home/DoesUserEmailExist",
-                    data: { email: emailString },
-                    datatype: "json",
-                    //headers: { 'X-CSRF-TOKEN': token },
-                    success: function (response) {
-
-                        if (response == false) {
-                            errorMessage.innerText = 'Email is free';
-                        } else {
-                            errorMessage.innerText = 'Email is already taken';
-                        }
-                    },
-                })
-            }
-        }
-        function checkUserNameDublicate(event) {
-
-            var userNameString = event.value;
-            var errorMessage = document.getElementById(`userNameSpan`);
-
-
-            if (userNameString.length != 0) {
-                //const token = document.querySelector('input[name=__RequestVerificationToken]').value;
-                $.ajax({
-                    url: "/Home/DoesUserNameExist",
-                    data: { email: userNameString },
-                    datatype: "json",
-                    //headers: { 'X-CSRF-TOKEN': token },
-                    success: function (response) {
-
-                        if (response == false) {
-                            errorMessage.innerText = 'Username is free';
-                        } else {
-                            errorMessage.innerText = 'Username is already taken';
-                        }
-                    },
-                })
-            }
-        }
-    </script>
-}
