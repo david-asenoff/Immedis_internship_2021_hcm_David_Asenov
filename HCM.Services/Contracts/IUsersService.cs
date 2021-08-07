@@ -1,26 +1,28 @@
 ﻿namespace HCM.Services.Contracts
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using HCM.Data.Models;
+    using HCM.Web.ViewModels.Employee;
 
     public interface IUsersService
     {
-        Task<string> GetLoggedUserId();
+        public Task<bool> DoesMailExist(string email);
 
-        Task<User> GetLoggedUserByIdAsync(string userId);
+        public Task<bool> DoesUserNameExist(string userName);
 
-        Task<bool> DoesMailExist(string email);
+        public Task<int> GetUsersCount();
 
-        Task<int> GetUsersCount();
+        public Task<User> BanUser(string userId);
 
-        Task BanUser(string userId);
+        public Task<User> RemoveBanFromUser(string userId);
 
-        Task RemoveBanFromUser(string userId);
+        public Task<User> CreateEmployeeAsync(EmployeeRegistrationViewModel model);
 
-        Task<bool> IsAdmin(string userId);
+        public Task<bool> DoesUserNameAndPasswordCombinationExist(EmployeeLoginViewModel model);
 
-        Task<bool> IsValid(string username, string password);
+        public Task<User> GetUserByUserName(string userName);
 
-        Task<bool> DoesUserNameExist(string userName);
+        public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId);
     }
 }

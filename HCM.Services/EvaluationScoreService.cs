@@ -1,4 +1,4 @@
-﻿namespace HCM.Services.Contracts
+﻿namespace HCM.Services
 {
     using System;
     using System.Collections.Generic;
@@ -7,41 +7,43 @@
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
-    using HCM.Web.ViewModels.Gender;
+    using HCM.Services.Contracts;
+    using HCM.Web.ViewModels.EvaluationScore;
     using Microsoft.EntityFrameworkCore;
 
-    public class GenderService : IGenderService
+    public class EvaluationScoreService : IEvaluationScoreService
     {
         private readonly ApplicationDbContext db;
 
-        public GenderService(ApplicationDbContext db)
+        public EvaluationScoreService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public async Task<bool> AddAsync(GenderAddViewModel model)
+        public async Task<bool> AddAsync(EvaluationScoreAddViewModel model)
         {
-            var dublicate = this.db.Genders.Any(x => x.Type == model.Type);
+            var dublicate = this.db.EvaluationScores.Any(x => x.Rate == model.Rate || x.Description == model.Description);
 
             if (dublicate)
             {
                 throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
             }
 
-            var result = new Gender
+            var result = new EvaluationScore
             {
-                Type = model.Type,
+                Rate = model.Rate,
+                Description = model.Description,
             };
 
-            await this.db.Genders.AddAsync(result);
+            await this.db.EvaluationScores.AddAsync(result);
             await this.db.SaveChangesAsync();
 
             return true;
         }
 
-        public async Task<bool> DeleteAsync(GenderDeleteViewModel model)
+        public async Task<bool> DeleteAsync(EvaluationScoreDeleteViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.EvaluationScores.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -58,9 +60,9 @@
             return false;
         }
 
-        public async Task<bool> EditAsync(GenderEditViewModel model)
+        public async Task<bool> EditAsync(EvaluationScoreEditViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.EvaluationScores.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -68,7 +70,8 @@
                     throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
                 }
 
-                result.Type = model.Type;
+                result.Rate = model.Rate;
+                result.Description = model.Description;
                 result.ModifiedOn = DateTime.UtcNow;
                 await this.db.SaveChangesAsync();
                 return true;
@@ -77,36 +80,38 @@
             return false;
         }
 
-        public async Task<ICollection<GenderViewModel>> GetAllAsync()
+        public async Task<ICollection<EvaluationScoreViewModel>> GetAllAsync()
         {
-            var result = await this.db.Genders.Select(x => new GenderViewModel
+            var result = await this.db.EvaluationScores.Select(x => new EvaluationScoreViewModel
             {
+                Rate = x.Rate,
+                Description = x.Description,
                 Id = x.Id,
-                Type = x.Type,
                 CreatedOn = x.CreatedOn,
                 ModifiedOn = x.ModifiedOn,
-                IsDeleted = x.IsDeleted,
                 DeletedOn = x.DeletedOn,
+                IsDeleted = x.IsDeleted,
             }).ToListAsync();
 
             return result;
         }
 
-        public async Task<GenderEditViewModel> GetAsync(string id)
+        public async Task<EvaluationScoreEditViewModel> GetAsync(int id)
         {
-            var dbModel = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == id);
-            var result = new GenderEditViewModel
+            var dbModel = await this.db.EvaluationScores.FirstOrDefaultAsync(x => x.Id == id);
+            var result = new EvaluationScoreEditViewModel
             {
-                Type = dbModel.Type,
+                Rate = dbModel.Rate,
+                Description = dbModel.Description,
                 Id = dbModel.Id,
             };
 
             return result;
         }
 
-        public async Task<bool> RestoreAsync(GenderRestoreViewModel model)
+        public async Task<bool> RestoreAsync(EvaluationScoreRestoreViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.EvaluationScores.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted == false)
