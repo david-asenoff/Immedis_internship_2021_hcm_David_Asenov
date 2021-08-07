@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using HCM.Common;
     using HCM.Data.Common;
 
     public class Training : BaseDeletableModel<string>
@@ -30,6 +29,6 @@
         [Required(ErrorMessage = GlobalConstants.EndDateIsRequired)]
         public DateTime EndDate { get; set; }
 
-        public TimeSpan TotalHours { get; set; }
+        public int TotalHours { get; set; }
     }
 }

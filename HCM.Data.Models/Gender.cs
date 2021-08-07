@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using HCM.Common;
     using HCM.Data.Common;
 
     /// <summary>
@@ -18,7 +17,7 @@
         }
 
         /// <summary>
-        /// Gets or sets type of gender. Values may be masculine, feminine or other.
+        /// Gets or sets type of gender. Values may be Man, Woman or Other.
         /// </summary>
         [Required(ErrorMessage = GlobalConstants.GenderTypeIsRequired)]
         public string Type { get; set; }
