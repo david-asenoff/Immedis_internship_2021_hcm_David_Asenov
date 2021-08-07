@@ -1,9 +1,11 @@
-﻿namespace HCM.Web.ViewModels.Gender
+﻿namespace HCM.Web.ViewModels.PaymentInterval
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
-    public class GenderViewModel : GenderViewBaseModel
+    public class PaymentIntervalViewModel : PaymentIntervalViewBaseModel
     {
         public DateTime CreatedOn { get; set; }
 
@@ -14,6 +16,6 @@
         public bool IsDeleted { get; set; }
 
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

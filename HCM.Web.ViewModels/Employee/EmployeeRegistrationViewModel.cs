@@ -1,6 +1,4 @@
-﻿using HCM.Common;
-using HCM.Data.Common;
-using HCM.Web.ViewModels.Gender;
+﻿using HCM.Data.Common;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -23,7 +21,7 @@ namespace HCM.Web.ViewModels.Employee
         public string LastName { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.GenderIsRequired)]
-        public GenderViewModel Gender { get; set; }
+        public string Gender { get; set; }
 
         [Display(Name = GlobalConstants.PhoneNumberDisplay)]
         [Required(ErrorMessage = "Phone number is required")]
@@ -53,11 +51,5 @@ namespace HCM.Web.ViewModels.Employee
         [Required(ErrorMessage = GlobalConstants.DateOfBirthIsRequired)]
         [DateOfBirth]
         public DateTime DateOfBirth { get; set; }
-
-        [Required(ErrorMessage = GlobalConstants.PortraitIsRequired)]
-        public string Portrait { get; set; }
-
-        [Required(ErrorMessage = GlobalConstants.CVIsRequired)]
-        public string CV { get; set; }
     }
 }
