@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using HCM.Data;
+    using HCM.Data.Common;
     using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Project;
@@ -21,6 +22,16 @@
 
         public async Task<bool> AddAsync(ProjectAddViewModel model)
         {
+            var dublicate = this.db.Companies
+                .Include(x => x.OrderedProjects)
+                .Where(x => x.Id == model.OrdererCompanyId)
+                .Any(x => x.OrderedProjects.Any(x => x.Name == model.Name && x.Description == model.Description));
+
+            if (dublicate)
+            {
+                throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
+            }
+
             var company = this.db.Companies.FirstOrDefault(x => x.Id == model.OrdererCompanyId);
 
             var result = new Project

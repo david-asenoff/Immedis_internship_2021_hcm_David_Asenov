@@ -17,5 +17,7 @@
         Task<bool> AddAsync(CurrencyAddViewModel model);
 
         Task<CurrencyEditViewModel> GetAsync(int id);
+
+        ICollection<CurrencyDropDownViewModel> GetCurrenciesAsDropDown();
     }
 }

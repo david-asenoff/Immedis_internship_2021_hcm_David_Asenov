@@ -127,5 +127,10 @@
 
             return false;
         }
+
+        public ICollection<CurrencyDropDownViewModel> GetCurrenciesAsDropDown()
+        {
+            return this.db.Currencies.Select(x => new CurrencyDropDownViewModel { Id = x.Id, Description = x.Description }).ToArray();
+        }
     }
 }

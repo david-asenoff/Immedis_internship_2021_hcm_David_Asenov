@@ -106,6 +106,8 @@
 
         // Salary
         public const string SalaryIsRequired = "Salary is required";
+        public const string GrossSalaryIsRequired = "Gross Salary is required";
+        public const string NetSalaryIsRequired = "Net Salary is required";
 
         // EmployeeContract
         public const string EmployeeIsRequired = "Employee is required";
@@ -129,6 +131,7 @@
         // PaymentInterval
         public const string PaymentIntervalDisplay = "Payment interval";
         public const string PaymentIntervalTypeIsRequired = "Type of the payment interval is required";
+        public const string PaymentIntervalIsRequired = "Payment interval is required";
 
         // PerformanceReview
         public const string DateOfPerformanceReviewIsInvalid = "The date of the performance review can not be later than today";
@@ -152,6 +155,7 @@
         public const string DescriptionIsRequired = "Description is required";
         public const string AbbreviationDisplay = "Abbreviation";
         public const string AbbreviationIsRequired = "Abbreviation is required";
+        public const string CurrencyIsRequired = "Currency is required";
 
         // EvaluationScore
         public const string RateDisplay = "Rate";

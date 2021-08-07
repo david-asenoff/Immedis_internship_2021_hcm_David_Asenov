@@ -18,6 +18,6 @@
 
         Task<CompanyEditViewModel> GetAsync(string id);
 
-        ICollection<CompanyDropDownViewModel> GetCompanies();
+        ICollection<CompanyDropDownViewModel> GetCompaniesAsDropDown();
     }
 }

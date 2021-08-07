@@ -19,17 +19,20 @@
         /// Gets or sets the payment interval of the salary.
         /// </summary>
         [Display(Name = GlobalConstants.PaymentIntervalDisplay)]
-        [Required(ErrorMessage = GlobalConstants.MaritalStatusIsRequired)]
+        [Required(ErrorMessage = GlobalConstants.PaymentIntervalIsRequired)]
         [ForeignKey(nameof(PaymentInterval))]
         public int PaymentIntervalId { get; set; }
 
         public virtual PaymentInterval PaymentInterval { get; set; }
 
+        [Required(ErrorMessage = GlobalConstants.GrossSalaryIsRequired)]
         public decimal GrossSalary { get; set; }
 
+        [Required(ErrorMessage = GlobalConstants.NetSalaryIsRequired)]
         public decimal NetSalary { get; set; }
 
         [ForeignKey(nameof(Currency))]
+        [Required(ErrorMessage = GlobalConstants.CurrencyIsRequired)]
         public int CurrencyId { get; set; }
 
         public Currency Currency { get; set; }

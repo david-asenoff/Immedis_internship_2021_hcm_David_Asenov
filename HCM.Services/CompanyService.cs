@@ -145,7 +145,7 @@
             return false;
         }
 
-        public ICollection<CompanyDropDownViewModel> GetCompanies()
+        public ICollection<CompanyDropDownViewModel> GetCompaniesAsDropDown()
         {
             return this.db.Companies.Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name }).ToArray();
         }
