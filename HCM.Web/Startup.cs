@@ -1,6 +1,6 @@
 namespace HCM.Web
 {
-    using HCM.Common;
+    using HCM.Data.Common;
     using HCM.Data;
     using HCM.Data.Seeding;
     using HCM.Services;
@@ -34,12 +34,26 @@ namespace HCM.Web
                 {
                     options.LoginPath = "/Home/Login";
                     options.Cookie.Name = GlobalConstants.AuthenticationCookieName;
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true;
                 });
             services.AddMvc();
 
             // Application services
             services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ICurrencyService, CurrencyService>();
+            services.AddTransient<IPaymentIntervalService, PaymentIntervalService>();
+            services.AddTransient<IEvaluationScoreService, EvaluationScoreService>();
+            services.AddTransient<IMaritalStatusService, MaritalStatusService>();
+            services.AddTransient<IParentalStatusService, ParentalStatusService>();
+            services.AddTransient<ITrainingService, TrainingService>();
+            services.AddTransient<IProjectStatusCategoryService, ProjectStatusCategoryService>();
+            services.AddTransient<IPositionService, PositionService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿namespace HCM.Services.Contracts
+﻿namespace HCM.Services
 {
     using System;
     using System.Collections.Generic;
@@ -7,41 +7,43 @@
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
-    using HCM.Web.ViewModels.Gender;
+    using HCM.Services.Contracts;
+    using HCM.Web.ViewModels.Currency;
     using Microsoft.EntityFrameworkCore;
 
-    public class GenderService : IGenderService
+    public class CurrencyService : ICurrencyService
     {
         private readonly ApplicationDbContext db;
 
-        public GenderService(ApplicationDbContext db)
+        public CurrencyService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public async Task<bool> AddAsync(GenderAddViewModel model)
+        public async Task<bool> AddAsync(CurrencyAddViewModel model)
         {
-            var dublicate = this.db.Genders.Any(x => x.Type == model.Type);
+            var dublicate = this.db.Currencies.Any(x => x.Description == model.Description || x.Abbreviation == model.Abbreviation);
 
             if (dublicate)
             {
                 throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
             }
 
-            var result = new Gender
+            var result = new Currency
             {
-                Type = model.Type,
+                Abbreviation = model.Abbreviation,
+                Description = model.Description,
             };
 
-            await this.db.Genders.AddAsync(result);
+            await this.db.Currencies.AddAsync(result);
             await this.db.SaveChangesAsync();
 
             return true;
         }
 
-        public async Task<bool> DeleteAsync(GenderDeleteViewModel model)
+        public async Task<bool> DeleteAsync(CurrencyDeleteViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.Currencies.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -58,9 +60,9 @@
             return false;
         }
 
-        public async Task<bool> EditAsync(GenderEditViewModel model)
+        public async Task<bool> EditAsync(CurrencyEditViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.Currencies.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -68,7 +70,8 @@
                     throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
                 }
 
-                result.Type = model.Type;
+                result.Abbreviation = model.Abbreviation;
+                result.Description = model.Description;
                 result.ModifiedOn = DateTime.UtcNow;
                 await this.db.SaveChangesAsync();
                 return true;
@@ -77,36 +80,38 @@
             return false;
         }
 
-        public async Task<ICollection<GenderViewModel>> GetAllAsync()
+        public async Task<ICollection<CurrencyViewModel>> GetAllAsync()
         {
-            var result = await this.db.Genders.Select(x => new GenderViewModel
+            var result = await this.db.Currencies.Select(x => new CurrencyViewModel
             {
+                Abbreviation = x.Abbreviation,
+                Description = x.Description,
                 Id = x.Id,
-                Type = x.Type,
                 CreatedOn = x.CreatedOn,
                 ModifiedOn = x.ModifiedOn,
-                IsDeleted = x.IsDeleted,
                 DeletedOn = x.DeletedOn,
+                IsDeleted = x.IsDeleted,
             }).ToListAsync();
 
             return result;
         }
 
-        public async Task<GenderEditViewModel> GetAsync(string id)
+        public async Task<CurrencyEditViewModel> GetAsync(int id)
         {
-            var dbModel = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == id);
-            var result = new GenderEditViewModel
+            var dbModel = await this.db.Currencies.FirstOrDefaultAsync(x => x.Id == id);
+            var result = new CurrencyEditViewModel
             {
-                Type = dbModel.Type,
+                Abbreviation = dbModel.Abbreviation,
+                Description = dbModel.Description,
                 Id = dbModel.Id,
             };
 
             return result;
         }
 
-        public async Task<bool> RestoreAsync(GenderRestoreViewModel model)
+        public async Task<bool> RestoreAsync(CurrencyRestoreViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.Currencies.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted == false)

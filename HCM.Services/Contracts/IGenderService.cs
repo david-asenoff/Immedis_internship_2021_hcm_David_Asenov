@@ -6,6 +6,16 @@
 
     public interface IGenderService
     {
-        Task<IEnumerable<GenderViewModel>> GetAllGenders();
+        Task<ICollection<GenderViewModel>> GetAllAsync();
+
+        Task<bool> DeleteAsync(GenderDeleteViewModel model);
+
+        Task<bool> EditAsync(GenderEditViewModel model);
+
+        Task<bool> RestoreAsync(GenderRestoreViewModel model);
+
+        Task<bool> AddAsync(GenderAddViewModel model);
+
+        Task<GenderEditViewModel> GetAsync(string id);
     }
 }

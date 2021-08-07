@@ -1,47 +1,51 @@
-﻿namespace HCM.Services.Contracts
+﻿
+
+namespace HCM.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
-    using HCM.Web.ViewModels.Gender;
+    using HCM.Services.Contracts;
+    using HCM.Web.ViewModels.MaritalStatus;
     using Microsoft.EntityFrameworkCore;
 
-    public class GenderService : IGenderService
+    public class MaritalStatusService : IMaritalStatusService
     {
         private readonly ApplicationDbContext db;
 
-        public GenderService(ApplicationDbContext db)
+        public MaritalStatusService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public async Task<bool> AddAsync(GenderAddViewModel model)
+        public async Task<bool> AddAsync(MaritalStatusAddViewModel model)
         {
-            var dublicate = this.db.Genders.Any(x => x.Type == model.Type);
+            var dublicate = this.db.MaritalStatuses.Any(x => x.Type == model.Type);
 
             if (dublicate)
             {
                 throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
             }
 
-            var result = new Gender
+            var result = new MaritalStatus
             {
                 Type = model.Type,
             };
 
-            await this.db.Genders.AddAsync(result);
+            await this.db.MaritalStatuses.AddAsync(result);
             await this.db.SaveChangesAsync();
 
             return true;
         }
 
-        public async Task<bool> DeleteAsync(GenderDeleteViewModel model)
+        public async Task<bool> DeleteAsync(MaritalStatusDeleteViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.MaritalStatuses.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -58,9 +62,9 @@
             return false;
         }
 
-        public async Task<bool> EditAsync(GenderEditViewModel model)
+        public async Task<bool> EditAsync(MaritalStatusEditViewModel model)
         {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.MaritalStatuses.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted)
@@ -77,9 +81,9 @@
             return false;
         }
 
-        public async Task<ICollection<GenderViewModel>> GetAllAsync()
+        public async Task<ICollection<MaritalStatusViewModel>> GetAllAsync()
         {
-            var result = await this.db.Genders.Select(x => new GenderViewModel
+            var result = await this.db.MaritalStatuses.Select(x => new MaritalStatusViewModel
             {
                 Id = x.Id,
                 Type = x.Type,
@@ -92,21 +96,9 @@
             return result;
         }
 
-        public async Task<GenderEditViewModel> GetAsync(string id)
+        public async Task<bool> RestoreAsync(MaritalStatusRestoreViewModel model)
         {
-            var dbModel = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == id);
-            var result = new GenderEditViewModel
-            {
-                Type = dbModel.Type,
-                Id = dbModel.Id,
-            };
-
-            return result;
-        }
-
-        public async Task<bool> RestoreAsync(GenderRestoreViewModel model)
-        {
-            var result = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var result = await this.db.MaritalStatuses.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
             {
                 if (result.IsDeleted == false)
@@ -121,6 +113,18 @@
             }
 
             return false;
+        }
+
+        public async Task<MaritalStatusEditViewModel> GetAsync(int id)
+        {
+            var dbModel = await this.db.MaritalStatuses.FirstOrDefaultAsync(x => x.Id == id);
+            var result = new MaritalStatusEditViewModel
+            {
+                Type = dbModel.Type,
+                Id = dbModel.Id,
+            };
+
+            return result;
         }
     }
 }
