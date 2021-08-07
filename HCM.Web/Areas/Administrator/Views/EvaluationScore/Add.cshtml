@@ -1,0 +1,44 @@
+﻿@using HCM.Web.ViewModels.EvaluationScore
+@using HCM.Data.Common;
+@model EvaluationScoreAddViewModel
+@{
+    ViewData["Title"] = "Add Evaluation Score";
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area="Administrator"
+      asp-controller="EvaluationScore"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Rate"></label>
+            <span asp-validation-for="@Model.Rate" class="text-danger"></span>
+            <input asp-for="@Model.Rate" class="form-control" placeholder="ANG" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Description"></label>
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            <textarea asp-for="@Model.Description" class="form-control" placeholder="Netherlands Antilles Guilder" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area="Administrator"
+           asp-controller="EvaluationScore"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/js/evaluationScoreTable.js"></script>
+} 
