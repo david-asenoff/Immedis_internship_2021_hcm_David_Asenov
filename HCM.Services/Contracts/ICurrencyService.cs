@@ -18,6 +18,6 @@
 
         Task<CurrencyEditViewModel> GetAsync(int id);
 
-        ICollection<CurrencyDropDownViewModel> GetCurrenciesAsDropDown();
+        Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

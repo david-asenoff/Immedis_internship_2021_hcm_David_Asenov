@@ -128,9 +128,9 @@
             return false;
         }
 
-        public ICollection<CurrencyDropDownViewModel> GetCurrenciesAsDropDown()
+        public async Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync()
         {
-            return this.db.Currencies.Select(x => new CurrencyDropDownViewModel { Id = x.Id, Description = x.Description }).ToArray();
+            return await this.db.Currencies.Select(x => new CurrencyDropDownViewModel { Id = x.Id, Description = x.Description }).ToArrayAsync();
         }
     }
 }

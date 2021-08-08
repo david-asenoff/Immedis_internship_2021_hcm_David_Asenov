@@ -147,5 +147,10 @@
 
             return false;
         }
+
+        public async Task<ICollection<ProjectDropDownViewModel>> GetAllAsDropDown()
+        {
+            return await this.db.Projects.Select(x => new ProjectDropDownViewModel { Id = x.Id, Name = x.Name }).ToArrayAsync();
+        }
     }
 }

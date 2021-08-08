@@ -126,9 +126,9 @@
             return false;
         }
 
-        public ICollection<PaymentIntervalDropDownViewModel> GetPaymentIntervalsAsDropDown()
+        public async Task<ICollection<PaymentIntervalDropDownViewModel>> GetAllAsDropDownAsync()
         {
-            return this.db.PaymentIntervals.Select(x => new PaymentIntervalDropDownViewModel { Id = x.Id, Type = x.Type }).ToArray();
+            return await this.db.PaymentIntervals.Select(x => new PaymentIntervalDropDownViewModel { Id = x.Id, Type = x.Type }).ToArrayAsync();
         }
     }
 }

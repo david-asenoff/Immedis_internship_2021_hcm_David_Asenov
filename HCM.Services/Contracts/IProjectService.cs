@@ -17,5 +17,7 @@
         Task<bool> AddAsync(ProjectAddViewModel model);
 
         Task<ProjectEditViewModel> GetAsync(string id);
+
+        Task<ICollection<ProjectDropDownViewModel>> GetAllAsDropDown();
     }
 }
