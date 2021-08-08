@@ -19,6 +19,6 @@
 
         Task<PaymentIntervalEditViewModel> GetAsync(int id);
 
-        ICollection<PaymentIntervalDropDownViewModel> GetPaymentIntervalsAsDropDown();
+        Task<ICollection<PaymentIntervalDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

@@ -17,5 +17,7 @@
         Task<bool> AddAsync(ProjectStatusCategoryAddViewModel model);
 
         Task<ProjectStatusCategoryEditViewModel> GetAsync(int id);
+
+        Task<ICollection<ProjectStatusCategoryDropDownViewModel>> GetAllAsDropDown();
     }
 }

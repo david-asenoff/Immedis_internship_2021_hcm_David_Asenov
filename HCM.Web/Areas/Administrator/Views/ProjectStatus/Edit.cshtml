@@ -1,0 +1,57 @@
+﻿@using HCM.Web.ViewModels.ProjectStatus
+@using HCM.Data.Common;
+@model ProjectStatusEditViewModel
+@{
+    ViewData["Title"] = "Edit Project Status";
+    var projectStatusCategories = Model.ProjectStatusCategories.Select(x => new SelectListItem(x.Type, x.Id.ToString()));
+    var projects = Model.Projects.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+}
+
+
+<!-- Edit-->
+            <form class="form text-left"
+                  asp-area="Administrator"
+                  asp-controller="ProjectStatus"
+                  asp-action="Edit"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.ProjectId"></label>
+                        <span asp-validation-for="@Model.ProjectId" class="text-danger"></span>
+                        <select asp-for="@Model.ProjectId" asp-items="projects" class="form-control"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.ProjectStatusCategoryId"></label>
+                        <span asp-validation-for="@Model.ProjectStatusCategoryId" class="text-danger"></span>
+                        <select asp-for="@Model.ProjectStatusCategoryId" asp-items="projectStatusCategories" class="form-control"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.StartDate"></label>
+                        <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+                        <input asp-for="@Model.StartDate" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.EndDate"></label>
+                        <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
+                        <input asp-for="@Model.EndDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary"
+                       asp-area="Administrator"
+                       asp-controller="ProjectStatus"
+                       asp-action="Index">
+                        <i class="far fa-window-close"></i>
+                        Close
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="far fa-save"></i>
+                        Save changes
+                    </button>
+                </div>
+            </form>
+
+@section Scripts{
+    <script src="~/js/evaluationScoreTable.js"></script>
+} 

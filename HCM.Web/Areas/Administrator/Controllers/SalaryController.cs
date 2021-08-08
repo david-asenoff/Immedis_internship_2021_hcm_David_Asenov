@@ -34,8 +34,8 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var paymentIntervals = this.paymentIntervalService.GetPaymentIntervalsAsDropDown();
-            var currencies = this.currencyService.GetCurrenciesAsDropDown();
+            var paymentIntervals = await this.paymentIntervalService.GetAllAsDropDownAsync();
+            var currencies = await this.currencyService.GetAllAsDropDownAsync();
             var viewModel = new SalaryAddViewModel
             {
                 PaymentIntervals = paymentIntervals,
@@ -48,8 +48,8 @@
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var paymentIntervals = this.paymentIntervalService.GetPaymentIntervalsAsDropDown();
-            var currencies = this.currencyService.GetCurrenciesAsDropDown();
+            var paymentIntervals = await this.paymentIntervalService.GetAllAsDropDownAsync();
+            var currencies = await this.currencyService.GetAllAsDropDownAsync();
             var model = await salaryService.GetAsync(id);
             model.Currencies = currencies;
             model.PaymentIntervals = paymentIntervals;
@@ -61,8 +61,8 @@
         [HttpPost]
         public async Task<IActionResult> Edit(SalaryEditViewModel model)
         {
-            var paymentIntervals = this.paymentIntervalService.GetPaymentIntervalsAsDropDown();
-            var currencies = this.currencyService.GetCurrenciesAsDropDown();
+            var paymentIntervals = await this.paymentIntervalService.GetAllAsDropDownAsync();
+            var currencies = await this.currencyService.GetAllAsDropDownAsync();
             model.Currencies = currencies;
             model.PaymentIntervals = paymentIntervals;
             if (ModelState.IsValid)
@@ -111,8 +111,8 @@
         [HttpPost]
         public async Task<IActionResult> Add(SalaryAddViewModel model)
         {
-            var paymentIntervals = this.paymentIntervalService.GetPaymentIntervalsAsDropDown();
-            var currencies = this.currencyService.GetCurrenciesAsDropDown();
+            var paymentIntervals = await this.paymentIntervalService.GetAllAsDropDownAsync();
+            var currencies = await this.currencyService.GetAllAsDropDownAsync();
             model.Currencies = currencies;
             model.PaymentIntervals = paymentIntervals;
             if (ModelState.IsValid)
