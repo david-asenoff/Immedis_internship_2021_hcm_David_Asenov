@@ -23,7 +23,6 @@
                               new CompanySeeder(),
                               new AddressSeeder(),
                               new CompanyAdressSeeder(),
-                              new DepartmentSeeder(),
                               new GenderSeeder(),
                               new CurrencySeeder(),
                               new EvaluationScoreSeeder(),
@@ -34,6 +33,7 @@
                               new ProjectStatusCategorySeeder(),
                               new AdminSeeder(),
                               new EmployeeSeeder(),
+                              new DepartmentSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -8,16 +8,18 @@
     {
         Task<ICollection<CompanyViewModel>> GetAllAsync();
 
-        Task<bool> EditAsync(CompanyEditViewModel model);
+        Task<bool> EditAsync(CompanyEditViewModel model,
+            string imagePath);
 
         Task<bool> DeleteAsync(CompanyDeleteViewModel model);
 
         Task<bool> RestoreAsync(CompanyRestoreViewModel model);
 
-        Task<bool> AddAsync(CompanyAddViewModel model);
+        Task<bool> AddAsync(CompanyAddViewModel model,
+            string imagePath);
 
         Task<CompanyEditViewModel> GetAsync(string id);
 
-        ICollection<CompanyDropDownViewModel> GetCompaniesAsDropDown();
+        ICollection<CompanyDropDownViewModel> GetAllAsDropDown();
     }
 }

@@ -7,59 +7,58 @@
 
 
 <!-- Edit-->
-            <form class="form text-left"
-                  asp-area="Administrator"
-                  asp-controller="Company"
-                  asp-action="Edit"
-                  method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.Id"></label>
-                        <span asp-validation-for="@Model.Id" class="text-danger"></span>
-                        <input asp-for="@Model.Id" class="form-control" placeholder="1" readonly />
-                    </div>
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.Name"></label>
-                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
-                        <input asp-for="@Model.Name" class="form-control" placeholder="ANG" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.Email"></label>
-                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
-                        <input asp-for="@Model.Email" class="form-control" placeholder="Netherlands Antilles Guilder" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.PhoneNumber"></label>
-                        <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
-                        <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Netherlands Antilles Guilder" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.Logo"></label>
-                        <span asp-validation-for="@Model.Logo" class="text-danger"></span>
-                        <input asp-for="@Model.Logo" class="form-control" placeholder="place your link here" onchange="changeImg(this)" />
-                        <img src="@Model.Logo" class="img-fluid" alt="Responsive image" id="companylogo">
-                    </div>
-                    <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model.AboutUs"></label>
-                        <span asp-validation-for="@Model.AboutUs" class="text-danger"></span>
-                        <input asp-for="@Model.AboutUs" class="form-control" placeholder="Netherlands Antilles Guilder" />
-                    </div>
-                </div>
-                <div>
-                    <a type="button" class="btn btn-primary"
-                       asp-area="Administrator"
-                       asp-controller="Company"
-                       asp-action="Index">
-                        <i class="far fa-window-close"></i>
-                        Close
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="far fa-save"></i>
-                        Save changes
-                    </button>
-                </div>
-            </form>
+<form class="form text-left"
+      asp-area="Administrator"
+      asp-controller="Company"
+      asp-action="Edit"
+      method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Id"></label>
+            <span asp-validation-for="@Model.Id" class="text-danger"></span>
+            <input asp-for="@Model.Id" class="form-control" placeholder="1" readonly />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Name"></label>
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            <input asp-for="@Model.Name" class="form-control" placeholder="ANG" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Email"></label>
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            <input asp-for="@Model.Email" class="form-control" placeholder="Netherlands Antilles Guilder" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.PhoneNumber"></label>
+            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Netherlands Antilles Guilder" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="CompanyLogo"></label>
+            <input asp-for="CompanyLogo" class="form-control" />
+            <span asp-validation-for="CompanyLogo" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.AboutUs"></label>
+            <span asp-validation-for="@Model.AboutUs" class="text-danger"></span>
+            <input asp-for="@Model.AboutUs" class="form-control" placeholder="Netherlands Antilles Guilder" />
+        </div>
+    </div>
+    <div>
+        <a type="button" class="btn btn-primary"
+           asp-area="Administrator"
+           asp-controller="Company"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            Save changes
+        </button>
+    </div>
+</form>
 
 @section Scripts{
     <script src="~/js/companyTable.js"></script>

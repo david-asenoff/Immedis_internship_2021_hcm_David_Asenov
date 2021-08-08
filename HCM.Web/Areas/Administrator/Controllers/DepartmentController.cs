@@ -31,7 +31,7 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var companies = this.companyService.GetCompaniesAsDropDown();
+            var companies = this.companyService.GetAllAsDropDown();
             var viewModel = new DepartmentAddViewModel
             {
                 Companies = companies,
@@ -43,7 +43,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var companies = this.companyService.GetCompaniesAsDropDown();
+            var companies = this.companyService.GetAllAsDropDown();
             var model = await departmentService.GetAsync(id);
             model.Companies = companies;
             TempData["SuccessMessage"] = "Department is loaded";
@@ -54,7 +54,7 @@
         [HttpPost]
         public async Task<IActionResult> Edit(DepartmentEditViewModel model)
         {
-            var companies = this.companyService.GetCompaniesAsDropDown();
+            var companies = this.companyService.GetAllAsDropDown();
             model.Companies = companies;
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(DepartmentAddViewModel model)
         {
-            var companies = this.companyService.GetCompaniesAsDropDown();
+            var companies = this.companyService.GetAllAsDropDown();
             model.Companies = companies;
             if (ModelState.IsValid)
             {

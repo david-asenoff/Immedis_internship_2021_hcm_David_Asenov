@@ -17,7 +17,7 @@
 
             var manager = dbContext.Users.FirstOrDefault().Id;
             var immedis = dbContext.Companies.FirstOrDefault().Id;
-            var taxback = dbContext.Companies.FirstOrDefault().Id;
+            var taxback = dbContext.Companies.Skip(1).FirstOrDefault().Id;
 
             var departments = new List<Department>
             {
