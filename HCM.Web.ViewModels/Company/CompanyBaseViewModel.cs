@@ -1,6 +1,7 @@
 ﻿namespace HCM.Web.ViewModels.Company
 {
     using HCM.Data.Common;
+    using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
 
     public abstract class CompanyBaseViewModel
@@ -19,8 +20,9 @@
         [Phone(ErrorMessage = GlobalConstants.PhoneNumberIsInvalid)]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = GlobalConstants.LogoIsRequired)]
-        public string Logo { get; set; }
+        public IFormFile CompanyLogo { get; set; }
+
+        public string CompanyLogoUrl { get; set; }
 
         [Display(Name = GlobalConstants.AboutUsDisplay)]
         [Required(ErrorMessage = GlobalConstants.AboutUsIsRequired)]
@@ -29,7 +31,7 @@
         public string Id { get; set; }
 
         public string ShortAboutUs => this.AboutUs.Length > 50 ?
-                                      this.AboutUs.Substring(0, 50) + "..." : 
+                                      this.AboutUs.Substring(0, 50) + "..." :
                                       this.AboutUs;
     }
 }

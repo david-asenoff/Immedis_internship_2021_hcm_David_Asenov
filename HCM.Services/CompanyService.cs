@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using HCM.Data;
@@ -15,12 +16,16 @@
     {
         private readonly ApplicationDbContext db;
 
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif", "jpeg" };
+
         public CompanyService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public async Task<bool> AddAsync(CompanyAddViewModel model)
+        public async Task<bool> AddAsync(
+            CompanyAddViewModel model,
+            string imagePath)
         {
             var dublicate = this.db.Companies.Any(x => x.Name == model.Name);
 
@@ -33,10 +38,26 @@
             {
                 AboutUs = model.AboutUs,
                 Email = model.Email,
-                Logo = model.Logo,
                 Name = model.Name,
                 PhoneNumber = model.PhoneNumber,
             };
+
+            if (model.CompanyLogo != null)
+            {
+                Directory.CreateDirectory($"{imagePath}/companies/");
+
+                var extension = Path.GetExtension(model.CompanyLogo.FileName).TrimStart('.');
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x.ToLower())))
+                {
+                    throw new ArgumentException($"Invalid image extension {extension}");
+                }
+
+                var physicalPath = $"{imagePath}/companies/{result.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await model.CompanyLogo.CopyToAsync(fileStream);
+
+                result.Logo = $"/images/companies/{result.Id}.{extension}";
+            }
 
             await this.db.Companies.AddAsync(result);
             await this.db.SaveChangesAsync();
@@ -63,7 +84,9 @@
             return false;
         }
 
-        public async Task<bool> EditAsync(CompanyEditViewModel model)
+        public async Task<bool> EditAsync(
+            CompanyEditViewModel model,
+            string imagePath)
         {
             var result = await this.db.Companies.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (result != null)
@@ -73,14 +96,27 @@
                     throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
                 }
 
+                Directory.CreateDirectory($"{imagePath}/companies/");
+                if (model.CompanyLogo != null)
+                {
+                    var extension = Path.GetExtension(model.CompanyLogo.FileName).TrimStart('.');
+                    if (!this.allowedExtensions.Any(x => extension.EndsWith(x.ToLower())))
+                    {
+                        throw new ArgumentException($"Invalid image extension {extension}");
+                    }
+
+                    var physicalPath = $"{imagePath}/companies/{model.Id}.{extension}";
+                    using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                    await model.CompanyLogo.CopyToAsync(fileStream);
+                    result.Logo = $"/images/companies/{result.Id}.{extension}";
+                }
+
                 result.AboutUs = model.AboutUs;
                 result.Email = model.Email;
-                result.Logo = model.Logo;
                 result.Name = model.Name;
                 result.PhoneNumber = model.PhoneNumber;
                 result.AboutUs = model.AboutUs;
                 result.Email = model.Email;
-                result.Logo = model.Logo;
                 result.Name = model.Name;
                 result.PhoneNumber = model.PhoneNumber;
                 result.ModifiedOn = DateTime.UtcNow;
@@ -98,7 +134,7 @@
                 Id = x.Id,
                 AboutUs = x.AboutUs,
                 Email = x.Email,
-                Logo = x.Logo,
+                CompanyLogoUrl = x.Logo,
                 Name = x.Name,
                 PhoneNumber = x.PhoneNumber,
                 CreatedOn = x.CreatedOn,
@@ -117,7 +153,7 @@
             {
                 AboutUs = dbModel.AboutUs,
                 Email = dbModel.Email,
-                Logo = dbModel.Logo,
+                CompanyLogoUrl = dbModel.Logo,
                 Name = dbModel.Name,
                 PhoneNumber = dbModel.PhoneNumber,
                 Id = dbModel.Id,
@@ -145,7 +181,7 @@
             return false;
         }
 
-        public ICollection<CompanyDropDownViewModel> GetCompaniesAsDropDown()
+        public ICollection<CompanyDropDownViewModel> GetAllAsDropDown()
         {
             return this.db.Companies.Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name }).ToArray();
         }

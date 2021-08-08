@@ -4,7 +4,9 @@
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Company;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
+    using System;
     using System.Threading.Tasks;
 
     [Area("Administrator")]
@@ -12,10 +14,14 @@
     public class CompanyController : Controller
     {
         private readonly ICompanyService companyService;
+        private readonly IWebHostEnvironment environment;
 
-        public CompanyController(ICompanyService companyService)
+        public CompanyController(
+            ICompanyService companyService,
+            IWebHostEnvironment environment)
         {
             this.companyService = companyService;
+            this.environment = environment;
         }
 
         public async Task<IActionResult> Index()
@@ -46,7 +52,15 @@
         {
             if (ModelState.IsValid)
             {
-                await companyService.EditAsync(model);
+                try
+                {
+                    await companyService.EditAsync(model, $"{this.environment.WebRootPath}/images");
+                }
+                catch (ArgumentException ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    return this.RedirectToAction(nameof(this.Add));
+                }
                 TempData["SuccessMessage"] = "Company is edited";
                 return RedirectToAction("Index", "Company");
             }
@@ -92,7 +106,15 @@
         {
             if (ModelState.IsValid)
             {
-                await companyService.AddAsync(model);
+                try
+                {
+                    await companyService.AddAsync(model, $"{this.environment.WebRootPath}/images");
+                }
+                catch (ArgumentException ex)
+                {
+                    this.ModelState.AddModelError(string.Empty, ex.Message);
+                    return this.RedirectToAction(nameof(this.Add));
+                }
                 TempData["SuccessMessage"] = "Company is added";
                 return RedirectToAction("Index", "Company");
             }

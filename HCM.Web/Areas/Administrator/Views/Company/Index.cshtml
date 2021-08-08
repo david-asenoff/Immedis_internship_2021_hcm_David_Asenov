@@ -49,7 +49,7 @@
                             <td>@Data.Name</td>
                             <td>@Data.Email</td>
                             <td>@Data.PhoneNumber</td>
-                            <td><img src="@Data.Logo" class="img-fluid" alt="Company logo" id="companylogo"></td>
+                            <td><img src="@Data.CompanyLogoUrl" class="img-fluid" alt="Company logo" id="companylogo"></td>
                             <td>@Data.ShortAboutUs</td>
                             <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
                             <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
@@ -71,7 +71,7 @@
                                             data-company-name="@Data.Name"
                                             data-company-email="@Data.Email"
                                             data-company-phonenumber="@Data.PhoneNumber"
-                                            data-company-logo="@Data.Logo"
+                                            data-company-logo="@Data.CompanyLogoUrl"
                                             data-company-aboutus="@Data.AboutUs">
                                         <i class="far fa-trash-alt"></i>
                                         Delete
@@ -84,7 +84,7 @@
                                             data-company-name="@Data.Name"
                                             data-company-email="@Data.Email"
                                             data-company-phonenumber="@Data.PhoneNumber"
-                                            data-company-logo="@Data.Logo"
+                                            data-company-logo="@Data.CompanyLogoUrl"
                                             data-company-aboutus="@Data.AboutUs"
                                             data-company-deletedon="@Data.DeletedOn?.ToString("yyyy-MM-dd")">
                                         <i class="fas fa-trash-restore"></i>
@@ -137,8 +137,8 @@
                         <input name="PhoneNumber" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].Logo"></label>
-                        <span asp-validation-for="@Model[0].Logo" class="text-danger"></span>
+                        <label class="text mb-0 required" asp-for="@Model[0].CompanyLogoUrl"></label>
+                        <span asp-validation-for="@Model[0].CompanyLogoUrl" class="text-danger"></span>
                         <input name="Logo" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
@@ -198,8 +198,8 @@
                         <input name="PhoneNumber" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].Logo"></label>
-                        <span asp-validation-for="@Model[0].Logo" class="text-danger"></span>
+                        <label class="text mb-0 required" asp-for="@Model[0].CompanyLogoUrl"></label>
+                        <span asp-validation-for="@Model[0].CompanyLogoUrl" class="text-danger"></span>
                         <input name="Logo" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
