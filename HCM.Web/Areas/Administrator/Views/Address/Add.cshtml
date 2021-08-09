@@ -3,6 +3,7 @@
 @model AddressViewModel
 @{
     ViewData["Title"] = "Add Address";
+    string GooglePlacesApiKey = TempData["GooglePlacesApiKey"].ToString();
 }
 
 
@@ -17,7 +18,10 @@
         <div class="mb-3">
             <label class="text mb-0 required" asp-for="@Model.Location"></label>
             <span asp-validation-for="@Model.Location" class="text-danger"></span>
-            <textarea asp-for="@Model.Location" class="form-control" placeholder="Varna, Varna, Bulgaria" rows="3"></textarea>
+            <textarea asp-for="@Model.Location" class="form-control"
+                      placeholder="Varna, Varna, Bulgaria"
+                      rows="3"
+                      id="search_input"></textarea>
         </div>
     </div>
     <div class="modal-footer">
@@ -36,4 +40,5 @@
 </form>
 @section Scripts{
     <script src="~/js/addresesTable.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=@GooglePlacesApiKey&language=en"></script>
 } 
