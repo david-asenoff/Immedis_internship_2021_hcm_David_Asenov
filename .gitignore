@@ -335,4 +335,4 @@ ASALocalRun/
 # Google Developer APIs
 client_secret.json
 # Production keys
-appsettings.Production.json
+appsettings.production.json
