@@ -5,6 +5,7 @@
     using HCM.Web.ViewModels.Address;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using System.Threading.Tasks;
 
     [Area("Administrator")]
@@ -13,10 +14,13 @@
     public class AddressController : Controller
     {
         private readonly IAddressService addressService;
+        private readonly IConfiguration config;
 
-        public AddressController(IAddressService addressService)
+        public AddressController(IAddressService addressService,
+                                 IConfiguration config)
         {
             this.addressService = addressService;
+            this.config = config;
         }
         public async Task<IActionResult> Index()
         {
@@ -28,13 +32,16 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            var googlePlacesApiKey = config.GetValue<string>("GooglePlacesApiKey").ToString();
+            TempData["GooglePlacesApiKey"] = googlePlacesApiKey;
             return this.View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-
+            var googlePlacesApiKey = config.GetValue<string>("GooglePlacesApiKey").ToString();
+            TempData["GooglePlacesApiKey"] = googlePlacesApiKey;
             var model = await addressService.GetAsync(id);
             TempData["SuccessMessage"] = "Address is loaded";
 
