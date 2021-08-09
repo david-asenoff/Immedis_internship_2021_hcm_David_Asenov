@@ -181,9 +181,9 @@
             return false;
         }
 
-        public ICollection<CompanyDropDownViewModel> GetAllAsDropDown()
+        public async Task<ICollection<CompanyDropDownViewModel>> GetAllAsDropDownAsync()
         {
-            return this.db.Companies.Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name }).ToArray();
+            return await this.db.Companies.Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name }).ToArrayAsync();
         }
     }
 }

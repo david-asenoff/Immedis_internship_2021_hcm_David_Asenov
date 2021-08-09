@@ -123,5 +123,14 @@
 
             return false;
         }
+
+        public async Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync()
+        {
+            return await this.db.Addresses.Select(x => new AddressDropDownViewModel
+            {
+                Id = x.Id,
+                Location = x.Location,
+            }).ToArrayAsync();
+        }
     }
 }

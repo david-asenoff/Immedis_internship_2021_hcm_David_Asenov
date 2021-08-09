@@ -129,5 +129,10 @@
 
             return false;
         }
+
+        public async Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync()
+        {
+            return await this.db.Departments.Include(x => x.Company).Select(x => new DepartmentDropDownViewModel { Id = x.Id, Name = x.Name, CompanyName = x.Company.Name }).OrderBy(x => x.CompanyName).ToArrayAsync();
+        }
     }
 }

@@ -17,5 +17,7 @@
         Task<bool> AddAsync(DepartmentAddViewModel model);
 
         Task<DepartmentEditViewModel> GetAsync(string id);
+
+        Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

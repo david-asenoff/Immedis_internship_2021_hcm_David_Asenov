@@ -1,0 +1,47 @@
+﻿@using HCM.Web.ViewModels.DepartmentAddress
+@using HCM.Data.Common;
+@model DepartmentAddressEditViewModel
+@{
+    ViewData["Title"] = "Edit Department Address";
+    var departments = Model.Departments.Select(x => new SelectListItem(x.Name + " (" + x.CompanyName + ")", x.Id));
+    var addresses = Model.Addresses.Select(x => new SelectListItem(x.Location, x.Id));
+}
+
+
+<!-- Edit-->
+            <form class="form text-left"
+                  asp-area="Administrator"
+                  asp-controller="DepartmentAddress"
+                  asp-action="Edit"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="DepartmentId"></label>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                        <select asp-for="DepartmentId" asp-items="departments" class="form-control"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="AddressId"></label>
+                        <span asp-validation-for="AddressId" class="text-danger"></span>
+                        <select asp-for="AddressId" asp-items="addresses" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary"
+                       asp-area="Administrator"
+                       asp-controller="DepartmentAddress"
+                       asp-action="Index">
+                        <i class="far fa-window-close"></i>
+                        Close
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="far fa-save"></i>
+                        Save changes
+                    </button>
+                </div>
+            </form>
+
+@section Scripts{
+    <script src="~/js/departmentAddressTable.js"></script>
+} 
