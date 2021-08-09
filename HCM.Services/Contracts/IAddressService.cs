@@ -16,5 +16,7 @@
         Task<bool> AddAsync(AddressAddViewModel model);
 
         Task<AddressEditViewModel> GetAsync(string id);
+
+        Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

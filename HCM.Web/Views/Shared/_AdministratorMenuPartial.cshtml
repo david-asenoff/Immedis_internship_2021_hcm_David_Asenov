@@ -1,133 +1,38 @@
 ﻿@using System.Web;
 @{
     ViewData["Title"] = "Index";
+
+    // adding elements
+    var menuItems = new[] {
+        new { destination= "Currency", title="Currencies", icon= "fas fa-yen-sign" },
+        new { destination= "Gender", title="Genders", icon= "fas fa-venus-mars" },
+        new { destination= "PaymentInterval", title="Payment Intervals", icon= "fas fa-money-check-alt" },
+        new { destination= "EvaluationScore", title="Evaluation Scores", icon= "fas fa-star-half-alt" },
+        new { destination= "MaritalStatus", title="Marital Statuses", icon= "fas fa-ring" },
+        new { destination= "ParentalStatus", title="Parental Statuses", icon= "fas fa-child" },
+        new { destination= "Training", title="Trainings", icon= "fas fa-chalkboard-teacher" },
+        new { destination= "ProjectStatusCategory", title="Project Status Categories", icon= "fas fa-project-diagram" },
+        new { destination= "Address", title="Addresses", icon= "fas fa-location-arrow" },
+        new { destination= "Department", title="Departments", icon= "fas fa-building" },
+        new { destination= "Company", title="Companies", icon= "fas fa-business-time" },
+        new { destination= "Project", title="Projects", icon= "fas fa-flask" },
+        new { destination= "Salary", title="Salaries", icon= "fas fa-money-bill-alt" },
+        new { destination= "ProjectStatus", title="Project Statuses", icon= "fas fa-project-diagram" },
+        new { destination= "DepartmentAddress", title="Department Addresses", icon= "fas fa-globe-europe" },
+    };
 }
 
 @if (User.IsInRole("Administrator"))
 {
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Currency" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-yen-sign opacity-6 text-dark me-1"></i>
-            </div>
-            Currencies
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Gender" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-venus-mars opacity-6 text-dark me-1"></i>
-            </div>
-            Genders
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="PaymentInterval" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-money-check-alt opacity-6 text-dark me-1"></i>
-            </div>
-            Paymenet Intervals
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="EvaluationScore" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-star-half-alt opacity-6 text-dark me-1"></i>
-            </div>
-            Evaluation Score
-        </a>
-    </li>
-    <li class="nav-item">
-
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="MaritalStatus" asp-action="Index">
-
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-ring opacity-6 text-dark me-1"></i>
-            </div>
-            Marital Statuses
-
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="ParentalStatus" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-child opacity-6 text-dark me-1"></i>
-            </div>
-            Parental Status
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Training" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-chalkboard-teacher opacity-6 text-dark me-1"></i>
-            </div>
-            Trainings
-
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="ProjectStatusCategory" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-project-diagram  opacity-6 text-dark me-1"></i>
-            </div>
-            Project Status Category
-
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Position" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-user-plus opacity-6 text-dark me-1"></i>
-            </div>
-            Positions
-
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Address" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-location-arrow opacity-6 text-dark me-1"></i>
-            </div>
-            Addresses
-
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Department" asp-action="Index">
-            <i class="fas fa-building"></i>
-            Departments
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Company" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-business-time opacity-6 text-dark me-1"></i>
-            </div>
-            Companies
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Project" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-flask opacity-6 text-dark me-1"></i>
-            </div>
-            Projects
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="Salary" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-money-bill-alt opacity-6 text-dark me-1"></i>
-            </div>
-            Salaries
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link me-2" asp-area="Administrator" asp-controller="ProjectStatus" asp-action="Index">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-project-diagram opacity-6 text-dark me-1"></i>
-            </div>
-            Projects Statuses
-        </a>
-    </li>
+    foreach (var item in menuItems)
+    {
+        <li class="nav-item">
+            <a class="nav-link me-2" asp-area="Administrator" asp-controller="@item.destination" asp-action="Index">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="@item.icon opacity-6 text-dark me-1"></i>
+                </div>
+                @item.title
+            </a>
+        </li>
+    }
 }

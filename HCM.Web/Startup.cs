@@ -56,6 +56,7 @@ namespace HCM.Web
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<ISalaryService, SalaryService>();
             services.AddTransient<IProjectStatusService, ProjectStatusService>();
+            services.AddTransient<IDepartmentAddressService, DepartmentAddressService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

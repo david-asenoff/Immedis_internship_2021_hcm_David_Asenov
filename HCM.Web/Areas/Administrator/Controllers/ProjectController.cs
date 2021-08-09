@@ -31,7 +31,7 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var companies = this.companyService.GetAllAsDropDown();
+            var companies = await this.companyService.GetAllAsDropDownAsync();
             var viewModel = new ProjectAddViewModel
             {
                 Companies = companies,
@@ -43,7 +43,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var companies = this.companyService.GetAllAsDropDown();
+            var companies = await this.companyService.GetAllAsDropDownAsync();
             var model = await departmentService.GetAsync(id);
             model.Companies = companies;
             TempData["SuccessMessage"] = "Project is loaded";
@@ -54,7 +54,7 @@
         [HttpPost]
         public async Task<IActionResult> Edit(ProjectEditViewModel model)
         {
-            var companies = this.companyService.GetAllAsDropDown();
+            var companies = await this.companyService.GetAllAsDropDownAsync();
             model.Companies = companies;
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(ProjectAddViewModel model)
         {
-            var companies = this.companyService.GetAllAsDropDown();
+            var companies = await this.companyService.GetAllAsDropDownAsync();
             model.Companies = companies;
             if (ModelState.IsValid)
             {
