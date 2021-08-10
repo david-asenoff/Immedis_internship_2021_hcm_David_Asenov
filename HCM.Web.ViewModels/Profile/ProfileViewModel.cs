@@ -1,4 +1,5 @@
 ﻿using HCM.Data.Common;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace HCM.Web.ViewModels.Profile
@@ -14,5 +15,9 @@ namespace HCM.Web.ViewModels.Profile
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords don't match")]
         public string ConfirmPassword { get; set; }
+
+        public IFormFile ProfileAvatar { get; set; }
+
+        public string ProfileAvatarUrl { get; set; }
     }
 }

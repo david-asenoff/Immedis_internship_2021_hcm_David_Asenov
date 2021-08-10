@@ -37,5 +37,4 @@ function changeImg(e) {
     var logoString = document.querySelector('input[name="Logo"]').value;
     var img = document.getElementById('companylogo');
     img.src = logoString;
-
 }

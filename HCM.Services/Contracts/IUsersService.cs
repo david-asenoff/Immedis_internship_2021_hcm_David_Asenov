@@ -25,9 +25,5 @@
         public Task<User> GetUserByUserName(string userName);
 
         public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId);
-
-        public Task<bool> EditProfileAsync(ProfileViewModel model);
-
-        public Task<ProfileViewModel> GetProfileAsync(string userName);
     }
 }
