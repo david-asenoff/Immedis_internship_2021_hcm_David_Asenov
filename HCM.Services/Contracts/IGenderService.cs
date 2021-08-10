@@ -17,5 +17,7 @@
         Task<bool> AddAsync(GenderAddViewModel model);
 
         Task<GenderEditViewModel> GetAsync(string id);
+
+        Task<ICollection<GenderDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

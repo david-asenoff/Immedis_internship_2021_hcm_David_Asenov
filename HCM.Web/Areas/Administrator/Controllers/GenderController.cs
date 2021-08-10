@@ -59,7 +59,7 @@
         public async Task<IActionResult> Delete(GenderDeleteViewModel model)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var dbGender = await genderService.DeleteAsync(model);
                 TempData["SuccessMessage"] = "Gender is deleted";
             }

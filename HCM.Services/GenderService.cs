@@ -77,6 +77,15 @@
             return false;
         }
 
+        public async Task<ICollection<GenderDropDownViewModel>> GetAllAsDropDownAsync()
+        {
+            return await this.db.Genders.Select(x => new GenderDropDownViewModel
+            {
+                Id = x.Id,
+                Type = x.Type,
+            }).ToArrayAsync();
+        }
+
         public async Task<ICollection<GenderViewModel>> GetAllAsync()
         {
             var result = await this.db.Genders.Select(x => new GenderViewModel

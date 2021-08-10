@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HCM.Web.ViewModels.ParentalStatus
 {
-    public class ParentalStatusRestoreViewModel: PaymentIntervalViewBaseModel
+    public class ParentalStatusRestoreViewModel : PaymentIntervalViewBaseModel
     {
         public DateTime? DeletedOn { get; set; }
 

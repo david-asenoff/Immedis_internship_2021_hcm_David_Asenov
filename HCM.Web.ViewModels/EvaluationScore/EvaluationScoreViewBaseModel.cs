@@ -14,6 +14,6 @@
         public int Id { get; set; }
 
         public string ShortDescription => this.Description.Length > 50 ?
-                                          this.Description.Substring(0, 50) + "..." :                                this.Description;
+                                          this.Description.Substring(0, 50) + "..." : this.Description;
     }
 }

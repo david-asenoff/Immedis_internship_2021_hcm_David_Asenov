@@ -44,7 +44,7 @@ namespace HCM.Web.Areas.Administrator.Controllers
         public async Task<IActionResult> Delete(TrainingDeleteViewModel model)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var dbTraining = await trainingService.DeleteAsync(model);
                 TempData["SuccessMessage"] = "Training is deleted";
             }

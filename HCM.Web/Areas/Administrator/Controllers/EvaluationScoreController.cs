@@ -97,7 +97,7 @@ namespace HCM.Web.Areas.Administrator.Controllers
                 return RedirectToAction("Index", "EvaluationScore");
             }
 
-                TempData["ErrorMessage"] = "EvaluationScore is not added. Invalid data.";
+            TempData["ErrorMessage"] = "EvaluationScore is not added. Invalid data.";
 
             return this.View(model);
         }
