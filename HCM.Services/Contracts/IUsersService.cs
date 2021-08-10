@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using HCM.Data.Models;
     using HCM.Web.ViewModels.Employee;
+    using HCM.Web.ViewModels.Profile;
 
     public interface IUsersService
     {
@@ -24,5 +25,9 @@
         public Task<User> GetUserByUserName(string userName);
 
         public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId);
+
+        public Task<bool> EditProfileAsync(ProfileViewModel model);
+
+        public Task<ProfileViewModel> GetProfileAsync(string userName);
     }
 }

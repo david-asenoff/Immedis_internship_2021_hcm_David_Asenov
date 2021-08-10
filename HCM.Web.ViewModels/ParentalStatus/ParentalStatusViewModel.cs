@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HCM.Web.ViewModels.ParentalStatus
 {
-    public class ParentalStatusViewModel:ParentalStatusViewBaseModel
+    public class ParentalStatusViewModel : ParentalStatusViewBaseModel
     {
         public DateTime CreatedOn { get; set; }
 

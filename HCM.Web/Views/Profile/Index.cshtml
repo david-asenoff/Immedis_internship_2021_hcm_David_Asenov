@@ -1,0 +1,88 @@
+﻿@using HCM.Web.ViewModels.Profile
+@using HCM.Data.Common;
+@model ProfileViewModel
+@{
+    ViewData["Title"] = "Profile";
+    var genders = Model.Genders.Select(x => new SelectListItem(x.Type, x.Id));
+}
+
+
+<div class="min-vh-100 mb-12">
+    <div class="page-header align-items-start pt-5 pb-11 m-1 border-radius-lg" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 text-center mx-auto">
+                    <h1 class="text-white mb-1 mt-1">Edit profile details</h1>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="min-vh-100 mb-2">
+        <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+            <div class="col-xl-6 col-lg-9 col-md-12 mx-auto">
+                <div class="card z-index-0">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="card-body">
+                        <form class="form text-left"
+                              asp-controller="Profile"
+                              asp-action="Index"
+                              method="post">
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="@Model.FirstName"></label>
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                <input asp-for="@Model.FirstName" class="form-control" placeholder="David" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0" asp-for="@Model.MiddleName"></label>
+                                <span asp-validation-for="@Model.MiddleName" class="text-danger"></span>
+                                <input asp-for="@Model.MiddleName" class="form-control" placeholder="Rosenov" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="@Model.LastName"></label>
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                <input asp-for="@Model.LastName" class="form-control" placeholder="Asenov" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="@Model.Email"></label>
+                                <span asp-validation-for="@Model.Email" class="text-danger" id="emailSpan"></span>
+                                <input asp-for="@Model.Email" class="form-control" placeholder="david.asenoff@gmail.com" onkeyup="checkMailDublicate(this)" />
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="@Model.Gender"></label>
+                                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+                                <select asp-for="@Model.Gender" asp-items="genders" class="form-control"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="datepicker mb-0 required" asp-for="@Model.DateOfBirth"></label>
+                                <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
+                                <input type="date" asp-for="@Model.DateOfBirth" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text" asp-for="@Model.PhoneNumber"></label>
+                                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                                <input asp-for="@Model.PhoneNumber" class="phoneNumber form-control" placeholder="+359876543210" />
+                            </div>
+                            <hr />
+                            <div class="mb-3">
+                                Enter password to confirm the changes
+                                <label class="text mb-0 required" asp-for="Password"></label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input type="password" asp-for="Password" class="form-control" placeholder="Enter your password" aria-label="Password" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="text mb-0 required" asp-for="ConfirmPassword"></label>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" />
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

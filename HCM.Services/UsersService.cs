@@ -8,6 +8,7 @@
     using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Employee;
+    using HCM.Web.ViewModels.Profile;
     using Microsoft.EntityFrameworkCore;
 
     public class UsersService : IUsersService
@@ -99,6 +100,62 @@
         public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> EditProfileAsync(ProfileViewModel model)
+        {
+            var emlpoyeeLoginModel = new EmployeeLoginViewModel
+            {
+                Username = model.Username,
+                Password = model.Password,
+            };
+            var isValidCombinationOfUserAndPassword = await DoesUserNameAndPasswordCombinationExist(emlpoyeeLoginModel);
+
+            if (isValidCombinationOfUserAndPassword)
+            {
+                var gender = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Gender);
+                var user = await GetUserByUserName(model.Username);
+
+                user.Gender = gender;
+                user.FirstName = model.FirstName;
+                user.MiddleName = model.MiddleName;
+                user.LastName = model.LastName;
+
+                user.PhoneNumber = model.PhoneNumber;
+                user.DateOfBirth = model.DateOfBirth;
+
+                var doesEmailChanged = model.Email == user.Email;
+                var doesEmailAvailable = await DoesMailExist(model.Email);
+                if (doesEmailChanged && doesEmailAvailable)
+                {
+                    user.Email = model.Email;
+                }
+
+                await this.db.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<ProfileViewModel> GetProfileAsync(string userName)
+        {
+            var result = await GetUserByUserName(userName);
+            if (result != null)
+            {
+                var profileModel = new ProfileViewModel();
+                profileModel.FirstName = result.FirstName;
+                profileModel.MiddleName = result.MiddleName;
+                profileModel.LastName = result.LastName;
+                profileModel.Gender = result.GenderId;
+                profileModel.PhoneNumber = result.PhoneNumber;
+                profileModel.Email = result.Email;
+                profileModel.Username = result.Username;
+                profileModel.DateOfBirth = result.DateOfBirth;
+                return profileModel;
+            }
+
+            throw new ArgumentNullException(GlobalConstants.UsernameIsInvalid);
         }
     }
 }
