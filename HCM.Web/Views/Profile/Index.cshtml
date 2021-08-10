@@ -3,10 +3,10 @@
 @model ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
-    var genders = Model.Genders.Select(x => new SelectListItem(x.Type, x.Id));
+    var genders = Model.Genders?.Select(x => new SelectListItem(x.Type, x.Id));
 }
 
-
+<link href="~/css/avatar.css" rel="stylesheet" />
 <div class="min-vh-100 mb-12">
     <div class="page-header align-items-start pt-5 pb-11 m-1 border-radius-lg" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
         <span class="mask bg-gradient-dark opacity-6"></span>
@@ -28,7 +28,41 @@
                         <form class="form text-left"
                               asp-controller="Profile"
                               asp-action="Index"
-                              method="post">
+                              method="post"
+                              enctype="multipart/form-data">
+
+                            <!-- Upload profile avatar -->
+                            <div class="mb-3">
+                                <div class="personal-image">
+                                    <label class="label" asp-for="ProfileAvatar">
+                                        <input type="file" asp-for="ProfileAvatar" hidden onchange="uploadAvatar(this)" />
+                                        <figure class="personal-figure">
+
+                                            @if (Model.ProfileAvatarUrl != null)
+                                            {
+                                                <img src="@Model.ProfileAvatarUrl"
+                                                     class="personal-avatar avatar-circle"
+                                                     id="profileAvatar"
+                                                     alt="avatar">
+                                            }
+                                            else
+                                            {
+                                            <img src="~/images/profiles/No_image_available.svg"
+                                             class="personal-avatar avatar-circle"
+                                             id="profileAvatar"
+                                             alt="avatar">
+                                            }
+
+                                            <figcaption class="personal-figcaption">
+                                                <img src="~/images/profiles/camera-white.png">
+                                            </figcaption>
+                                        </figure>
+                                    </label>
+                                    <span asp-validation-for="ProfileAvatar" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <!-- Upload profile avatar -->
+
                             <div class="mb-3">
                                 <label class="text mb-0 required" asp-for="@Model.FirstName"></label>
                                 <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
@@ -86,3 +120,4 @@
         </div>
     </div>
 </div>
+<script src="~/js/avatar.js"></script>
