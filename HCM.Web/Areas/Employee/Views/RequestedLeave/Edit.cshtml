@@ -7,7 +7,7 @@
 
 <!-- Edit-->
 <form class="form text-left"
-      asp-area="Employee"
+      asp-area=@GlobalConstants.EmployeeRoleName
       asp-controller="RequestedLeave"
       asp-action="Edit"
       method="post">
@@ -31,7 +31,7 @@
     </div>
     <div class="modal-footer">
         <a type="button" class="btn btn-primary"
-           asp-area="Employee"
+           asp-area=@GlobalConstants.EmployeeRoleName
            asp-controller="RequestedLeave"
            asp-action="Index">
             <i class="far fa-window-close"></i>

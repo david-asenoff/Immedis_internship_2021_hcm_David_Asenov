@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HCM.Web.Areas.Administrator.Controllers
 {
-    [Area("Administrator")]
+    [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class TrainingController : Controller
     {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -54,6 +55,10 @@ namespace HCM.Web.Controllers
             if (result)
             {
                 var dbUser = await this.usersService.GetUserByUserName(model.Username);
+                if (dbUser.IsBanned)
+                {
+                    throw new ArgumentException("User is temporarily banned. Ask Administrator for more information.");
+                }
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, model.Username),
@@ -65,9 +70,10 @@ namespace HCM.Web.Controllers
                 var principal = new ClaimsPrincipal(identity);
                 var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
-
+                TempData["SuccessMessage"] = "Successfull login";
                 return RedirectToAction("Index", "Home");
             }
+            TempData["ErrorMessage"] = "Invalid username or password";
             return View();
         }
 
@@ -75,6 +81,7 @@ namespace HCM.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
+            TempData["SuccessMessage"] = "Successfull logout";
             return RedirectToAction("Index");
         }
 
@@ -94,10 +101,12 @@ namespace HCM.Web.Controllers
             {
                 var genders = await this.genderService.GetAllAsync();
                 ViewBag.Genders = genders;
+                TempData["ErrorMessage"] = "Registration is not successful. Invalid data.";
                 return View(model);
             }
 
             var user = await usersService.CreateEmployeeAsync(model);
+            TempData["SuccessMessage"] = "Successful registration";
             return this.RedirectToAction("Login", "Home", user.Username);
         }
 

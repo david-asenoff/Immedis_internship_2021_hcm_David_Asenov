@@ -60,6 +60,20 @@
         {
             var gender = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Gender);
             var role = await this.db.IdentityRoles.FirstOrDefaultAsync(x => x.Type == "Employee");
+
+            var doesUsernameExist = await DoesUserNameExist(model.Username);
+            var doesEmailExist = await DoesMailExist(model.Email);
+
+            if (doesEmailExist)
+            {
+                throw new ArgumentException("Email is already taken");
+            }
+
+            if (doesUsernameExist)
+            {
+                throw new ArgumentException("Username is already taken");
+            }
+
             var user = new User
             {
                 FirstName = model.FirstName,

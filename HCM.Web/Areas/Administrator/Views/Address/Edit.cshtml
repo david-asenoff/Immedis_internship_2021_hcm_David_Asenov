@@ -1,16 +1,14 @@
-﻿@using HCM.Web.ViewModels.DepartmentAddress
-@using HCM.Data.Common;
-@model DepartmentAddressEditViewModel
-@{
-    ViewData["Title"] = "Edit DepartmentAddress";
-    string GooglePlacesApiKey = TempData["GooglePlacesApiKey"].ToString();
-}
+﻿@using HCM.Web.ViewModels.Address
+@using HCM.Data.Common
+@model AddressEditViewModel
+@{ ViewData["Title"] = "Edit Address";
+    string GooglePlacesApiKey = TempData["GooglePlacesApiKey"].ToString(); }
 
 
 <!-- Edit-->
 <form class="form text-left"
-      asp-area="Administrator"
-      asp-controller="DepartmentAddress"
+      asp-area=@GlobalConstants.AdministratorRoleName
+      asp-controller="Address"
       asp-action="Edit"
       method="post">
     Description
@@ -19,28 +17,21 @@
         <div class="mb-3">
             <label class="text mb-0 required" asp-for="@Model.Id"></label>
             <span asp-validation-for="@Model.Id" class="text-danger"></span>
-            <input name="Id" class="form-control" readonly />
+            <input asp-for="@Model.Id" class="form-control" readonly />
         </div>
         <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.AddressLocation"></label>
-            <span asp-validation-for="@Model.AddressLocation" class="text-danger"></span>
-            <input name="AddressLocation" class="form-control" readonly />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.DepartmentName"></label>
-            <span asp-validation-for="@Model.DepartmentName" class="text-danger"></span>
-            <input name="DepartmentName" class="form-control" readonly />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.CompanyName"></label>
-            <span asp-validation-for="@Model.CompanyName" class="text-danger"></span>
-            <input name="CompanyName" class="form-control" readonly />
+            <label class="text mb-0 required" asp-for="@Model.Location"></label>
+            <span asp-validation-for="@Model.Location" class="text-danger"></span>
+            <textarea asp-for="@Model.Location" class="form-control"
+                      placeholder="Varna, Varna, Bulgaria"
+                      rows="3"
+                      id="search_input"></textarea>
         </div>
     </div>
     <div class="modal-footer">
         <a type="button" class="btn btn-primary"
-           asp-area="Administrator"
-           asp-controller="DepartmentAddress"
+           asp-area=@GlobalConstants.AdministratorRoleName
+           asp-controller="Address"
            asp-action="Index">
             <i class="far fa-window-close"></i>
             Close
@@ -51,6 +42,8 @@
         </button>
     </div>
 </form>
+
+
 
 @section Scripts{
     <script src="~/js/addresesTable.js"></script>

@@ -7,7 +7,7 @@
 
 <!-- Edit-->
 <form class="form text-left"
-      asp-area="Administrator"
+      asp-area=@GlobalConstants.AdministratorRoleName
       asp-controller="Training"
       asp-action="Edit"
       method="post">
@@ -48,7 +48,7 @@
     </div>
     <div class="modal-footer">
         <a type="button" class="btn btn-primary"
-           asp-area="Administrator"
+           asp-area=@GlobalConstants.AdministratorRoleName
            asp-controller="Training"
            asp-action="Index">
             <i class="far fa-window-close"></i>
