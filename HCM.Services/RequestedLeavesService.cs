@@ -7,6 +7,7 @@
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
+    using HCM.Web.ViewModels.Manager;
     using HCM.Web.ViewModels.RequestedLeave;
     using Microsoft.EntityFrameworkCore;
 
@@ -105,6 +106,7 @@
             var user = await usersService.GetUserByUserName(userName);
 
             var result = await this.db.RequestedLeaves
+                .Include(x => x.RevisedByManager)
                 .Where(x => x.RequestedByUserId == user.Id)
                 .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new RequestedLeaveViewModel
@@ -118,6 +120,12 @@
                     ModifiedOn = x.ModifiedOn,
                     IsDeleted = x.IsDeleted,
                     DeletedOn = x.DeletedOn,
+                    Manager = new ManagerNamesViewModel
+                    {
+                        FirstName = x.RevisedByManager.FirstName,
+                        LastName = x.RevisedByManager.LastName,
+                        Id = x.RevisedByManager.Id,
+                    },
                 }).ToListAsync();
 
             return result;

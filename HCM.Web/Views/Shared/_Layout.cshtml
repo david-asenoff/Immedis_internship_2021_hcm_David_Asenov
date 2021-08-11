@@ -2,6 +2,8 @@
 @{
     bool isAuthenticated = (Context.User != null) && Context.User.Identity.IsAuthenticated;
     bool isAdmin = this.User.IsInRole("Administrator");
+    bool isEmployee = this.User.IsInRole("Employee");
+    bool isManager = this.User.IsInRole("Manager");
     string userName = Context.User.Identity.Name;
 }
 <!DOCTYPE html>
@@ -82,7 +84,7 @@
                     </form>
                 </li>
 
-                
+
                 <!-- Data pages -->
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data pages</h6>
@@ -91,6 +93,17 @@
                 if (isAdmin)
                 {
                     <partial name="_AdministratorMenuPartial" />
+                }
+                if (isEmployee)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link me-2" asp-area="Employee" asp-controller="RequestedLeave" asp-action="Index">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-umbrella-beach opacity-6 text-dark me-1"></i>
+                            </div>
+                            Requested Leaves
+                        </a>
+                    </li>
                 }
             }
         </ul>
