@@ -1,8 +1,8 @@
 ﻿namespace HCM.Services.Contracts
 {
-    using HCM.Web.ViewModels.Position;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using HCM.Web.ViewModels.Position;
 
     public interface IPositionService
     {

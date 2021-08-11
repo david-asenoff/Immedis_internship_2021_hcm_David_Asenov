@@ -1,14 +1,11 @@
 ﻿namespace HCM.Web.Controllers
 {
-    using HCM.Data.Common;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Profile;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
     using System;
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     [Authorize]

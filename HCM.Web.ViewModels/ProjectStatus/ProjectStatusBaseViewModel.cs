@@ -1,8 +1,6 @@
 ﻿namespace HCM.Web.ViewModels.ProjectStatus
 {
     using HCM.Data.Common;
-    using HCM.Web.ViewModels.Currency;
-    using HCM.Web.ViewModels.PaymentInterval;
     using HCM.Web.ViewModels.Project;
     using HCM.Web.ViewModels.ProjectStatusCategory;
     using System;
