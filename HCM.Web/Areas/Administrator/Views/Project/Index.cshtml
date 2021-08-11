@@ -14,7 +14,7 @@
 }
 <!-- Button Add -->
 <a type="button" class="btn btn-dark"
-   asp-area="Administrator"
+   asp-area=@GlobalConstants.AdministratorRoleName
    asp-controller="Project"
    asp-action="Add">
     <i class="fas fa-plus"></i>
@@ -52,7 +52,7 @@
                             <td>
                                 <!-- Button Edit -->
                                 <a type="button" class="btn btn-primary"
-                                   asp-area="Administrator"
+                                   asp-area=@GlobalConstants.AdministratorRoleName
                                    asp-controller="Project"
                                    asp-action="Edit"
                                    asp-route-id="@Data.Id">
@@ -110,7 +110,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="form text-left"
-                  asp-area="Administrator"
+                  asp-area=@GlobalConstants.AdministratorRoleName
                   asp-controller="Project"
                   asp-action="Delete"
                   method="post">
@@ -181,7 +181,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="form text-left"
-                  asp-area="Administrator"
+                  asp-area=@GlobalConstants.AdministratorRoleName
                   asp-controller="Project"
                   asp-action="Restore"
                   method="post">

@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Area("Administrator")]
+    [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ProjectStatusCategoryController : Controller
     {

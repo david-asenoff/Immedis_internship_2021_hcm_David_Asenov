@@ -9,7 +9,7 @@
     using System;
     using System.Threading.Tasks;
 
-    [Area("Administrator")]
+    [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class CompanyController : Controller
     {

@@ -1,4 +1,5 @@
 ﻿@using System.Web;
+@using HCM.Data.Common;
 @{
     ViewData["Title"] = "Index";
 
@@ -27,7 +28,7 @@
     foreach (var item in menuItems)
     {
         <li class="nav-item">
-            <a class="nav-link me-2" asp-area="Administrator" asp-controller="@item.destination" asp-action="Index">
+            <a class="nav-link me-2" asp-area=@GlobalConstants.AdministratorRoleName asp-controller="@item.destination" asp-action="Index">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="@item.icon opacity-6 text-dark me-1"></i>
                 </div>

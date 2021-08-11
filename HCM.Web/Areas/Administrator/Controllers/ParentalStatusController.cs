@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
-    [Area("Administrator")]
+    [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ParentalStatusController : Controller
     {

@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
 
 
-    [Area("Administrator")]
+    [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class PositionController : Controller
     {
