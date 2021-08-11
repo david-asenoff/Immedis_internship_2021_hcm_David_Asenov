@@ -1,6 +1,7 @@
 ﻿namespace HCM.Web.ViewModels.RequestedLeave
 {
     using HCM.Data.Common;
+    using HCM.Web.ViewModels.Manager;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -27,13 +28,9 @@
         [NotMapped]
         public bool? IsApproved { get; set; }
 
-        /// <summary>
-        /// Gets or sets whether Employee want the leave request to be a paid one or not.
-        /// </summary>
-        [Required]
-        public bool IsPaidLeave { get; set; }
-
         [NotMapped]
         public string Username { get; set; }
+
+        public ManagerNamesViewModel Manager { get; set; }
     }
 }

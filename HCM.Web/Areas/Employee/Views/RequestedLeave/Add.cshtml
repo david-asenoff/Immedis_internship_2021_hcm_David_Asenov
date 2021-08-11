@@ -1,0 +1,50 @@
+﻿@using HCM.Web.ViewModels.RequestedLeave
+@using HCM.Data.Common;
+@model RequestedLeaveAddViewModel
+@{
+    ViewData["Title"] = "Add RequestedLeave";
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area="Employee"
+      asp-controller="RequestedLeave"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.StartDate"></label>
+            <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+            <input asp-for="@Model.StartDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.EndDate"></label>
+            <span asp-validation-for="@Model.EndDate" class="text-danger"></span>
+            <input asp-for="@Model.EndDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.IsPaidLeave"></label>
+            <span asp-validation-for="@Model.IsPaidLeave" class="text-danger"></span>
+            <input type="checkbox" asp-for="@Model.IsPaidLeave" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area="Employee"
+           asp-controller="RequestedLeave"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/requestedLeaveTable.js"></script>
+} 
