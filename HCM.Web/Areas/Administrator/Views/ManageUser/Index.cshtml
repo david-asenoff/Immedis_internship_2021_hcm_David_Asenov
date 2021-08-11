@@ -1,0 +1,64 @@
+﻿@using HCM.Web.ViewModels.ManageUser
+@using HCM.Data.Common;
+@model List<ManageUserViewModel>
+@{
+    ViewData["Title"] = "ManageUser";
+    string[] TableHeaders = new string[] {"UserId",
+                        "FullName",
+                        "Username",
+                        "IsBanned",
+                        "IdentityRoleType",
+    };
+}
+
+<!-- ManageUser Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+          
+                @if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr>
+                            <td>@Data.UserId</td>
+                            <td>@Data.FullName</td>
+                            <td>@Data.Username</td>
+                            <td>@Data.IsBanned</td>
+                            <td>@Data.IdentityRoleType</td>
+                            <td>
+                                <!-- Button Edit -->
+                                <a type="button" class="btn btn-primary"
+                                   asp-area=@GlobalConstants.AdministratorRoleName
+                                   asp-controller="ManageUser"
+                                   asp-action="Edit"
+                                   asp-route-id="@Data.Username">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/manageUserTable.js"></script>
+} 

@@ -1,13 +1,11 @@
 ﻿namespace HCM.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using HCM.Data;
     using HCM.Data.Common;
-    using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Employee;
     using HCM.Web.ViewModels.Profile;
@@ -32,12 +30,12 @@
                 Username = model.Username,
                 Password = model.Password,
             };
-            var isValidCombinationOfUserAndPassword = await usersService.DoesUserNameAndPasswordCombinationExist(emlpoyeeLoginModel);
+            var isValidCombinationOfUserAndPassword = await this.usersService.DoesUserNameAndPasswordCombinationExist(emlpoyeeLoginModel);
 
             if (isValidCombinationOfUserAndPassword)
             {
                 var gender = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Gender);
-                var user = await usersService.GetUserByUserName(model.Username);
+                var user = await this.usersService.GetUserByUserName(model.Username);
 
                 if (user.IsDeleted)
                 {
@@ -69,7 +67,7 @@
                 user.DateOfBirth = model.DateOfBirth;
 
                 var doesEmailChanged = model.Email != user.Email;
-                var doesEmailExist = await usersService.DoesMailExist(model.Email);
+                var doesEmailExist = await this.usersService.DoesMailExist(model.Email);
                 if (doesEmailChanged && !doesEmailExist)
                 {
                     user.Email = model.Email;
@@ -84,7 +82,7 @@
 
         public async Task<ProfileViewModel> GetAsync(string userName)
         {
-            var result = await usersService.GetUserByUserName(userName);
+            var result = await this.usersService.GetUserByUserName(userName);
             if (result != null)
             {
                 var profileModel = new ProfileViewModel();

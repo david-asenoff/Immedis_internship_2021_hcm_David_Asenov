@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HCM.Web.ViewModels.Project
+﻿namespace HCM.Web.ViewModels.Project
 {
     public class ProjectDropDownViewModel
     {

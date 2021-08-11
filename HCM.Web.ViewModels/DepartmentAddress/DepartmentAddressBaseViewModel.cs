@@ -1,11 +1,8 @@
 ﻿namespace HCM.Web.ViewModels.DepartmentAddressAddress
 {
-    using HCM.Data.Common;
     using HCM.Web.ViewModels.Address;
-    using HCM.Web.ViewModels.Company;
     using HCM.Web.ViewModels.Department;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public abstract class DepartmentAddressBaseViewModel
     {

@@ -8,7 +8,6 @@
     using HCM.Data.Common;
     using HCM.Data.Models;
     using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.Company;
     using HCM.Web.ViewModels.PaymentInterval;
     using Microsoft.EntityFrameworkCore;
 

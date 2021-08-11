@@ -59,6 +59,8 @@ namespace HCM.Web
             services.AddTransient<IDepartmentAddressService, DepartmentAddressService>();
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<IRequestedLeavesService, RequestedLeavesService>();
+            services.AddTransient<IManageUserService, ManageUserService>();
+            services.AddTransient<IRoleService, RoleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

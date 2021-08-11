@@ -8,7 +8,6 @@
     using HCM.Data.Models;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.Employee;
-    using HCM.Web.ViewModels.Profile;
     using Microsoft.EntityFrameworkCore;
 
     public class UsersService : IUsersService
@@ -61,8 +60,8 @@
             var gender = await this.db.Genders.FirstOrDefaultAsync(x => x.Id == model.Gender);
             var role = await this.db.IdentityRoles.FirstOrDefaultAsync(x => x.Type == "Employee");
 
-            var doesUsernameExist = await DoesUserNameExist(model.Username);
-            var doesEmailExist = await DoesMailExist(model.Email);
+            var doesUsernameExist = await this.DoesUserNameExist(model.Username);
+            var doesEmailExist = await this.DoesMailExist(model.Email);
 
             if (doesEmailExist)
             {

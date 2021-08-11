@@ -31,7 +31,7 @@
                 throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
             }
 
-            var user = await usersService.GetUserByUserName(userName);
+            var user = await this.usersService.GetUserByUserName(userName);
 
             var result = new RequestedLeave
             {
@@ -58,7 +58,7 @@
                     throw new ArgumentException(ExceptionMessages.CannotDeletedAnAlreadyDeletedObject);
                 }
 
-                var user = await usersService.GetUserByUserName(userName);
+                var user = await this.usersService.GetUserByUserName(userName);
 
                 IsValidRequest(result, user);
 
@@ -81,7 +81,7 @@
                     throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
                 }
 
-                var user = await usersService.GetUserByUserName(userName);
+                var user = await this.usersService.GetUserByUserName(userName);
 
                 IsValidRequest(result, user);
 
@@ -103,7 +103,7 @@
         /// <returns>Collection of all requested leaves made by a user.</returns>
         public async Task<ICollection<RequestedLeaveViewModel>> GetAllAsync(string userName)
         {
-            var user = await usersService.GetUserByUserName(userName);
+            var user = await this.usersService.GetUserByUserName(userName);
 
             var result = await this.db.RequestedLeaves
                 .Include(x => x.RevisedByManager)
@@ -135,7 +135,7 @@
         {
             var dbModel = await this.db.RequestedLeaves.FirstOrDefaultAsync(x => x.Id == id);
 
-            var user = await usersService.GetUserByUserName(userName);
+            var user = await this.usersService.GetUserByUserName(userName);
 
             if (user.Id != dbModel.RequestedByUserId)
             {
@@ -157,7 +157,7 @@
         public async Task<bool> RestoreAsync(RequestedLeaveRestoreViewModel model, string userName)
         {
             var result = await this.db.RequestedLeaves.FirstOrDefaultAsync(x => x.Id == model.Id);
-            var user = await usersService.GetUserByUserName(userName);
+            var user = await this.usersService.GetUserByUserName(userName);
 
             IsValidRequest(result, user);
 
