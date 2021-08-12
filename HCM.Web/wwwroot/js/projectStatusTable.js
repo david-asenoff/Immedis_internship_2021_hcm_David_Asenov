@@ -8,7 +8,7 @@ var deletedOn;
 
 $(document).ready(function () {
     $('#myTable').DataTable({
-        "scrollY": "450px",
+        "scrollX": true,
         "scrollCollapse": true,
         "paging": true,
         dom: 'frtipP',

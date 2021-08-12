@@ -124,7 +124,7 @@
             return false;
         }
 
-        public async Task<ICollection<ProjectStatusCategoryDropDownViewModel>> GetAllAsDropDown()
+        public async Task<ICollection<ProjectStatusCategoryDropDownViewModel>> GetAllAsDropDownAsync()
         {
             return await this.db.ProjectStatusCategories.Select(x => new ProjectStatusCategoryDropDownViewModel { Id = x.Id, Type = x.Type }).ToArrayAsync();
         }

@@ -1,0 +1,70 @@
+﻿@using HCM.Web.ViewModels.Project
+@using HCM.Data.Common;
+@model ProjectAddViewModel
+@{
+    ViewData["Title"] = "Add Project";
+    var companies= Model.Companies.Select(x => new SelectListItem(x.Name, x.Id));
+}
+
+
+<!-- Add-->
+<form class="form text-left"
+      asp-area=@GlobalConstants.ManagerRoleName
+      asp-controller="Project"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Name"></label>
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            <input asp-for="@Model.Name" class="form-control" placeholder="Project Name" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Description"></label>
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            <textarea asp-for="@Model.Description" class="form-control" placeholder="Description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.EstimatedWorkHours"></label>
+            <span asp-validation-for="@Model.EstimatedWorkHours" class="text-danger"></span>
+            <input asp-for="@Model.EstimatedWorkHours" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.FinalWorkHours"></label>
+            <span asp-validation-for="@Model.FinalWorkHours" class="text-danger"></span>
+            <input asp-for="@Model.FinalWorkHours" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.EstimatedBudget"></label>
+            <span asp-validation-for="@Model.EstimatedBudget" class="text-danger"></span>
+            <input asp-for="@Model.EstimatedBudget" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.FinalBudget"></label>
+            <span asp-validation-for="@Model.FinalBudget" class="text-danger"></span>
+            <input asp-for="@Model.FinalBudget" class="form-control" placeholder="Company Name" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="OrdererCompanyId"></label>
+            <select asp-for="OrdererCompanyId" asp-items="companies" class="form-control"></select>
+            <span asp-validation-for="OrdererCompanyId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area=@GlobalConstants.ManagerRoleName
+           asp-controller="Project"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-dark">
+            <i class="fas fa-plus"></i>
+            Add
+        </button>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/js/departmentTable.js"></script>
+} 
