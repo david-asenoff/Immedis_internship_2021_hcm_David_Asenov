@@ -44,6 +44,9 @@
                 FinalBudget = model.FinalBudget,
                 OrdererCompany = company,
             };
+            var inProgress = this.db.ProjectStatusCategories.FirstOrDefault(x => x.Type == "in progress");
+
+            await this.db.ProjectStatuses.AddAsync(new ProjectStatus { Project = result, ProjectStatusCategory = inProgress });
 
             await this.db.Projects.AddAsync(result);
 
@@ -94,6 +97,8 @@
         {
             var result = await this.db.Projects
                 .Include(x => x.OrdererCompany)
+                .Include(x => x.ProjectStatuses)
+                .ThenInclude(x => x.ProjectStatusCategory)
                 .Select(x => new ProjectViewModel
                 {
                     Id = x.Id,
@@ -109,6 +114,7 @@
                     DeletedOn = x.DeletedOn,
                     IsDeleted = x.IsDeleted,
                     CompanyName = x.OrdererCompany.Name,
+                    ProjectStatus = x.ProjectStatuses.OrderByDescending(x => x.CreatedOn).ThenByDescending(x => x.ModifiedOn).Select(x => x.ProjectStatusCategory.Type).FirstOrDefault(),
                 }).ToListAsync();
 
             return result;

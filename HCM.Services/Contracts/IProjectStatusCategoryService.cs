@@ -18,6 +18,6 @@
 
         Task<ProjectStatusCategoryEditViewModel> GetAsync(int id);
 
-        Task<ICollection<ProjectStatusCategoryDropDownViewModel>> GetAllAsDropDown();
+        Task<ICollection<ProjectStatusCategoryDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

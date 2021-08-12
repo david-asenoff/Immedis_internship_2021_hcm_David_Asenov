@@ -1,4 +1,4 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
+﻿namespace HCM.Web.Areas.Manager.Controllers
 {
     using HCM.Data.Common;
     using HCM.Services.Contracts;
@@ -7,8 +7,8 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
-    [Area(GlobalConstants.AdministratorRoleName)]
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    [Area(GlobalConstants.ManagerRoleName)]
+    [Authorize(Roles = GlobalConstants.ManagerRoleName)]
     public class ProjectStatusController : Controller
     {
         private readonly IProjectStatusService projectStatusService;
@@ -34,7 +34,7 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDown();
+            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDownAsync();
             var projects = await this.projectService.GetAllAsDropDown();
             var viewModel = new ProjectStatusAddViewModel
             {
@@ -48,7 +48,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDown();
+            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDownAsync();
             var projects = await this.projectService.GetAllAsDropDown();
             var model = await projectStatusService.GetAsync(id);
             model.ProjectStatusCategories = projectStatusCategories;
@@ -61,7 +61,7 @@
         [HttpPost]
         public async Task<IActionResult> Edit(ProjectStatusEditViewModel model)
         {
-            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDown();
+            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDownAsync();
             var projects = await this.projectService.GetAllAsDropDown();
             model.Projects = projects;
             model.ProjectStatusCategories = projectStatusCategories;
@@ -111,7 +111,7 @@
         [HttpPost]
         public async Task<IActionResult> Add(ProjectStatusAddViewModel model)
         {
-            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDown();
+            var projectStatusCategories = await this.projectStatusCategoryService.GetAllAsDropDownAsync();
             var projects = await this.projectService.GetAllAsDropDown();
             model.Projects = projects;
             model.ProjectStatusCategories = projectStatusCategories;

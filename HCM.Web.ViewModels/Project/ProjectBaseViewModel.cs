@@ -46,5 +46,7 @@ namespace HCM.Web.ViewModels.Project
         public string CompanyName { get; set; }
 
         public IEnumerable<CompanyDropDownViewModel> Companies { get; set; }
+
+        public string ProjectStatus { get; set; }
     }
 }
