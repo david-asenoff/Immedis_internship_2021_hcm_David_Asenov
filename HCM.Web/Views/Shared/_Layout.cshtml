@@ -84,12 +84,29 @@
                     </form>
                 </li>
 
+                if (isAdmin)
+                {
+                    <hr class="mt-1 mb-1" />
+                    <!-- Manage User pages -->
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">User pages</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" asp-area=@GlobalConstants.AdministratorRoleName asp-controller="ManageUser" asp-action="Index">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-users-cog opacity-6 text-dark me-1"></i>
+                            </div>
+                            Manage Users
+                        </a>
+                    </li>
+                }
 
+                <hr class="mt-1 mb-1" />
                 <!-- Data pages -->
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data pages</h6>
                 </li>
-                <hr class="mt-1 mb-1" />
+
                 if (isAdmin)
                 {
                     <partial name="_AdministratorMenuPartial" />

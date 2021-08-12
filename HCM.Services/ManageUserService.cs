@@ -60,6 +60,10 @@
                 manageUserViewModel.DateOfBirth = result.DateOfBirth;
                 manageUserViewModel.ProfileAvatarUrl = result.Portrait;
                 manageUserViewModel.Roles = roles;
+                manageUserViewModel.IdentityRoleType = result.Role.Type;
+                manageUserViewModel.IdentityRoleId = result.IdentityRoleId;
+                manageUserViewModel.IsBanned = result.IsBanned;
+                manageUserViewModel.UserId = result.Id;
 
                 return manageUserViewModel;
             }
@@ -70,7 +74,7 @@
         public async Task<ICollection<ManageUserViewModel>> GetAllAsync()
         {
             var roles = await this.roleService.GetAllAsDropDownAsync();
-            var result = await this.db.Users.Select(x => new ManageUserViewModel
+            var result = await this.db.Users.Include(x => x.Role).Select(x => new ManageUserViewModel
             {
                 FirstName = x.FirstName,
                 MiddleName = x.MiddleName,
@@ -82,7 +86,10 @@
                 UserId = x.Id,
                 DateOfBirth = x.DateOfBirth,
                 ProfileAvatarUrl = x.Portrait,
+                IdentityRoleId = x.IdentityRoleId,
+                IdentityRoleType = x.Role.Type,
                 Roles = roles,
+                IsBanned = x.IsBanned,
             }).ToListAsync();
 
             return result;
