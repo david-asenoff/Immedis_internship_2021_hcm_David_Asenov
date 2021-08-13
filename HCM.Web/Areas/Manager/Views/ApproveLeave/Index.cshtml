@@ -1,0 +1,100 @@
+﻿@using HCM.Web.ViewModels.ApproveLeave
+@using HCM.Data.Common;
+@model List<ApproveLeaveViewModel>
+@{
+    ViewData["Title"] = "Approve Leave";
+    string[] TableHeaders = new string[] {"Id",
+                        "Employee",
+                        "StartDate",
+                        "EndDate",
+                        "IsApproved",
+                        "IsPaidLeave",
+                        "Created On",
+                        "Modified On",
+                        "Actions",
+    };
+}
+<!-- ApproveLeave Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        //"Id",
+                        //"Employee",
+                        //"StartDate",
+                        //"EndDate",
+                        //"IsApproved",
+                        //"IsPaidLeave",
+                        //"Created On",
+                        //"Modified On",
+                        //"Actions"
+                        <tr>
+                            <td>@Data.Id</td>
+                            <td>@Data.Employee.FullName</td>
+                            <td><time datetime="@Data.StartDate.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@Data.EndDate.ToString("yyyy-MM-dd")"></time></td>
+                            <!-- Is approved -->
+                            @if (Data.IsApproved == null)
+                            {
+                                <td>Pending for approval</td>
+                            }
+                            else if (Data.IsApproved == true)
+                            {
+                                <td>Approved</td>
+                            }
+                            else
+                            {
+                                <td>Declined</td>
+                            }
+                            <!-- Is paid -->
+                            @if (Data.IsPaidLeave)
+                            {
+                                <td>Yes</td>
+                            }
+                            else
+                            {
+                                <td>No</td>
+                            }
+
+                            <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
+                            <td>                  
+                                    <!-- Button Edit -->
+                                    <a type="button" class="btn btn-primary"
+                                       asp-area=@GlobalConstants.ManagerRoleName
+                                       asp-controller="ApproveLeave"
+                                       asp-action="Edit"
+                                       asp-route-id="@Data.Id">
+                                        <i class="fas fa-edit"></i>
+                                        Resolve
+                                    </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/approoveLeaveTable.js"></script>
+} 

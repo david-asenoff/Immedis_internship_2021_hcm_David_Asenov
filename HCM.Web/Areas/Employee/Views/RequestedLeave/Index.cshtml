@@ -50,7 +50,7 @@
                             <!-- Is approved -->
                             @if (Data.IsApproved == null)
                             {
-                                <td>Declined</td>
+                                <td>Pending for approval</td>
                             }
                             else if (Data.IsApproved == true)
                             {
@@ -58,7 +58,7 @@
                             }
                             else
                             {
-                                <td>Not revised yet</td>
+                                <td>Declined</td>
                             }
                             <!-- Is paid -->
                             @if (Data.IsPaidLeave)

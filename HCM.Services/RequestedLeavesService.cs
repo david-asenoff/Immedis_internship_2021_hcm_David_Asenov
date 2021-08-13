@@ -7,8 +7,8 @@
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
-    using HCM.Web.ViewModels.Manager;
     using HCM.Web.ViewModels.RequestedLeave;
+    using HCM.Web.ViewModels.Manager;
     using Microsoft.EntityFrameworkCore;
 
     public class RequestedLeavesService : IRequestedLeavesService
@@ -37,7 +37,6 @@
             {
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
-                IsApproved = false,
                 IsPaidLeave = model.IsPaidLeave,
                 RequestedByUser = user,
             };
@@ -56,6 +55,12 @@
                 if (result.IsDeleted)
                 {
                     throw new ArgumentException(ExceptionMessages.CannotDeletedAnAlreadyDeletedObject);
+                }
+
+                // If not pending for approval, and was revised by manager cannot be deleted
+                if (result.IsDeleted != null)
+                {
+                    throw new ArgumentException("Cannot delete Leave Request. It was already revised by a Manager.");
                 }
 
                 var user = await this.usersService.GetUserByUserName(userName);
@@ -79,6 +84,12 @@
                 if (result.IsDeleted)
                 {
                     throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
+                }
+
+                // If not pending for approval, and was revised by manager cannot be edited
+                if (result.IsDeleted != null)
+                {
+                    throw new ArgumentException("Cannot edit Leave Request. It was already revised by a Manager.");
                 }
 
                 var user = await this.usersService.GetUserByUserName(userName);

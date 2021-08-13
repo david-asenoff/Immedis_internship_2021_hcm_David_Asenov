@@ -10,6 +10,7 @@
         public RequestedLeave()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.IsApproved = null;
         }
 
         /// <summary>
@@ -32,7 +33,8 @@
 
         /// <summary>
         /// Gets or sets whether a Manager has approved the requested leave or not.
-        /// True means 'yes', False means 'pending for approval' and Null means 'declined'.
+        /// True means 'yes', False means 'declined' and Null means 'pending for approval'.
+        /// The value will be set to null by the constructor.
         /// </summary>
         public bool? IsApproved { get; set; }
 
