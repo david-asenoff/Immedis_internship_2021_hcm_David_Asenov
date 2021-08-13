@@ -11,6 +11,11 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["HCM.Web/HCM.Web.csproj", "HCM.Web/"]
+COPY ["HCM.Services/HCM.Services.csproj", "HCM.Services/"]
+COPY ["HCM.Web.ViewModels/HCM.Web.ViewModels.csproj", "HCM.Web.ViewModels/"]
+COPY ["HCM.Data.Common/HCM.Data.Common.csproj", "HCM.Data.Common/"]
+COPY ["HCM.Data.Models/HCM.Data.Models.csproj", "HCM.Data.Models/"]
+COPY ["HCM.Data/HCM.Data.csproj", "HCM.Data/"]
 RUN dotnet restore "HCM.Web/HCM.Web.csproj"
 COPY . .
 WORKDIR "/src/HCM.Web"
