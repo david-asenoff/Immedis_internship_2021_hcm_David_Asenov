@@ -71,8 +71,6 @@
 
         public DbSet<TrainingUser> TrainingUsers { get; set; }
 
-        public DbSet<UsedLeave> UsedLeaves { get; set; }
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserAddress> UserAddresses { get; set; }
