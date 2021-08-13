@@ -15,6 +15,8 @@ namespace HCM.Web
 
     public class Startup
     {
+        readonly string AllowGrafana = "_AllowGrafana";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +27,19 @@ namespace HCM.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowGrafana,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
+
+            services.AddMetrics();
+
             services.AddDbContext<ApplicationDbContext>(
                options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -61,6 +76,7 @@ namespace HCM.Web
             services.AddTransient<IRequestedLeavesService, RequestedLeavesService>();
             services.AddTransient<IManageUserService, ManageUserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IApproveLeaveService, ApproveLeaveService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,7 +112,6 @@ namespace HCM.Web
 
             app.UseRouting();
 
-
             // To say who you are, to give your username and password, or facebook login
             app.UseAuthentication();
 
@@ -104,6 +119,7 @@ namespace HCM.Web
             app.UseAuthorization();
 
             app.UseCookiePolicy();
+            app.UseCors(AllowGrafana);
 
             app.UseEndpoints(endpoints =>
             {

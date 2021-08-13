@@ -2,6 +2,5 @@
 {
     public class ManageUserViewModel : ManageUserViewBaseModel
     {
-        public string ProfileAvatarUrl { get; set; }
     }
 }

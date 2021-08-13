@@ -1,0 +1,109 @@
+﻿@using HCM.Web.ViewModels.ApproveLeave
+@using HCM.Data.Common;
+@model ApproveLeaveEditViewModel
+@{
+    ViewData["Title"] = "Edit ApproveLeave";
+}
+
+<!-- Edit-->
+<form class="form text-left"
+      asp-area=@GlobalConstants.ManagerRoleName
+      asp-controller="ApproveLeave"
+      asp-action="Edit"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <div class="mb-3">
+            @if (Model.Employee.AvatarUrl != null)
+            {
+
+                <img src="@Model.Employee.AvatarUrl"
+                     class="img-thumbnail avatar-medium">
+
+            }
+            else
+            {
+
+                <img src="~/images/profiles/No_image_available.svg"
+                     class="img-thumbnail avatar-medium">
+
+            }
+        </div>
+        @if (Model.Employee.IsBanned)
+        {
+            <h5 class="text-danger">Emlpoyee is banned by Administrator</h5>
+        }
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.IdentityRoleType"></label>
+            <span asp-validation-for="@Model.Employee.IdentityRoleType" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.IdentityRoleType" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.UserId"></label>
+            <span asp-validation-for="@Model.Employee.UserId" class="text-danger"></span>
+            <input asp-for="@Model.Employee.UserId" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.FullName"></label>
+            <span asp-validation-for="@Model.Employee.FullName" class="text-danger"></span>
+            <input asp-for="@Model.Employee.FullName" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label class="datepicker mb-0 required" asp-for="@Model.Employee.DateOfBirth"></label>
+            <span asp-validation-for="@Model.Employee.DateOfBirth" class="text-danger"></span>
+            <input type="date" asp-for="@Model.Employee.DateOfBirth" class="form-control" disabled />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.PhoneNumber"></label>
+            <span asp-validation-for="@Model.Employee.PhoneNumber" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.PhoneNumber" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.Gender"></label>
+            <span asp-validation-for="@Model.Employee.Gender" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.Gender" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.Email"></label>
+            <span asp-validation-for="@Model.Employee.Email" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.Email" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Employee.Username"></label>
+            <span asp-validation-for="@Model.Employee.Username" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.Username" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Employee.IdentityRoleType"></label>
+            <span asp-validation-for="@Model.Employee.IdentityRoleType" class="text-danger"></span>
+            <textarea asp-for="@Model.Employee.IdentityRoleType" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.IsApproved"></label>
+            <span asp-validation-for="@Model.IsApproved" class="text-danger"></span>
+            <select asp-for="@Model.IsApproved" class="form-control">
+                <option value="">Pending for approval</option>
+                <option value="true">Approved</option>
+                <option value="false">Declined</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-primary"
+           asp-area=@GlobalConstants.ManagerRoleName
+           asp-controller="ApproveLeave"
+           asp-action="Index">
+            <i class="far fa-window-close"></i>
+            Close
+        </a>
+        <button type="submit" class="btn btn-primary">
+            <i class="far fa-save"></i>
+            Save changes
+        </button>
+    </div>
+</form>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/requestedLeaveTable.js"></script>
+} 

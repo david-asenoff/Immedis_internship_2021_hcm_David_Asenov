@@ -8,7 +8,6 @@
     using HCM.Data.Common;
     using HCM.Services.Contracts;
     using HCM.Web.ViewModels.ManageUser;
-    using HCM.Web.ViewModels.Role;
     using Microsoft.EntityFrameworkCore;
 
     public class ManageUserService : IManageUserService
@@ -58,7 +57,7 @@
                 manageUserViewModel.Email = result.Email;
                 manageUserViewModel.Username = result.Username;
                 manageUserViewModel.DateOfBirth = result.DateOfBirth;
-                manageUserViewModel.ProfileAvatarUrl = result.Portrait;
+                manageUserViewModel.AvatarUrl = result.Portrait;
                 manageUserViewModel.Roles = roles;
                 manageUserViewModel.IdentityRoleType = result.Role.Type;
                 manageUserViewModel.IdentityRoleId = result.IdentityRoleId;
@@ -85,7 +84,7 @@
                 Username = x.Username,
                 UserId = x.Id,
                 DateOfBirth = x.DateOfBirth,
-                ProfileAvatarUrl = x.Portrait,
+                AvatarUrl = x.Portrait,
                 IdentityRoleId = x.IdentityRoleId,
                 IdentityRoleType = x.Role.Type,
                 Roles = roles,

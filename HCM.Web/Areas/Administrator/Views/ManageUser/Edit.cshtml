@@ -6,6 +6,8 @@
     var roles = Model.Roles.Select(x => new SelectListItem(x.Type, x.Id.ToString()));
 }
 
+<link href="~/css/avatar.css" rel="stylesheet" />
+
 <!-- Edit-->
 <form class="form text-left"
       asp-area=@GlobalConstants.AdministratorRoleName
@@ -14,24 +16,22 @@
       method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="modal-body">
-        @if (Model.ProfileAvatarUrl != null)
-        {
-            <div class="mb-3">
-                <img src="@Model.ProfileAvatarUrl"
-                     class="personal-avatar avatar-circle"
-                     id="profileAvatar"
-                     alt="avatar">
-            </div>
-        }
-        else
-        {
-            <div class="mb-3">
-                <img src="~/images/profiles/No_image_available.svg"
-                     class="personal-avatar avatar-circle"
-                     id="profileAvatar"
-                     alt="avatar">
-            </div>
-        }
+        <div class="mb-3">
+                        @if (Model.AvatarUrl != null)
+                        {
+                            
+                                <img src="@Model.AvatarUrl"
+                                     class="img-thumbnail avatar-medium">
+                       
+                        }
+                        else
+                        {
+                          
+                                <img src="~/images/profiles/No_image_available.svg"
+                                     class="img-thumbnail avatar-medium">
+                           
+                        }
+        </div>
         <div class="mb-3">
             <label class="text mb-0 required" asp-for="@Model.UserId"></label>
             <span asp-validation-for="@Model.UserId" class="text-danger"></span>
@@ -78,21 +78,21 @@
             <input type="checkbox" asp-for="@Model.IsBanned" />
         </div>
     </div>
-    <div class="modal-footer">
-        <a type="button" class="btn btn-primary"
-           asp-area=@GlobalConstants.AdministratorRoleName
-           asp-controller="ManageUser"
-           asp-action="Index">
-            <i class="far fa-window-close"></i>
-            Close
-        </a>
-        <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-            Save changes
-        </button>
-    </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-primary"
+                   asp-area=@GlobalConstants.AdministratorRoleName
+                   asp-controller="ManageUser"
+                   asp-action="Index">
+                    <i class="far fa-window-close"></i>
+                    Close
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="far fa-save"></i>
+                    Save changes
+                </button>
+            </div>
 </form>
 
 @section Scripts{
-    <script src="~/js/genderTable.js"></script>
+    <script src="~/js/manageUserTable.js"></script>
 } 
