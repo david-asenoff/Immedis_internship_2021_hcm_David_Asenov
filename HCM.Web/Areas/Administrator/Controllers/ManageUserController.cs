@@ -1,4 +1,6 @@
-﻿using HCM.Data.Common;
+namespace HCM.Web.Controllers
+{
+using HCM.Data.Common;
 using HCM.Services.Contracts;
 using HCM.Web.ViewModels.ManageUser;
 using Microsoft.AspNetCore.Authorization;
@@ -6,8 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace HCM.Web.Controllers
-{
     [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ManageUserController : Controller
