@@ -1,6 +1,6 @@
 ﻿namespace HCM.Web.ViewModels.Currency
 {
-    public class CurrencyAddViewModel : CurrencyBaseViewModel
+    public class CurrencyAddViewModel : EmployeeTrainingsBaseViewModel
     {
     }
 }
