@@ -15,7 +15,7 @@
         }
         public ICollection<EmployeeInformationBaseViewModel> Employees { get; set; }
 
-        public TrainingViewModel Training { get; set; }
+        public TrainingEditViewModel Training { get; set; }
 
         public ICollection<TrainingUserViewModel> AllParticipants { get; set; }
     }
