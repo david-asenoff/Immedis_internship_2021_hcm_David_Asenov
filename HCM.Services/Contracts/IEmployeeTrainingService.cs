@@ -1,9 +1,7 @@
 ﻿namespace HCM.Services.Contracts
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using HCM.Web.ViewModels.EmployeeTrainings;
-    using HCM.Web.ViewModels.Training;
 
     public interface IEmployeeTrainingService
     {

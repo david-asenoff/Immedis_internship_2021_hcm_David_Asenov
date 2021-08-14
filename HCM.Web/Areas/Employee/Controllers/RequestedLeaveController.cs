@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
-{
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.RequestedLeave;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+﻿using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.RequestedLeave;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
+namespace HCM.Web.Areas.Administrator.Controllers
+{
     [Area(GlobalConstants.EmployeeRoleName)]
     [Authorize(Roles = GlobalConstants.EmployeeRoleName)]
     public class RequestedLeaveController : Controller

@@ -1,11 +1,11 @@
-﻿namespace HCM.Web.ViewModels.RequestedLeave
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Manager;
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+﻿using HCM.Data.Common;
+using HCM.Web.ViewModels.Manager;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace HCM.Web.ViewModels.RequestedLeave
+{
     public abstract class RequestedLeaveViewBaseModel
     {
         /// <summary>

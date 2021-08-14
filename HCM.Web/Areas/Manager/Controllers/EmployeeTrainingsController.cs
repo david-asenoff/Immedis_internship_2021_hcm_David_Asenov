@@ -1,14 +1,11 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
+namespace HCM.Web.Areas.Administrator.Controllers
 {
-    using HCM.Data.Common;
-    using HCM.Services;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.EmployeeTrainings;
-    using HCM.Web.ViewModels.Training;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
-
+using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.EmployeeTrainings;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
     [Area(GlobalConstants.ManagerRoleName)]
     [Authorize(Roles = GlobalConstants.ManagerRoleName)]
     public class EmployeeTrainingsController : Controller

@@ -1,6 +1,7 @@
-﻿namespace HCM.Web.ViewModels.Department
+﻿using System;
+
+namespace HCM.Web.ViewModels.Department
 {
-    using System;
     public class DepartmentViewModel : DepartmentBaseViewModel
     {
         public DateTime CreatedOn { get; set; }

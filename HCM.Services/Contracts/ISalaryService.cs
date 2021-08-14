@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using HCM.Data.Models;
     using HCM.Web.ViewModels.Salary;
 
     public interface ISalaryService
@@ -14,7 +15,7 @@
 
         Task<bool> RestoreAsync(SalaryRestoreViewModel model);
 
-        Task<bool> AddAsync(SalaryAddViewModel model);
+        Task<Salary> AddAsync(SalaryAddViewModel model);
 
         Task<SalaryEditViewModel> GetAsync(string id);
     }

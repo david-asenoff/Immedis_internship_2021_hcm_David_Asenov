@@ -1,6 +1,7 @@
-﻿namespace HCM.Web.ViewModels.EvaluationScore
+﻿using System;
+
+namespace HCM.Web.ViewModels.EvaluationScore
 {
-    using System;
     public class EvaluationScoreViewModel : EvaluationScoreViewBaseModel
     {
         public DateTime CreatedOn { get; set; }

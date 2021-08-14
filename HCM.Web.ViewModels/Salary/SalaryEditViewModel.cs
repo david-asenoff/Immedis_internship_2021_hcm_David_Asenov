@@ -1,6 +1,7 @@
-﻿namespace HCM.Web.ViewModels.Salary
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HCM.Web.ViewModels.Salary
 {
-    using System.ComponentModel.DataAnnotations;
     public class SalaryEditViewModel : SalaryBaseViewModel
     {
         [Required]

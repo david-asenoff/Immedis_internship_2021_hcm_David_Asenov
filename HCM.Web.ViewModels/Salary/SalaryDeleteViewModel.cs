@@ -1,7 +1,7 @@
-﻿namespace HCM.Web.ViewModels.Salary
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Salary
+{
     public class SalaryDeleteViewModel : SalaryBaseViewModel
     {
         [Required]

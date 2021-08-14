@@ -1,6 +1,4 @@
-﻿
-
-namespace HCM.Services
+﻿namespace HCM.Services
 {
     using System;
     using System.Collections.Generic;

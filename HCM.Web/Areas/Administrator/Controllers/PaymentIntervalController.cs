@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
-{
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.PaymentInterval;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+﻿using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.PaymentInterval;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
+namespace HCM.Web.Areas.Administrator.Controllers
+{
     [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class PaymentIntervalController : Controller

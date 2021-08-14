@@ -1,20 +1,17 @@
-﻿using HCM.Data;
-using HCM.Data.Common;
-using HCM.Data.Models;
-using HCM.Services.Contracts;
-using HCM.Web.ViewModels.Employee;
-using HCM.Web.ViewModels.EmployeeTrainings;
-using HCM.Web.ViewModels.EvaluationScore;
-using HCM.Web.ViewModels.Training;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HCM.Services
+﻿namespace HCM.Services
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using HCM.Data;
+    using HCM.Data.Common;
+    using HCM.Data.Models;
+    using HCM.Services.Contracts;
+    using HCM.Web.ViewModels.Employee;
+    using HCM.Web.ViewModels.EmployeeTrainings;
+    using HCM.Web.ViewModels.Training;
+    using Microsoft.EntityFrameworkCore;
+
     public class EmployeeTrainingService : IEmployeeTrainingService
     {
         private readonly ApplicationDbContext db;
@@ -37,12 +34,12 @@ namespace HCM.Services
                 throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
             }
 
-            await db.TrainingUsers.AddAsync(new TrainingUser
+            await this.db.TrainingUsers.AddAsync(new TrainingUser
             {
                 TrainingId = trainingId,
                 UserId = employeeId,
             });
-            await db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
             return true;
         }
 
@@ -57,13 +54,13 @@ namespace HCM.Services
 
             var trainingUser = this.db.TrainingUsers.FirstOrDefault(x => x.TrainingId == trainingId && x.UserId == employeeId);
             this.db.TrainingUsers.Remove(trainingUser);
-            await db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
             return true;
         }
 
         public async Task<EmployeeTrainingsViewModel> GetAsync(string trainingId)
         {
-            var training = await db.Trainings
+            var training = await this.db.Trainings
                              .Select(t => new TrainingEditViewModel
                              {
                                  Id = t.Id,
@@ -74,7 +71,7 @@ namespace HCM.Services
                                  TotalHours = t.TotalHours,
                              }).FirstOrDefaultAsync(x => x.Id == trainingId);
 
-            var allParticipants = await db.TrainingUsers
+            var allParticipants = await this.db.TrainingUsers
                 .Where(tu => tu.TrainingId == trainingId)
                 .Select(x=> new TrainingUserViewModel
                 {
@@ -83,7 +80,7 @@ namespace HCM.Services
                 })
                 .ToListAsync();
 
-            var employees = await db.Users
+            var employees = await this.db.Users
                 .Select(x => new EmployeeInformationBaseViewModel
                 {
                     FirstName = x.FirstName,

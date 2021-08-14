@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.PaymentInterval
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.PaymentInterval
+{
     public class PaymentIntervalViewModel : PaymentIntervalViewBaseModel
     {
         public DateTime CreatedOn { get; set; }

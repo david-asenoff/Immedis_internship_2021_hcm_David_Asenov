@@ -1,9 +1,9 @@
-﻿namespace HCM.Web.ViewModels.DepartmentAddressAddress
-{
-    using HCM.Web.ViewModels.Address;
-    using HCM.Web.ViewModels.Department;
-    using System.Collections.Generic;
+﻿using HCM.Web.ViewModels.Address;
+using HCM.Web.ViewModels.Department;
+using System.Collections.Generic;
 
+namespace HCM.Web.ViewModels.DepartmentAddressAddress
+{
     public abstract class DepartmentAddressBaseViewModel
     {
         public string AddressLocation { get; set; }

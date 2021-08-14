@@ -1,10 +1,8 @@
-﻿namespace HCM.Web.ViewModels.ManageUser
+namespace HCM.Web.ViewModels.ManageUser
 {
-    using HCM.Web.ViewModels.Employee;
-    using HCM.Web.ViewModels.Role;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+using HCM.Web.ViewModels.Employee;
+using HCM.Web.ViewModels.Role;
+using System.Collections.Generic;
 
     public class ManageUserViewBaseModel : EmployeeInformationBaseViewModel
     {

@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Salary
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Salary
+{
     public class SalaryViewModel : SalaryBaseViewModel
     {
         public DateTime CreatedOn { get; set; }

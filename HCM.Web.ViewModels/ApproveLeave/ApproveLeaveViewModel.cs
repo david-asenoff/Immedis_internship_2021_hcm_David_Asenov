@@ -1,7 +1,7 @@
-﻿namespace HCM.Web.ViewModels.ApproveLeave
+namespace HCM.Web.ViewModels.ApproveLeave
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
     public class ApproveLeaveViewModel : ApproveLeaveViewBaseModel
     {

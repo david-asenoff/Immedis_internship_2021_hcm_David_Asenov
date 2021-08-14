@@ -1,7 +1,7 @@
 ﻿namespace HCM.Web.ViewModels.Currency
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
     public class CurrencyRestoreViewModel : EmployeeTrainingsBaseViewModel
     {

@@ -36,10 +36,15 @@ namespace HCM.Web.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
+
+        public IActionResult StatusCodeError(int errorCode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View();
         }
 
         [HttpGet]
@@ -66,9 +71,13 @@ namespace HCM.Web.Controllers
                     new Claim(ClaimTypes.Email, dbUser.Email),
                     new Claim("FullName", dbUser.FirstName + " " + dbUser.LastName),
                 };
+                var props = new AuthenticationProperties() { IsPersistent = model.RememberMe };
+                if (model.RememberMe)
+                {
+                    props.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(10);
+                }
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
-                var props = new AuthenticationProperties();
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
                 TempData["SuccessMessage"] = "Successfull login";
                 return RedirectToAction("Index", "Home");

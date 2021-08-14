@@ -1,7 +1,7 @@
-﻿namespace HCM.Web.ViewModels.EvaluationScore
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.EvaluationScore
+{
     public abstract class EvaluationScoreViewBaseModel
     {
         [Required]

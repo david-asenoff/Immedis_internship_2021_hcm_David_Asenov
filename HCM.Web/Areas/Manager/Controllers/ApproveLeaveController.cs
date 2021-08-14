@@ -1,11 +1,11 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
+namespace HCM.Web.Areas.Administrator.Controllers
 {
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.ApproveLeave;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.ApproveLeave;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
     [Area(GlobalConstants.ManagerRoleName)]
     [Authorize(Roles = GlobalConstants.ManagerRoleName)]
