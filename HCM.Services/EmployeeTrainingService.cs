@@ -64,7 +64,7 @@ namespace HCM.Services
         public async Task<EmployeeTrainingsViewModel> GetAsync(string trainingId)
         {
             var training = await db.Trainings
-                             .Select(t => new TrainingViewModel
+                             .Select(t => new TrainingEditViewModel
                              {
                                  Id = t.Id,
                                  Description = t.Description,
@@ -72,10 +72,6 @@ namespace HCM.Services
                                  StartDate = t.StartDate,
                                  EndDate = t.EndDate,
                                  TotalHours = t.TotalHours,
-                                 CreatedOn = t.CreatedOn,
-                                 ModifiedOn = t.ModifiedOn,
-                                 DeletedOn = t.DeletedOn,
-                                 IsDeleted = t.IsDeleted,
                              }).FirstOrDefaultAsync(x => x.Id == trainingId);
 
             var allParticipants = await db.TrainingUsers

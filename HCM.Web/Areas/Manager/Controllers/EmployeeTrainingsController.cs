@@ -64,5 +64,21 @@
             return RedirectToAction("Update", "EmployeeTrainings", new { trainingId = trainingId });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(EmployeeTrainingsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var dbTraining = await trainingService.EditAsync(model.Training);
+                TempData["SuccessMessage"] = "Training is edited";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Training is not edited. Invalid data.";
+            }
+            TempData.Keep();
+            return RedirectToAction("Update", "EmployeeTrainings", new { trainingId = model.Training.Id });
+        }
+
     }
 }
