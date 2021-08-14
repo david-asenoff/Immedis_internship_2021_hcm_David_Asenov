@@ -1,3 +1,5 @@
+namespace HCM.Web
+{
 using HCM.Data.Common;
 using HCM.Data;
 using HCM.Data.Seeding;
@@ -10,9 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-namespace HCM.Web
-{
+  
     public class Startup
     {
         readonly string AllowGrafana = "_AllowGrafana";
