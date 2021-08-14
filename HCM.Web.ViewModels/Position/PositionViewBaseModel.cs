@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Position
-{
-    using HCM.Data.Common;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Position
+{
     public class PositionViewBaseModel
     {
         [Required(ErrorMessage = GlobalConstants.PossitionNameIsRequired)]

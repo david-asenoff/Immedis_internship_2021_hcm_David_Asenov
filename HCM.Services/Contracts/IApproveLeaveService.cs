@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using HCM.Web.ViewModels.ApproveLeave;
-    using HCM.Web.ViewModels.Gender;
 
     public interface IApproveLeaveService
     {

@@ -11,7 +11,6 @@
     using HCM.Web.ViewModels.PaymentInterval;
     using Microsoft.EntityFrameworkCore;
 
-
     public class PaymentIntervalService : IPaymentIntervalService
     {
         private readonly ApplicationDbContext db;

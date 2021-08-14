@@ -1,7 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Training
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace HCM.Web.ViewModels.Training
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
     public class TrainingViewModel : TrainingBaseViewModel
     {
         [Required]

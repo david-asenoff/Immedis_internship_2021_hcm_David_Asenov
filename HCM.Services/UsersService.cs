@@ -114,5 +114,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ICollection<User>> GetAllEmployees()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

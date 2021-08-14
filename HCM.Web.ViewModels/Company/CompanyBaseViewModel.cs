@@ -1,9 +1,9 @@
-﻿namespace HCM.Web.ViewModels.Company
-{
-    using HCM.Data.Common;
-    using Microsoft.AspNetCore.Http;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Company
+{
     public abstract class CompanyBaseViewModel
     {
         [Required(ErrorMessage = GlobalConstants.CompanyNameIsRequired)]

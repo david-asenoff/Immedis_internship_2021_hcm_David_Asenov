@@ -16,62 +16,8 @@
       method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="modal-body">
-        <div class="mb-3">
-                        @if (Model.AvatarUrl != null)
-                        {
-                            
-                                <img src="@Model.AvatarUrl"
-                                     class="img-thumbnail avatar-medium">
-                       
-                        }
-                        else
-                        {
-                          
-                                <img src="~/images/profiles/No_image_available.svg"
-                                     class="img-thumbnail avatar-medium">
-                           
-                        }
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.UserId"></label>
-            <span asp-validation-for="@Model.UserId" class="text-danger"></span>
-            <input asp-for="@Model.UserId" class="form-control" readonly />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.FullName"></label>
-            <span asp-validation-for="@Model.FullName" class="text-danger"></span>
-            <textarea asp-for="@Model.FullName" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Gender"></label>
-            <span asp-validation-for="@Model.Gender" class="text-danger"></span>
-            <textarea asp-for="@Model.Gender" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Email"></label>
-            <span asp-validation-for="@Model.Email" class="text-danger"></span>
-            <textarea asp-for="@Model.Email" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.PhoneNumber"></label>
-            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
-            <textarea asp-for="@Model.PhoneNumber" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.DateOfBirth"></label>
-            <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
-            <textarea asp-for="@Model.DateOfBirth" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Username"></label>
-            <span asp-validation-for="@Model.Username" class="text-danger"></span>
-            <textarea asp-for="@Model.Username" class="form-control" placeholder="Man" rows="3" readonly></textarea>
-        </div>
-        <div class="mb-3">
-            <label asp-for="IdentityRoleId"></label>
-            <select asp-for="IdentityRoleId" asp-items="roles" class="form-control"></select>
-            <span asp-validation-for="IdentityRoleId" class="text-danger"></span>
-        </div>
+        <!-- Employee details -->
+        @await Html.PartialAsync("_EmployeeDetails", Model)
         <div class="mb-3">
             <label class="text mb-0 required" asp-for="@Model.IsBanned"></label>
             <span asp-validation-for="@Model.IsBanned" class="text-danger"></span>

@@ -44,10 +44,8 @@
         [DateOfBirth]
         public DateTime DateOfBirth { get; set; }
 
-        //[Required(ErrorMessage = GlobalConstants.PortraitIsRequired)]
         public string Portrait { get; set; }
 
-        //[Required(ErrorMessage = GlobalConstants.CVIsRequired)]
         public string CV { get; set; }
 
         public virtual ICollection<EmployeeContract> EmployeeContracts { get; set; }

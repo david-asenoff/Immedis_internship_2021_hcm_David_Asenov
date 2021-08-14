@@ -1,11 +1,9 @@
-﻿namespace HCM.Web.ViewModels.EmployeeTrainings
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Employee;
-    using HCM.Web.ViewModels.Training;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Web.ViewModels.Employee;
+using HCM.Web.ViewModels.Training;
+using System.Collections.Generic;
 
+namespace HCM.Web.ViewModels.EmployeeTrainings
+{
     public abstract class EmployeeTrainingsBaseViewModel
     {
         public EmployeeTrainingsBaseViewModel()

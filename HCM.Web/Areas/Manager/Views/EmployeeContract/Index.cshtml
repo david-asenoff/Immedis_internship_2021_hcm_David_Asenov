@@ -1,0 +1,137 @@
+﻿@using HCM.Web.ViewModels.EmployeeContract
+@using HCM.Data.Common;
+@model List<EmployeeContractViewModel>
+@{
+    ViewData["Title"] = "Trainings";
+    string[] TableHeaders = new string[] {
+                        "Contract Id",
+                        "Employee",
+                        "Department",
+                        "Company",
+                        "Position",
+                        "Net Salary",
+                        "Gross Salary",
+                        "Start Date",
+                        "End Date",
+                        "Actions",
+    };
+}
+<!-- Trainings Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr style="text-decoration:@(Data.EndDate != null ? "line-through":"none")">
+                            <td>@Data.EmployeeContractId</td>
+                            <td>@Data.Employee.FullName</td>
+                            <td>@Data.DepartmentName</td>
+                            <td>@Data.DepartmentCompanyName</td>
+                            <td>@Data.PositionName</td>
+                            <td>@Data.Salary.NetSalary</td>
+                            <td>@Data.Salary.GrossSalary</td>
+                            <td><time datetime="@Data.StartDate.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@Data.EndDate?.ToString("yyyy-MM-dd")"></time></td>
+                            <td>
+
+                                
+                                @if (Data.EndDate == null)
+                                {
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#endModal"
+                                        data-employeecontract-id="@Data.EmployeeContractId"
+                                        data-employeecontract-employeefullname="@Data.Employee.FullName"
+                                        data-employeecontract-company="@Data.DepartmentCompanyName"
+                                        data-employeecontract-department="@Data.DepartmentName"
+                                        data-employeecontract-startdate="@Data.StartDate"
+                                        data-employeecontract-enddate="@Data.EndDate">
+                                    <i class="far fa-trash-alt"></i>
+                                    End
+                                </button>
+                                }
+                                <!-- Button End -->
+                                <a type="button" class="btn btn-primary"
+                                   asp-area=@GlobalConstants.ManagerRoleName
+                                   asp-controller="EmployeeContract"
+                                   asp-action="Edit"
+                                   asp-route-contractId="@Data.EmployeeContractId">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal End-->
+<div class="modal fade" id="endModal" tabindex="-1" aria-labelledby="endModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Gender</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form text-left"
+                  asp-area=@GlobalConstants.ManagerRoleName
+                                   asp-controller="EmployeeContract"
+                                   asp-action="EndTheContract"
+                                   method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input name="contractId" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <input name="EmployeeFullName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <input name="DepartmentCompanyName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <input name="DepartmentName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <input name="StartDate" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <input name="EndDate" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                        <i class="far fa-window-close"></i>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        End
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/employeeContractTable.js"></script>
+} 

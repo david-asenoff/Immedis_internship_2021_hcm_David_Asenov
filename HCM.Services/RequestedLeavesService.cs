@@ -7,8 +7,8 @@
     using HCM.Data;
     using HCM.Data.Common;
     using HCM.Data.Models;
-    using HCM.Web.ViewModels.RequestedLeave;
     using HCM.Web.ViewModels.Manager;
+    using HCM.Web.ViewModels.RequestedLeave;
     using Microsoft.EntityFrameworkCore;
 
     public class RequestedLeavesService : IRequestedLeavesService

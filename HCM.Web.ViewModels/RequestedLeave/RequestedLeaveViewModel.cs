@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.RequestedLeave
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.RequestedLeave
+{
     public class RequestedLeaveViewModel : RequestedLeaveViewBaseModel
     {
         public DateTime CreatedOn { get; set; }

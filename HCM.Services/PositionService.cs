@@ -123,5 +123,10 @@
 
             return false;
         }
+
+        public async Task<ICollection<PositionDropDownViewModel>> GetAllAsDropDownAsync()
+        {
+            return await this.db.Possitions.Select(x => new PositionDropDownViewModel { Id = x.Id, Name = x.Name }).OrderBy(x => x.Name).ToArrayAsync();
+        }
     }
 }

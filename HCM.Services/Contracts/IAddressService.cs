@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using HCM.Web.ViewModels.Address;
+
     public interface IAddressService
     {
         Task<ICollection<AddressViewModel>> GetAllAsync();

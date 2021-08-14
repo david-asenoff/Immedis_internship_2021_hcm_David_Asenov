@@ -12,5 +12,11 @@ namespace HCM.Web.ViewModels.Employee
         [Required(ErrorMessage = GlobalConstants.UsernameIsRequired)]
         [StringLength(GlobalConstants.UsernameMaxLength, MinimumLength = GlobalConstants.UsernameMinLength, ErrorMessage = GlobalConstants.UsernameIsInvalid)]
         public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether an identity user should be remembered.
+        /// </summary>
+        [Display(Name = GlobalConstants.RememberMeDisplay)]
+        public bool RememberMe { get; set; }
     }
 }

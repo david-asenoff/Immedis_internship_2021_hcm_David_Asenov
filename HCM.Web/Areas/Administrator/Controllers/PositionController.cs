@@ -1,13 +1,12 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
+﻿using System.Threading.Tasks;
+using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.Position;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace HCM.Web.Areas.Administrator.Controllers
 {
-    using System.Threading.Tasks;
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.Position;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-
-
     [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class PositionController : Controller

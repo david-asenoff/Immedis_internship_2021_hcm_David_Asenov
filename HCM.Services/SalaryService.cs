@@ -20,7 +20,7 @@
             this.db = db;
         }
 
-        public async Task<bool> AddAsync(SalaryAddViewModel model)
+        public async Task<Salary> AddAsync(SalaryAddViewModel model)
         {
             var currency = this.db.Currencies.FirstOrDefault(x => x.Id == model.CurrencyId);
             var paymentInterval = this.db.PaymentIntervals.FirstOrDefault(x => x.Id == model.PaymentIntervalId);
@@ -50,7 +50,7 @@
 
             await this.db.SaveChangesAsync();
 
-            return true;
+            return result;
         }
 
         public async Task<bool> DeleteAsync(SalaryDeleteViewModel model)

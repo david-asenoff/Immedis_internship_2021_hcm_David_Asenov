@@ -1,7 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Salary
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace HCM.Web.ViewModels.Salary
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
     public class SalaryRestoreViewModel : SalaryBaseViewModel
     {
         public DateTime? DeletedOn { get; set; }

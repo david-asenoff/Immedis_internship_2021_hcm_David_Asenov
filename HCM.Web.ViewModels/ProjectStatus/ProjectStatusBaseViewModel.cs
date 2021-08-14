@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.ViewModels.ProjectStatus
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Project;
-    using HCM.Web.ViewModels.ProjectStatusCategory;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using HCM.Web.ViewModels.Project;
+using HCM.Web.ViewModels.ProjectStatusCategory;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.ProjectStatus
+{
     public abstract class ProjectStatusBaseViewModel
     {
         [Display(Name = GlobalConstants.ProjectStatusCategoryDisplay)]

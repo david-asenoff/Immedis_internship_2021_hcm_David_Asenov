@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.Areas.Manager.Controllers
-{
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.ProjectStatus;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+﻿using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.ProjectStatus;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
+namespace HCM.Web.Areas.Manager.Controllers
+{
     [Area(GlobalConstants.ManagerRoleName)]
     [Authorize(Roles = GlobalConstants.ManagerRoleName)]
     public class ProjectStatusController : Controller

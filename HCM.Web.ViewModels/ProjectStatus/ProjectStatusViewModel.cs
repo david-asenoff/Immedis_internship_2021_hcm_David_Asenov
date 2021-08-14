@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.ProjectStatus
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.ProjectStatus
+{
     public class ProjectStatusViewModel : ProjectStatusBaseViewModel
     {
         public DateTime CreatedOn { get; set; }

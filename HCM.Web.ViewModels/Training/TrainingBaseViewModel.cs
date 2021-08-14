@@ -1,9 +1,9 @@
-﻿namespace HCM.Web.ViewModels.Training
-{
-    using HCM.Data.Common;
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Training
+{
     public abstract class TrainingBaseViewModel
     {
         public string Name { get; set; }

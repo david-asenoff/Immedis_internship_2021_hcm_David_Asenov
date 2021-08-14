@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.ApproveLeave
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.ApproveLeave
+{
     public class ApproveLeaveViewModel : ApproveLeaveViewBaseModel
     {
         public DateTime CreatedOn { get; set; }

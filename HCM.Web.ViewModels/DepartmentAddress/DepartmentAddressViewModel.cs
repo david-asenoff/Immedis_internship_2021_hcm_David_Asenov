@@ -1,7 +1,8 @@
-﻿namespace HCM.Web.ViewModels.DepartmentAddress
+﻿using HCM.Web.ViewModels.DepartmentAddressAddress;
+using System;
+
+namespace HCM.Web.ViewModels.DepartmentAddress
 {
-    using HCM.Web.ViewModels.DepartmentAddressAddress;
-    using System;
     public class DepartmentAddressViewModel : DepartmentAddressBaseViewModel
     {
         public DateTime CreatedOn { get; set; }

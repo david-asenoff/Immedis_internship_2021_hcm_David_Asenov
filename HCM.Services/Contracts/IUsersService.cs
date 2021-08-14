@@ -24,5 +24,7 @@
         public Task<User> GetUserByUserName(string userName);
 
         public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId);
+
+        public Task<ICollection<User>> GetAllEmployees();
     }
 }

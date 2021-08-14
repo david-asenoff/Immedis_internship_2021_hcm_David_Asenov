@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Gender
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Gender
+{
     public class GenderRestoreViewModel : GenderViewBaseModel
     {
         public DateTime? DeletedOn { get; set; }

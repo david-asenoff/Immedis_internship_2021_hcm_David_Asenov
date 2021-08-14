@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.ViewModels.Profile
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Gender;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+﻿using HCM.Data.Common;
+using HCM.Web.ViewModels.Gender;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace HCM.Web.ViewModels.Profile
+{
     public class ProfileViewBaseModel
     {
         [Display(Name = GlobalConstants.FirstNameDisplay)]

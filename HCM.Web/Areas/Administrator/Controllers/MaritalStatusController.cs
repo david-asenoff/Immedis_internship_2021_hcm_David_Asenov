@@ -1,12 +1,12 @@
-﻿namespace HCM.Web.Areas.Administrator.Controllers
-{
-    using System.Threading.Tasks;
-    using HCM.Data.Common;
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.MaritalStatus;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using HCM.Data.Common;
+using HCM.Services.Contracts;
+using HCM.Web.ViewModels.MaritalStatus;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
+namespace HCM.Web.Areas.Administrator.Controllers
+{
     [Area(GlobalConstants.AdministratorRoleName)]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class MaritalStatusController : Controller

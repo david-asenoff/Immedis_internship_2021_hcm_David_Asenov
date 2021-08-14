@@ -1,8 +1,8 @@
-﻿namespace HCM.Web.ViewModels.Currency
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Currency
+{
     public class CurrencyViewModel : EmployeeTrainingsBaseViewModel
     {
         public DateTime CreatedOn { get; set; }

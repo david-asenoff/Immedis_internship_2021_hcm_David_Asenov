@@ -1,13 +1,13 @@
-﻿namespace HCM.Web.Controllers
-{
-    using HCM.Services.Contracts;
-    using HCM.Web.ViewModels.Profile;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Threading.Tasks;
+﻿using HCM.Services.Contracts;
+using HCM.Web.ViewModels.Profile;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
+namespace HCM.Web.Controllers
+{
     [Authorize]
     public class ProfileController : Controller
     {

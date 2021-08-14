@@ -17,5 +17,7 @@
         Task<bool> AddAsync(PositionAddViewModel model);
 
         Task<PositionEditViewModel> GetAsync(string id);
+
+        Task<ICollection<PositionDropDownViewModel>> GetAllAsDropDownAsync();
     }
 }

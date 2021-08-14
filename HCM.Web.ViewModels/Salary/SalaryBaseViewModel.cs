@@ -1,11 +1,11 @@
-﻿namespace HCM.Web.ViewModels.Salary
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Currency;
-    using HCM.Web.ViewModels.PaymentInterval;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using HCM.Web.ViewModels.Currency;
+using HCM.Web.ViewModels.PaymentInterval;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Salary
+{
     public abstract class SalaryBaseViewModel
     {
         /// <summary>

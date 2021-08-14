@@ -1,10 +1,10 @@
-﻿namespace HCM.Web.ViewModels.Department
-{
-    using HCM.Data.Common;
-    using HCM.Web.ViewModels.Company;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using HCM.Data.Common;
+using HCM.Web.ViewModels.Company;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
+namespace HCM.Web.ViewModels.Department
+{
     public abstract class DepartmentBaseViewModel
     {
         public string Id { get; set; }
