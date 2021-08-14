@@ -1,3 +1,4 @@
+
 ﻿namespace HCM.Services
 {
     using System;
@@ -35,11 +36,14 @@
             }
 
             await this.db.TrainingUsers.AddAsync(new TrainingUser
+
             {
                 TrainingId = trainingId,
                 UserId = employeeId,
             });
+            
             await this.db.SaveChangesAsync();
+
             return true;
         }
 
@@ -54,13 +58,16 @@
 
             var trainingUser = this.db.TrainingUsers.FirstOrDefault(x => x.TrainingId == trainingId && x.UserId == employeeId);
             this.db.TrainingUsers.Remove(trainingUser);
+
             await this.db.SaveChangesAsync();
+
             return true;
         }
 
         public async Task<EmployeeTrainingsViewModel> GetAsync(string trainingId)
         {
             var training = await this.db.Trainings
+
                              .Select(t => new TrainingEditViewModel
                              {
                                  Id = t.Id,
@@ -72,6 +79,7 @@
                              }).FirstOrDefaultAsync(x => x.Id == trainingId);
 
             var allParticipants = await this.db.TrainingUsers
+
                 .Where(tu => tu.TrainingId == trainingId)
                 .Select(x=> new TrainingUserViewModel
                 {
@@ -81,6 +89,7 @@
                 .ToListAsync();
 
             var employees = await this.db.Users
+
                 .Select(x => new EmployeeInformationBaseViewModel
                 {
                     FirstName = x.FirstName,

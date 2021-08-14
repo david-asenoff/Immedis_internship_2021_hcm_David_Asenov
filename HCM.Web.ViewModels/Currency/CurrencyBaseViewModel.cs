@@ -1,8 +1,8 @@
-﻿using HCM.Data.Common;
-using System.ComponentModel.DataAnnotations;
-
 namespace HCM.Web.ViewModels.Currency
 {
+using HCM.Data.Common;
+using System.ComponentModel.DataAnnotations;
+
     public abstract class EmployeeTrainingsBaseViewModel
     {
         /// <summary>

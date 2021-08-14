@@ -1,9 +1,9 @@
-﻿using HCM.Web.ViewModels.Employee;
+namespace HCM.Web.ViewModels.EmployeeTrainings
+{
+using HCM.Web.ViewModels.Employee;
 using HCM.Web.ViewModels.Training;
 using System.Collections.Generic;
 
-namespace HCM.Web.ViewModels.EmployeeTrainings
-{
     public abstract class EmployeeTrainingsBaseViewModel
     {
         public EmployeeTrainingsBaseViewModel()

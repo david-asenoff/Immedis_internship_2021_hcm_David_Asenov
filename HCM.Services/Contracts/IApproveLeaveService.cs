@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using HCM.Web.ViewModels.ApproveLeave;
-
+   
     public interface IApproveLeaveService
     {
         Task<ICollection<ApproveLeaveViewModel>> GetAllAsync();

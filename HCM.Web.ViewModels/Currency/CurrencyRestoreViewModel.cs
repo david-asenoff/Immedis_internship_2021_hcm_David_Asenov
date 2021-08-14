@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace HCM.Web.ViewModels.Currency
 {
+using System;
+using System.ComponentModel.DataAnnotations;
+
     public class CurrencyRestoreViewModel : EmployeeTrainingsBaseViewModel
     {
         public DateTime? DeletedOn { get; set; }

@@ -1,12 +1,12 @@
-﻿using HCM.Data.Common;
+namespace HCM.Web.ViewModels.ApproveLeave
+{
+using HCM.Data.Common;
 using HCM.Web.ViewModels.Employee;
 using HCM.Web.ViewModels.Manager;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HCM.Web.ViewModels.ApproveLeave
-{
     public abstract class ApproveLeaveViewBaseModel
     {
         /// <summary>
