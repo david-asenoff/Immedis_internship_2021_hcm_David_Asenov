@@ -106,7 +106,7 @@
                 if (isManager)
                 {
                     <hr class="mt-1 mb-1" />
-                    <!-- Manage Emlpoyee pages -->
+                    <!-- Manage Employee pages -->
                     <li class="nav-item mt-3">
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Employee pages</h6>
                     </li>
@@ -116,6 +116,14 @@
                                 <i class="fas fa-umbrella-beach opacity-6 text-dark me-1"></i>
                             </div>
                             Leave requests
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" asp-area=@GlobalConstants.ManagerRoleName asp-controller="EmployeeTrainings" asp-action="Index">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-chalkboard-teacher opacity-6 text-dark me-1"></i>
+                            </div>
+                            Participants in trainings
                         </a>
                     </li>
                 }

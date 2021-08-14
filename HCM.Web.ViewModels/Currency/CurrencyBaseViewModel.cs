@@ -3,7 +3,7 @@
     using HCM.Data.Common;
     using System.ComponentModel.DataAnnotations;
 
-    public abstract class CurrencyBaseViewModel
+    public abstract class EmployeeTrainingsBaseViewModel
     {
         /// <summary>
         /// Gets or sets currency description.

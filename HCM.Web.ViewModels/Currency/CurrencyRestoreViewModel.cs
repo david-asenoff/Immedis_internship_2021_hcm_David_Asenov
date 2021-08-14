@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class CurrencyRestoreViewModel : CurrencyBaseViewModel
+    public class CurrencyRestoreViewModel : EmployeeTrainingsBaseViewModel
     {
         public DateTime? DeletedOn { get; set; }
 

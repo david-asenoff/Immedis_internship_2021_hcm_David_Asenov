@@ -16,6 +16,7 @@
             this.UserMaritalStatuses = new HashSet<UserMaritalStatus>();
             this.UserParentalStatuses = new HashSet<UserParentalStatus>();
             this.ProjectUsers = new HashSet<ProjectUser>();
+            this.TrainingUsers = new HashSet<TrainingUser>();
         }
 
         [Display(Name = GlobalConstants.FirstNameDisplay)]
@@ -58,5 +59,7 @@
         public virtual ICollection<UserParentalStatus> UserParentalStatuses { get; set; }
 
         public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
+
+        public virtual ICollection<TrainingUser> TrainingUsers { get; set; }
     }
 }

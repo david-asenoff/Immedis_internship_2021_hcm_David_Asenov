@@ -2,7 +2,7 @@
 
 namespace HCM.Web.ViewModels.Currency
 {
-    public class CurrencyDeleteViewModel : CurrencyBaseViewModel
+    public class CurrencyDeleteViewModel : EmployeeTrainingsBaseViewModel
     {
         [Required]
         public int Id { get; set; }

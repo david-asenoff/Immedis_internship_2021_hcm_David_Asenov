@@ -1,6 +1,7 @@
 ﻿namespace HCM.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HCM.Data.Common;
 
@@ -30,5 +31,7 @@
         public DateTime EndDate { get; set; }
 
         public int TotalHours { get; set; }
+
+        public virtual ICollection<TrainingUser> TrainingUsers { get; set; }
     }
 }
