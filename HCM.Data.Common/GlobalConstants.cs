@@ -5,6 +5,7 @@
         // System
         public const string SystemName = "HCM";
         public const string AdministratorRoleName = "Administrator";
+        public const string AdministratorAndManagerRoleName = AdministratorRoleName + "," + ManagerRoleName;
         public const string EmployeeRoleName = "Employee";
         public const string ManagerRoleName = "Manager";
         public const string HRRoleName = "HR";

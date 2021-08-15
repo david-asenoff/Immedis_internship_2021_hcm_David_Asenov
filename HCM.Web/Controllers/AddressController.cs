@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace HCM.Web.Areas.Administrator.Controllers
 {
-    [Area(GlobalConstants.AdministratorRoleName)]
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-
+    [Authorize(Roles = GlobalConstants.AdministratorAndManagerRoleName)]
     public class AddressController : Controller
     {
         private readonly IAddressService addressService;

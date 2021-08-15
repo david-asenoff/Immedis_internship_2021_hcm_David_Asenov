@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace HCM.Web.Areas.Administrator.Controllers
 {
-    [Area(GlobalConstants.AdministratorRoleName)]
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    [Authorize(Roles = GlobalConstants.AdministratorAndManagerRoleName)]
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService departmentService;

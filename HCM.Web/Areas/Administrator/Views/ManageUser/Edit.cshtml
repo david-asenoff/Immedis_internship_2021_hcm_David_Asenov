@@ -17,7 +17,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="modal-body">
         <!-- Employee details -->
-        @await Html.PartialAsync("_EmployeeDetails", Model)
+        <partial name="~/Views/Shared/_EmployeeDetailsPartial.cshtml" for="@Model" />
         <div class="mb-3">
             <label class="text mb-0 required" asp-for="@Model.IsBanned"></label>
             <span asp-validation-for="@Model.IsBanned" class="text-danger"></span>

@@ -18,7 +18,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="modal-body">
         <!-- Employee details -->
-        <partial name="~/Views/Shared/_EmployeeDetails.cshtml" for="Employee" />
+        <partial name="~/Views/Shared/_EmployeeDetailsPartial.cshtml" for="Employee" />
         <div class="mb-3">
             <label asp-for="@Model.EmployeeContractId"></label>
             <span asp-validation-for="@Model.EmployeeContractId"></span>

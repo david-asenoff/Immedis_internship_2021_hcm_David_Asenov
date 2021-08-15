@@ -16,9 +16,9 @@
 
         public virtual User User { get; set; }
 
-        [ForeignKey(nameof(Company))]
-        public string CompanyId { get; set; }
+        [ForeignKey(nameof(Project))]
+        public string ProjectId { get; set; }
 
-        public virtual Company Company { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

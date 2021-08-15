@@ -1,26 +1,28 @@
-﻿@using HCM.Web.ViewModels.DepartmentAddress
+﻿@using HCM.Web.ViewModels.Company
 @using HCM.Data.Common;
-@model List<DepartmentAddressViewModel>
+@model List<CompanyViewModel>
 @{
-    ViewData["Title"] = "Department Address";
+    ViewData["Title"] = "Company";
     string[] TableHeaders = new string[] {"Id",
-                        "AddressLocation",
-                        "DepartmentName",
-                        "CompanyName",
-                        "Created On",
+                        "Name",
+                        "Email",
+                        "Phone Number",
+                        "Logo",
+                        "About Us",
+                        "Createn On",
                         "Modified On",
                         "Actions",
     };
 }
 <!-- Button Add -->
 <a type="button" class="btn btn-dark"
-   asp-area=@GlobalConstants.AdministratorRoleName
-   asp-controller="DepartmentAddress"
+   asp-area=""
+   asp-controller="Company"
    asp-action="Add">
     <i class="fas fa-plus"></i>
     Add @ViewData["Title"]
 </a>
-<!-- DepartmentAddress Table-->
+<!-- Company Table-->
 <div class="table">
     <table id="myTable" class="table table-bordered table-hover table-sm">
         <thead>
@@ -44,16 +46,18 @@
                     {
                         <tr style="text-decoration:@(Data.IsDeleted?"line-through":"none")">
                             <td>@Data.Id</td>
-                            <td>@Data.AddressLocation</td>
-                            <td>@Data.DepartmentName</td>
-                            <td>@Data.CompanyName</td>
+                            <td>@Data.Name</td>
+                            <td>@Data.Email</td>
+                            <td>@Data.PhoneNumber</td>
+                            <td><img src="@Data.CompanyLogoUrl" class="img-fluid" alt="Company logo" id="companylogo"></td>
+                            <td>@Data.ShortAboutUs</td>
                             <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
                             <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
                             <td>
                                 <!-- Button Edit -->
                                 <a type="button" class="btn btn-primary"
-                                   asp-area=@GlobalConstants.AdministratorRoleName
-                                   asp-controller="DepartmentAddress"
+                                   asp-area=""
+                                   asp-controller="Company"
                                    asp-action="Edit"
                                    asp-route-id="@Data.Id">
                                     <i class="fas fa-edit"></i>
@@ -63,13 +67,12 @@
                                 @if (Data.IsDeleted == false)
                                 {
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                            data-departmentaddress-id="@Data.Id"
-                                            data-departmentaddress-addresslocation="@Data.AddressLocation"
-                                            data-departmentaddress-departmentname="@Data.DepartmentName"
-                                            data-departmentaddress-companyname="@Data.CompanyName"
-                                            data-departmentaddress-createdon="@Data.CreatedOn"
-                                            data-departmentaddress-modifiedon="@Data.ModifiedOn">
-
+                                            data-company-id="@Data.Id"
+                                            data-company-name="@Data.Name"
+                                            data-company-email="@Data.Email"
+                                            data-company-phonenumber="@Data.PhoneNumber"
+                                            data-company-logo="@Data.CompanyLogoUrl"
+                                            data-company-aboutus="@Data.AboutUs">
                                         <i class="far fa-trash-alt"></i>
                                         Delete
                                     </button>
@@ -77,13 +80,13 @@
                                 else
                                 {
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#restoreModal"
-                                            data-departmentaddress-id="@Data.Id"
-                                            data-departmentaddress-addresslocation="@Data.AddressLocation"
-                                            data-departmentaddress-departmentname="@Data.DepartmentName"
-                                            data-departmentaddress-companyname="@Data.CompanyName"
-                                            data-departmentaddress-createdon="@Data.CreatedOn"
-                                            data-departmentaddress-modifiedon="@Data.ModifiedOn"
-                                            data-departmentaddress-deletedon="@Data.DeletedOn?.ToString("yyyy-MM-dd")">
+                                            data-company-id="@Data.Id"
+                                            data-company-name="@Data.Name"
+                                            data-company-email="@Data.Email"
+                                            data-company-phonenumber="@Data.PhoneNumber"
+                                            data-company-logo="@Data.CompanyLogoUrl"
+                                            data-company-aboutus="@Data.AboutUs"
+                                            data-company-deletedon="@Data.DeletedOn?.ToString("yyyy-MM-dd")">
                                         <i class="fas fa-trash-restore"></i>
                                         Restore
                                     </button>
@@ -103,12 +106,12 @@
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete DepartmentAddress</h5>
+                <h5 class="modal-title" id="deleteModalLabel">Delete Company</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="form text-left"
-                  asp-area=@GlobalConstants.AdministratorRoleName
-                  asp-controller="DepartmentAddress"
+                  asp-area=""
+                  asp-controller="Company"
                   asp-action="Delete"
                   method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -116,31 +119,41 @@
                     <div class="mb-3">
                         <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
                         <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
-                        <input name="Id" class="form-control" readonly />
+                        <input name="Id" class="form-control" placeholder="1" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].AddressLocation"></label>
-                        <span asp-validation-for="@Model[0].AddressLocation" class="text-danger"></span>
-                        <input name="AddressLocation" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].Name"></label>
+                        <span asp-validation-for="@Model[0].Name" class="text-danger"></span>
+                        <input name="Name" class="form-control" placeholder="ANG" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].DepartmentName"></label>
-                        <span asp-validation-for="@Model[0].DepartmentName" class="text-danger"></span>
-                        <input name="DepartmentName" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].Email"></label>
+                        <span asp-validation-for="@Model[0].Email" class="text-danger"></span>
+                        <input name="Email" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].CompanyName"></label>
-                        <span asp-validation-for="@Model[0].CompanyName" class="text-danger"></span>
-                        <input name="CompanyName" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].PhoneNumber"></label>
+                        <span asp-validation-for="@Model[0].PhoneNumber" class="text-danger"></span>
+                        <input name="PhoneNumber" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].CompanyLogoUrl"></label>
+                        <span asp-validation-for="@Model[0].CompanyLogoUrl" class="text-danger"></span>
+                        <input name="Logo" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].AboutUs"></label>
+                        <span asp-validation-for="@Model[0].AboutUs" class="text-danger"></span>
+                        <textarea name="AboutUs" class="form-control" readonly></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
+                        Close
                         <i class="far fa-window-close"></i>
                     </button>
                     <button type="submit" class="btn btn-danger">
-                    Delete
+                        Delete
                         <i class="far fa-trash-alt"></i>
                     </button>
                 </div>
@@ -154,12 +167,12 @@
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="restoreModalLabel">Restore DepartmentAddress</h5>
+                <h5 class="modal-title" id="restoreModalLabel">Restore Company</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="form text-left"
-                  asp-area=@GlobalConstants.AdministratorRoleName
-                  asp-controller="DepartmentAddress"
+                  asp-area=""
+                  asp-controller="Company"
                   asp-action="Restore"
                   method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -167,22 +180,32 @@
                     <div class="mb-3">
                         <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
                         <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
-                        <input name="Id" class="form-control" readonly />
+                        <input name="Id" class="form-control" placeholder="1" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].AddressLocation"></label>
-                        <span asp-validation-for="@Model[0].AddressLocation" class="text-danger"></span>
-                        <input name="AddressLocation" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].Name"></label>
+                        <span asp-validation-for="@Model[0].Name" class="text-danger"></span>
+                        <input name="Name" class="form-control" placeholder="ANG" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].DepartmentName"></label>
-                        <span asp-validation-for="@Model[0].DepartmentName" class="text-danger"></span>
-                        <input name="DepartmentName" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].Email"></label>
+                        <span asp-validation-for="@Model[0].Email" class="text-danger"></span>
+                        <input name="Email" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
-                        <label class="text mb-0 required" asp-for="@Model[0].CompanyName"></label>
-                        <span asp-validation-for="@Model[0].CompanyName" class="text-danger"></span>
-                        <input name="CompanyName" class="form-control" readonly />
+                        <label class="text mb-0 required" asp-for="@Model[0].PhoneNumber"></label>
+                        <span asp-validation-for="@Model[0].PhoneNumber" class="text-danger"></span>
+                        <input name="PhoneNumber" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].CompanyLogoUrl"></label>
+                        <span asp-validation-for="@Model[0].CompanyLogoUrl" class="text-danger"></span>
+                        <input name="Logo" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].AboutUs"></label>
+                        <span asp-validation-for="@Model[0].AboutUs" class="text-danger"></span>
+                        <textarea name="AboutUs" class="form-control" readonly></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="text mb-0 required" asp-for="@Model[0].DeletedOn"></label>
@@ -193,7 +216,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         <i class="far fa-window-close"></i>
-                    Close
+                        Close
                     </button>
                     <button type="submit" class="btn btn-warning">
                         <i class="fas fa-trash-restore"></i>
@@ -207,5 +230,5 @@
 
 @section Scripts{
     <!-- Modal JS Edit-->
-    <script src="~/js/departmentAddressTable.js"></script>
+    <script src="~/js/companyTable.js"></script>
 } 
