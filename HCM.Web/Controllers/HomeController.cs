@@ -18,10 +18,10 @@ namespace HCM.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IGenderService genderService;
+        private readonly IDashboardService genderService;
         private readonly IUsersService usersService;
 
-        public HomeController(ILogger<HomeController> logger, IGenderService genderService, IUsersService usersService)
+        public HomeController(ILogger<HomeController> logger, IDashboardService genderService, IUsersService usersService)
         {
             _logger = logger;
             this.genderService = genderService;

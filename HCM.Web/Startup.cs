@@ -55,7 +55,7 @@ using Microsoft.Extensions.Hosting;
             services.AddMvc();
 
             // Application services
-            services.AddTransient<IGenderService, GenderService>();
+            services.AddTransient<IDashboardService, GenderService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<IPaymentIntervalService, PaymentIntervalService>();

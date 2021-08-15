@@ -11,12 +11,12 @@ using System.Threading.Tasks;
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ManageUserController : Controller
     {
-        private readonly IGenderService genderService;
+        private readonly IDashboardService genderService;
         private readonly IUsersService usersService;
         private readonly IManageUserService manageUserService;
         private readonly IWebHostEnvironment environment;
 
-        public ManageUserController(IGenderService genderService, 
+        public ManageUserController(IDashboardService genderService, 
             IUsersService usersService, 
             IManageUserService manageUserService,
             IWebHostEnvironment environment)
