@@ -5,134 +5,75 @@
     ViewData["Title"] = "Add participants to Training";
 }
 
-<h4>Training information</h4>
-<form class="form text-left"
-      asp-area=@GlobalConstants.ManagerRoleName
-      asp-controller="EmployeeTrainings"
-      asp-action="Edit"
-      method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="modal-body">
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.Id"></label>
-            <span asp-validation-for="@Model.Training.Id" class="text-danger"></span>
-            <input asp-for="@Model.Training.Id" class="form-control" placeholder="1" readonly />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.Name"></label>
-            <span asp-validation-for="@Model.Training.Name" class="text-danger"></span>
-            <input asp-for="@Model.Training.Name" class="form-control" placeholder="HCM" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.Description"></label>
-            <span asp-validation-for="@Model.Training.Description" class="text-danger"></span>
-            <textarea asp-for="@Model.Training.Description" class="form-control"
-                      placeholder="Organize, plan, schedule & analyze your projects using HCM's modern interface.">
-</textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.StartDate"></label>
-            <span asp-validation-for="@Model.Training.StartDate" class="text-danger"></span>
-            <input type="date" asp-for="@Model.Training.StartDate" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.EndDate"></label>
-            <span asp-validation-for="@Model.Training.EndDate" class="text-danger"></span>
-            <input type="date" asp-for="@Model.Training.EndDate" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Training.TotalHours"></label>
-            <span asp-validation-for="@Model.Training.TotalHours" class="text-danger"></span>
-            <input type="number" asp-for="@Model.Training.TotalHours" class="form-control" placeholder="40" />
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">
-        <i class="far fa-save"></i>
-        Save changes
-    </button>
-    <a type="button" class="btn btn-info"
-       asp-area=@GlobalConstants.ManagerRoleName
-       asp-controller="EmployeeTrainings"
-       asp-action="Index">
-        <i class="far fa-window-close"></i>
-        Return to All Trainings
-    </a>
-
-    <a type="button" class="btn btn-secondary"
-       asp-area=@GlobalConstants.ManagerRoleName
-       asp-controller="EmployeeTrainings"
-       asp-action="Update"
-       asp-route-trainingId="@Model.Training.Id">
-        <i class="far fa-window-close"></i>
-        Reset
-    </a>
-    </div>
-</form>
 
 
 
-    <h4>@ViewData["Title"]</h4>
-    <div class="table">
-        <table id="myTable" class="table table-bordered table-hover table-sm">
-            <thead>
+<!-- Training details -->
+<partial name="~/Areas/Manager/Views/Shared/_TrainingInformationPartial.cshtml" for="Training" />
+
+<!-- Participants -->
+<h4>@ViewData["Title"]</h4>
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Date of Birth</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participant in Model.Employees)
+            {
                 <tr>
-                    <th>Full name</th>
-                    <th>Date of Birth</th>
-                    <th>Phone number</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <td>
+                        @participant.FullName
+                    </td>
+                    <td>@participant.DateOfBirth</td>
+                    <td>@participant.PhoneNumber</td>
+                    <td>@participant.Email</td>
+                    <td>
+                        @if (!Model.AllParticipants.Select(x => x.UserId).Contains(participant.UserId))
+                        {
+                            <!-- Button Add -->
+                            <form class="form text-left"
+                                  asp-area=@GlobalConstants.ManagerRoleName
+                                  asp-controller="EmployeeTrainings"
+                                  asp-action="Add"
+                                  asp-route-trainingId="@Model.Training.Id"
+                                  asp-route-employeeId="@participant.UserId"
+                                  method="post">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-user-plus opacity-6 text-dark me-1 text-gradient"></i>
+                                    Add
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <!-- Button Delete -->
+                            <form class="form text-left"
+                                  asp-area=@GlobalConstants.ManagerRoleName
+                                  asp-controller="EmployeeTrainings"
+                                  asp-action="Delete"
+                                  asp-route-trainingId="@Model.Training.Id"
+                                  asp-route-employeeId="@participant.UserId"
+                                  method="post">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt opacity-6 text-dark me-1 text-red"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        }
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var participant in Model.Employees)
-                {
-                    <tr>
-                        <td>
-                            @participant.FullName
-                        </td>
-                        <td>@participant.DateOfBirth</td>
-                        <td>@participant.PhoneNumber</td>
-                        <td>@participant.Email</td>
-                        <td>
-                            @if (!Model.AllParticipants.Select(x => x.UserId).Contains(participant.UserId))
-                            {
-                                <!-- Button Add -->
-                                <form class="form text-left"
-                                      asp-area=@GlobalConstants.ManagerRoleName
-                                      asp-controller="EmployeeTrainings"
-                                      asp-action="Add"
-                                      asp-route-trainingId="@Model.Training.Id"
-                                      asp-route-employeeId="@participant.UserId"
-                                      method="post">
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fas fa-user-plus opacity-6 text-dark me-1 text-gradient"></i>
-                                        Add
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <!-- Button Add -->
-                                <form class="form text-left"
-                                      asp-area=@GlobalConstants.ManagerRoleName
-                                      asp-controller="EmployeeTrainings"
-                                      asp-action="Delete"
-                                      asp-route-trainingId="@Model.Training.Id"
-                                      asp-route-employeeId="@participant.UserId"
-                                      method="post">
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fas fa-trash-alt opacity-6 text-dark me-1 text-red"></i>
-                                        Delete
-                                    </button>
-                                </form>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 
-    @section Scripts{
-        <script src="~/js/trainingTable.js"></script>
-    }
+@section Scripts{
+    <script src="~/js/trainingTable.js"></script>
+}

@@ -130,9 +130,16 @@
             return false;
         }
 
-        public async Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync()
+        public async Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false)
         {
-            return await this.db.Departments.Include(x => x.Company).Select(x => new DepartmentDropDownViewModel { Id = x.Id, Name = x.Name, CompanyName = x.Company.Name }).OrderBy(x => x.CompanyName).ToArrayAsync();
+            return await this.db.Departments
+                .Include(x => x.Company)
+                .Where(x => getDeleted ?
+                           x.IsDeleted == true || x.IsDeleted == false :
+                           x.IsDeleted == false)
+                .Select(x => new DepartmentDropDownViewModel { Id = x.Id, Name = x.Name, CompanyName = x.Company.Name })
+                .OrderBy(x => x.CompanyName)
+                .ToArrayAsync();
         }
     }
 }

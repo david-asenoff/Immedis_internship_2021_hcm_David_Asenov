@@ -10,6 +10,13 @@
     using System.ComponentModel.DataAnnotations;
     public abstract class EmployeeContractViewBaseModel
     {
+        public EmployeeContractViewBaseModel()
+        {
+            Departments = new List<DepartmentDropDownViewModel>();
+            Positions = new List<PositionDropDownViewModel>();
+            Salary = new SalaryAddViewModel();
+        }
+
         public string EmployeeContractId { get; set; }
 
         public string DepartmentId { get; set; }
@@ -19,8 +26,6 @@
         public string DepartmentCompanyName { get; set; }
 
         public ICollection<DepartmentDropDownViewModel> Departments { get; set; }
-
-        public EmployeeInformationBaseViewModel Employee { get; set; }
 
         public string PositionName { get; set; }
 

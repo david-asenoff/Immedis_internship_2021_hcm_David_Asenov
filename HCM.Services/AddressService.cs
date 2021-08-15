@@ -124,9 +124,13 @@
             return false;
         }
 
-        public async Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync()
+        public async Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false)
         {
-            return await this.db.Addresses.Select(x => new AddressDropDownViewModel
+            return await this.db.Addresses
+                 .Where(x => getDeleted ?
+                           x.IsDeleted == true || x.IsDeleted == false :
+                           x.IsDeleted == false)
+                .Select(x => new AddressDropDownViewModel
             {
                 Id = x.Id,
                 Location = x.Location,

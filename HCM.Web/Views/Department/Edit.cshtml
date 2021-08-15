@@ -1,0 +1,51 @@
+﻿@using HCM.Web.ViewModels.Department
+@using HCM.Data.Common;
+@model DepartmentEditViewModel
+@{
+    ViewData["Title"] = "Edit Department";
+    var companies = Model.Companies.Select(x => new SelectListItem(x.Name, x.Id));
+}
+
+
+<!-- Edit-->
+            <form class="form text-left"
+                  asp-area=""
+                  asp-controller="Department"
+                  asp-action="Edit"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.Id"></label>
+                        <span asp-validation-for="@Model.Id" class="text-danger"></span>
+                        <input asp-for="@Model.Id" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model.Name"></label>
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="Company Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CompanyId"></label>
+                        <select asp-for="CompanyId" asp-items="companies" class="form-control"></select>
+                        <span asp-validation-for="CompanyId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary"
+                       asp-area=""
+                       asp-controller="Department"
+                       asp-action="Index">
+                        <i class="far fa-window-close"></i>
+                        Close
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="far fa-save"></i>
+                        Save changes
+                    </button>
+                </div>
+            </form>
+
+@section Scripts{
+    <script src="~/js/evaluationScoreTable.js"></script>
+} 

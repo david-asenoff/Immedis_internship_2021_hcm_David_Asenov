@@ -1,0 +1,108 @@
+﻿@using HCM.Web.ViewModels.Project
+@using HCM.Data.Common;
+@model List<ProjectViewModel>
+@{
+    ViewData["Title"] = "Project";
+    string[] TableHeaders = new string[] {"Id",
+                        "Name",
+                        "Current Status",
+                        "Company Name",
+                        "Description",
+                        "Created On",
+                        "Modified On",
+                        "Actions",
+    };
+}
+<!-- Contract Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr style="text-decoration:@(Data.IsDeleted ? "line-through":"none")">
+                            <td>@Data.Id</td>
+                            <td>@Data.Name</td>
+                            <td>@Data.ProjectStatus</td>
+                            <td>@Data.CompanyName</td>
+                            <td>@Data.ShortDescription</td>
+                            <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                        data-project-id="@Data.Id"
+                                        data-project-name="@Data.Name"
+                                        data-project-description="@Data.Description"
+                                        data-project-status="@Data.ProjectStatus"
+                                        data-project-companyname="@Data.CompanyName">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal End-->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Contract Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label>Project Id</label>
+                    <input name="Id" class="form-control" readonly />
+                </div>
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input name="Name" class="form-control" readonly />
+                </div>
+                <div class="mb-3">
+                    <label>Description</label>
+                    <textarea name="Description" class="form-control" readonly></textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Project Status</label>
+                    <input name="ProjectStatus" class="form-control" readonly/>
+                </div>
+                <div class="mb-3">
+                    <label>Company Name</label>
+                    <input name="CompanyName" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                    <i class="far fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/projectTable.js"></script>
+} 

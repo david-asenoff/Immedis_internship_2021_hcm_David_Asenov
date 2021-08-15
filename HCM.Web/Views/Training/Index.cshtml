@@ -1,0 +1,240 @@
+﻿@using HCM.Web.ViewModels.Training
+@using HCM.Data.Common;
+@model List<TrainingViewModel>
+@{
+    ViewData["Title"] = "Training";
+    string[] TableHeaders = new string[] {"Id",
+                        "Name",
+                        "Description",
+                        "StartDate",
+                        "EndDate",
+                        "TotalHours",
+                        "Created On",
+                        "Modified On",
+                        "Actions",
+    };
+}
+<!-- Button Add -->
+<a type="button" class="btn btn-dark"
+   asp-area=""
+   asp-controller="Training"
+   asp-action="Add">
+    <i class="fas fa-plus"></i>
+    Add @ViewData["Title"]
+</a>
+<!-- Training Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr style="text-decoration:@(Data.IsDeleted?"line-through":"none")">
+                            <td>@Data.Id</td>
+                            <td>@Data.Name</td>
+                            <td>@Data.ShortDescription</td>
+                            <td><time datetime="@Data.StartDate.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@Data.EndDate.ToString("yyyy-MM-dd")"></time></td>
+                            <td>@Data.TotalHours</td>
+                            <td><time datetime="@Data.CreatedOn.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@(Data.ModifiedOn==null?"": Data.ModifiedOn?.ToString("yyyy-MM-dd"))"></time></td>
+                            <td>
+                                <!-- Button trigger delete modal -->
+                                @if (Data.IsDeleted == false)
+                                {
+                                    <!-- Button Edit -->
+                                    <a type="button" class="btn btn-primary"
+                                       asp-area=""
+                                       asp-controller="Training"
+                                       asp-action="Edit"
+                                       asp-route-id="@Data.Id">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-training-id="@Data.Id"
+                                            data-training-name="@Data.Name"
+                                            data-training-description="@Data.Description"
+                                            data-training-startdate="@Data.StartDate.ToString("yyyy-MM-dd")"
+                                            data-training-enddate="@Data.EndDate.ToString("yyyy-MM-dd")"
+                                            data-training-totalhours="@Data.TotalHours">
+                                        <i class="far fa-trash-alt"></i>
+                                        Delete
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button"
+                                            style="width: -webkit-fill-available"
+                                            class="btn btn-warning"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#restoreModal"
+                                            data-training-id="@Data.Id"
+                                            data-training-name="@Data.Name"
+                                            data-training-description="@Data.Description"
+                                            data-training-startdate="@Data.StartDate.ToString("yyyy-MM-dd")"
+                                            data-training-enddate="@Data.EndDate.ToString("yyyy-MM-dd")"
+                                            data-training-totalhours="@Data.TotalHours"
+                                            data-training-deletedon="@Data.DeletedOn?.ToString("yyyy-MM-dd")">
+                                        <i class="fas fa-trash-restore"></i>
+                                        Restore
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal Delete-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Training</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form text-left"
+                  asp-area=""
+                  asp-controller="Training"
+                  asp-action="Delete"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div id="datetimepicker12"></div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
+                        <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
+                        <input name="Id" class="form-control" placeholder="1" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Name"></label>
+                        <span asp-validation-for="@Model[0].Name" class="text-danger"></span>
+                        <input name="Name" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Description"></label>
+                        <span asp-validation-for="@Model[0].Description" class="text-danger"></span>
+                        <textarea name="Description" class="form-control" readonly></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].StartDate"></label>
+                        <span asp-validation-for="@Model[0].StartDate" class="text-danger"></span>
+                        <input name="StartDate" type="date" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].EndDate"></label>
+                        <span asp-validation-for="@Model[0].EndDate" class="text-danger"></span>
+                        <input type="date" name="EndDate" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].TotalHours"></label>
+                        <span asp-validation-for="@Model[0].TotalHours" class="text-danger"></span>
+                        <input type="number" name="TotalHours" class="form-control" readonly/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                        <i class="far fa-window-close"></i>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Restore-->
+<div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="restoreModalLabel">Restore Training</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form text-left"
+                  asp-area=""
+                  asp-controller="Training"
+                  asp-action="Restore"
+                  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="modal-body">
+                    <div id="datetimepicker12"></div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Id"></label>
+                        <span asp-validation-for="@Model[0].Id" class="text-danger"></span>
+                        <input name="Id" class="form-control" placeholder="1" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Name"></label>
+                        <span asp-validation-for="@Model[0].Name" class="text-danger"></span>
+                        <input name="Name" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].Description"></label>
+                        <span asp-validation-for="@Model[0].Description" class="text-danger"></span>
+                        <textarea name="Description" class="form-control" readonly></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].StartDate"></label>
+                        <span asp-validation-for="@Model[0].StartDate" class="text-danger"></span>
+                        <input type="date" name="StartDate" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].EndDate"></label>
+                        <span asp-validation-for="@Model[0].EndDate" class="text-danger"></span>
+                        <input type="date" name="EndDate" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].TotalHours"></label>
+                        <span asp-validation-for="@Model[0].TotalHours" class="text-danger"></span>
+                        <input type="number" name="TotalHours" class="form-control" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text mb-0 required" asp-for="@Model[0].DeletedOn"></label>
+                        <span asp-validation-for="@Model[0].DeletedOn" class="text-danger"></span>
+                        <input name="DeletedOn" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="far fa-window-close"></i>
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-trash-restore"></i>
+                        Restore
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/trainingTable.js"></script>
+} 

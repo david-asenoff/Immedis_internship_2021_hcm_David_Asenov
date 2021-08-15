@@ -23,8 +23,10 @@
 
         public Task<User> GetUserByUserName(string userName);
 
+        public Task<User> GetUserByUserId(string userId);
+
         public Task<ICollection<User>> GetAllEmployeesByCompany(string companyId);
 
-        public Task<ICollection<User>> GetAllEmployees();
+        public Task<ICollection<EmployeeDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false);
     }
 }

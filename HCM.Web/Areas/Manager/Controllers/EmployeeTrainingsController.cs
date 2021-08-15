@@ -37,20 +37,18 @@ using System.Threading.Tasks;
             return this.View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Delete(string trainingId, string employeeId)
         {
             if (ModelState.IsValid)
             {
-                string username = this.User.Identity.Name;
                 await employeeTrainingService.DeleteAsync(trainingId, employeeId);
                 TempData["SuccessMessage"] = "Employee was removed from this training";
                 return RedirectToAction("Update", "EmployeeTrainings", new { trainingId = trainingId });
             }
 
-            TempData["ErrorMessage"] = "Employee is not removed frmo the training. Invalid data.";
-            return this.View(trainingId);
+            TempData["ErrorMessage"] = "Employee is not removed from the training. Invalid data.";
+            return RedirectToAction("Update", "EmployeeTrainings", new { trainingId = trainingId });
         }
 
         [HttpPost]

@@ -1,69 +1,77 @@
-﻿@using HCM.Web.ViewModels.Project
+﻿@using HCM.Web.ViewModels.EmployeeProjects
 @using HCM.Data.Common;
-@model ProjectEditViewModel
+@model EmployeeProjectsViewModel
 @{
     ViewData["Title"] = "Edit Project";
-    var companies = Model.Companies.Select(x => new SelectListItem(x.Name, x.Id));
+    var companies = Model.Project.Companies.Select(x => new SelectListItem(x.Name, x.Id));
 }
 
 
-<!-- Edit-->
-<form class="form text-left"
-      asp-area=@GlobalConstants.ManagerRoleName
-      asp-controller="Project"
-      asp-action="Edit"
-      method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="modal-body">
-            <label class="text mb-0 required" asp-for="@Model.Name"></label>
-            <span asp-validation-for="@Model.Name" class="text-danger"></span>
-            <input asp-for="@Model.Name" class="form-control" placeholder="Company Name" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.Description"></label>
-            <span asp-validation-for="@Model.Description" class="text-danger"></span>
-            <textarea asp-for="@Model.Description" class="form-control" placeholder="Company Name" >@Model.Description</textarea>
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.EstimatedWorkHours"></label>
-            <span asp-validation-for="@Model.EstimatedWorkHours" class="text-danger"></span>
-            <input asp-for="@Model.EstimatedWorkHours" class="form-control" placeholder="Company Name" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.FinalWorkHours"></label>
-            <span asp-validation-for="@Model.FinalWorkHours" class="text-danger"></span>
-            <input asp-for="@Model.FinalWorkHours" class="form-control" placeholder="Company Name" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.EstimatedBudget"></label>
-            <span asp-validation-for="@Model.EstimatedBudget" class="text-danger"></span>
-            <input asp-for="@Model.EstimatedBudget" class="form-control" placeholder="Company Name" />
-        </div>
-        <div class="mb-3">
-            <label class="text mb-0 required" asp-for="@Model.FinalBudget"></label>
-            <span asp-validation-for="@Model.FinalBudget" class="text-danger"></span>
-            <input asp-for="@Model.FinalBudget" class="form-control" placeholder="Company Name" />
-        </div>
-        <div class="mb-3">
-            <label asp-for="OrdererCompanyId"></label>
-            <select asp-for="OrdererCompanyId" asp-items="companies" class="form-control"></select>
-            <span asp-validation-for="OrdererCompanyId" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a type="button" class="btn btn-primary"
-           asp-area=@GlobalConstants.ManagerRoleName
-           asp-controller="Project"
-           asp-action="Index">
-            <i class="far fa-window-close"></i>
-            Close
-        </a>
-        <button type="submit" class="btn btn-primary">
-            <i class="far fa-save"></i>
-            Save changes
-        </button>
-    </div>
-</form>
+<!-- Project Edit-->
+<partial name="~/Areas/Manager/Views/Shared/_ProjectInformationPartial.cshtml" for="@Model.Project"/>
+
+<!-- Participants -->
+<h4>@ViewData["Title"]</h4>
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Date of Birth</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participant in Model.Employees)
+            {
+                <tr>
+                    <td>
+                        @participant.FullName
+                    </td>
+                    <td>@participant.DateOfBirth</td>
+                    <td>@participant.PhoneNumber</td>
+                    <td>@participant.Email</td>
+                    <td>
+                        @if (!Model.AllParticipants.Select(x => x.UserId).Contains(participant.UserId))
+                        {
+                            <!-- Button Add -->
+                            <form class="form text-left"
+                                  asp-area=@GlobalConstants.ManagerRoleName
+                                  asp-controller="Project"
+                                  asp-action="AddEmployee"
+                                  asp-route-projectId="@Model.Project.Id"
+                                  asp-route-employeeId="@participant.UserId"
+                                  method="post">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-user-plus opacity-6 text-dark me-1 text-gradient"></i>
+                                    Add
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <!-- Button Add -->
+                            <form class="form text-left"
+                                  asp-area=@GlobalConstants.ManagerRoleName
+                                  asp-controller="Project"
+                                  asp-action="DeleteEmployee"
+                                  asp-route-projectId="@Model.Project.Id"
+                                  asp-route-employeeId="@participant.UserId"
+                                  method="post">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt opacity-6 text-dark me-1 text-red"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 @section Scripts{
     <script src="~/js/evaluationScoreTable.js"></script>

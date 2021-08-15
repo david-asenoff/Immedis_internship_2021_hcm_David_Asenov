@@ -19,5 +19,7 @@
         Task<ProjectEditViewModel> GetAsync(string id);
 
         Task<ICollection<ProjectDropDownViewModel>> GetAllAsDropDown();
+
+        Task<ICollection<ProjectViewModel>> GetAllByUsernameAsync(string username);
     }
 }

@@ -657,9 +657,6 @@ namespace HCM.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -679,8 +676,6 @@ namespace HCM.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("ProjectId");
 
@@ -1171,11 +1166,7 @@ namespace HCM.Data.Migrations
 
             modelBuilder.Entity("HCM.Data.Models.ProjectUser", b =>
                 {
-                    b.HasOne("HCM.Data.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("HCM.Data.Models.Project", null)
+                    b.HasOne("HCM.Data.Models.Project", "Project")
                         .WithMany("ProjectUsers")
                         .HasForeignKey("ProjectId");
 
@@ -1183,7 +1174,7 @@ namespace HCM.Data.Migrations
                         .WithMany("ProjectUsers")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Company");
+                    b.Navigation("Project");
 
                     b.Navigation("User");
                 });
@@ -1225,11 +1216,11 @@ namespace HCM.Data.Migrations
             modelBuilder.Entity("HCM.Data.Models.TrainingUser", b =>
                 {
                     b.HasOne("HCM.Data.Models.Training", "Training")
-                        .WithMany()
+                        .WithMany("TrainingUsers")
                         .HasForeignKey("TrainingId");
 
                     b.HasOne("HCM.Data.Models.User", "User")
-                        .WithMany()
+                        .WithMany("TrainingUsers")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Training");
@@ -1373,11 +1364,18 @@ namespace HCM.Data.Migrations
                     b.Navigation("ProjectStatuses");
                 });
 
+            modelBuilder.Entity("HCM.Data.Models.Training", b =>
+                {
+                    b.Navigation("TrainingUsers");
+                });
+
             modelBuilder.Entity("HCM.Data.Models.User", b =>
                 {
                     b.Navigation("EmployeeContracts");
 
                     b.Navigation("ProjectUsers");
+
+                    b.Navigation("TrainingUsers");
 
                     b.Navigation("UserAddresses");
 

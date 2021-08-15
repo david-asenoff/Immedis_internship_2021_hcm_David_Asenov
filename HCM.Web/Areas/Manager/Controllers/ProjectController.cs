@@ -13,13 +13,16 @@ namespace HCM.Web.Areas.Manager.Controllers
     {
         private readonly IProjectService projectService;
         private readonly ICompanyService companyService;
+        private readonly IEmployeeProjectService employeeProjectService;
 
         public ProjectController(
             IProjectService departmentService,
-            ICompanyService companyService)
+            ICompanyService companyService,
+            IEmployeeProjectService employeeProjectService)
         {
             this.projectService = departmentService;
             this.companyService = companyService;
+            this.employeeProjectService = employeeProjectService;
         }
         public async Task<IActionResult> Index()
         {
@@ -41,10 +44,10 @@ namespace HCM.Web.Areas.Manager.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string projectId)
         {
-            var model = await projectService.GetAsync(id);
-            model.Companies = await this.companyService.GetAllAsDropDownAsync();
+            var model = await employeeProjectService.GetAsync(projectId);
+            model.Project.Companies = await this.companyService.GetAllAsDropDownAsync();
             TempData["SuccessMessage"] = "Project is loaded";
 
             return this.View(model);
@@ -111,6 +114,29 @@ namespace HCM.Web.Areas.Manager.Controllers
             TempData["ErrorMessage"] = "Project is not added. Invalid data.";
 
             return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEmployee(string projectId, string employeeId)
+        {
+            if (ModelState.IsValid)
+            {
+                string username = this.User.Identity.Name;
+                await employeeProjectService.DeleteAsync(projectId, employeeId);
+                TempData["SuccessMessage"] = "Employee was removed from this project";
+                return RedirectToAction("Edit", "Project", new { projectId = projectId });
+            }
+
+            TempData["ErrorMessage"] = "Employee is not removed from the project. Invalid data.";
+            return RedirectToAction("Edit", "Project", new { projectId = projectId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEmployee(string projectId, string employeeId)
+        {
+            var model = await employeeProjectService.AddAsync(projectId, employeeId);
+            TempData["SuccessMessage"] = "Participant is added";
+            return RedirectToAction("Edit", "Project", new { projectId = projectId });
         }
     }
 }

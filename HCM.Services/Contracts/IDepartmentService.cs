@@ -18,6 +18,6 @@
 
         Task<DepartmentEditViewModel> GetAsync(string id);
 
-        Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync();
+        Task<ICollection<DepartmentDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false);
     }
 }

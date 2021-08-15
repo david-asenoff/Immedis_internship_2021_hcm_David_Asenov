@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\ManagementStatistics.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="App.Metrics.AspNetCore.Core" Version="4.2.0" />
     <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="4.2.0" />
     <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="4.2.0" />
@@ -28,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Home\ManagementStatistics.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Login.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />

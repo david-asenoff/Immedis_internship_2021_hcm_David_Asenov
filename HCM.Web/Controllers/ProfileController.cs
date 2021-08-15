@@ -11,12 +11,12 @@ namespace HCM.Web.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly IGenderService genderService;
+        private readonly IDashboardService genderService;
         private readonly IUsersService usersService;
         private readonly IProfileService profileService;
         private readonly IWebHostEnvironment environment;
 
-        public ProfileController(IGenderService genderService, 
+        public ProfileController(IDashboardService genderService, 
             IUsersService usersService, 
             IProfileService profileService,
             IWebHostEnvironment environment)

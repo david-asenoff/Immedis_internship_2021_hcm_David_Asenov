@@ -1,0 +1,93 @@
+﻿@using HCM.Web.ViewModels.Employee;
+@model EmployeeInformationBaseViewModel;
+@using HCM.Data.Common;
+@{
+    ViewData["Title"] = "Index";
+
+    // adding elements
+    var menuItems = new[] {
+        new { destination= "Currency", title="Currencies", icon= "fas fa-yen-sign" },
+        new { destination= "Gender", title="Genders", icon= "fas fa-venus-mars" },
+        new { destination= "PaymentInterval", title="Payment Intervals", icon= "fas fa-money-check-alt" },
+        new { destination= "EvaluationScore", title="Evaluation Scores", icon= "fas fa-star-half-alt" },
+        new { destination= "MaritalStatus", title="Marital Statuses", icon= "fas fa-ring" },
+        new { destination= "ParentalStatus", title="Parental Statuses", icon= "fas fa-child" },
+        new { destination= "Training", title="Trainings", icon= "fas fa-chalkboard-teacher" },
+        new { destination= "ProjectStatusCategory", title="Project Status Categories", icon= "fas fa-project-diagram" },
+        new { destination= "Address", title="Addresses", icon= "fas fa-location-arrow" },
+        new { destination= "Department", title="Departments", icon= "fas fa-building" },
+        new { destination= "Company", title="Companies", icon= "fas fa-business-time" },
+        new { destination= "Salary", title="Salaries", icon= "fas fa-money-bill-alt" },
+        new { destination= "DepartmentAddress", title="Department Addresses", icon= "fas fa-globe-europe" },
+    };
+}
+
+<!-- Employee details -->
+<h4>Employee information</h4>
+<div>
+    <div class="mb-3">
+        @if (Model.AvatarUrl != null)
+        {
+
+            <img src="@Model.AvatarUrl"
+                 class="img-thumbnail avatar-medium">
+
+        }
+        else
+        {
+
+            <img src="~/images/profiles/No_image_available.svg"
+                 class="img-thumbnail avatar-medium">
+
+        }
+    </div>
+    @if (Model.IsBanned)
+    {
+        <h5 class="text-danger">Emlpoyee is banned by Administrator</h5>
+    }
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.IdentityRoleType"></label>
+        <span asp-validation-for="@Model.IdentityRoleType" ></span>
+        <textarea asp-for="@Model.IdentityRoleType" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.UserId"></label>
+        <span asp-validation-for="@Model.UserId" ></span>
+        <input asp-for="@Model.UserId" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.FullName"></label>
+        <span asp-validation-for="@Model.FullName" ></span>
+        <input asp-for="@Model.FullName" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="datepicker mb-0 required" asp-for="@Model.DateOfBirth"></label>
+        <span asp-validation-for="@Model.DateOfBirth" ></span>
+        <input type="date" asp-for="@Model.DateOfBirth" class="form-control" disabled />
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.PhoneNumber"></label>
+        <span asp-validation-for="@Model.PhoneNumber" ></span>
+        <textarea asp-for="@Model.PhoneNumber" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.Gender"></label>
+        <span asp-validation-for="@Model.Gender" ></span>
+        <textarea asp-for="@Model.Gender" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.Email"></label>
+        <span asp-validation-for="@Model.Email" ></span>
+        <textarea asp-for="@Model.Email" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="text mb-0 required" asp-for="@Model.Username"></label>
+        <span asp-validation-for="@Model.Username" ></span>
+        <textarea asp-for="@Model.Username" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.IdentityRoleType"></label>
+        <span asp-validation-for="@Model.IdentityRoleType" ></span>
+        <textarea asp-for="@Model.IdentityRoleType" class="form-control" placeholder="Man" rows="3" readonly></textarea>
+    </div>
+</div>

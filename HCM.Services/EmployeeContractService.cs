@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using HCM.Data;
     using HCM.Data.Common;
+    using HCM.Data.Models;
     using HCM.Web.ViewModels.Employee;
     using HCM.Web.ViewModels.EmployeeContract;
     using HCM.Web.ViewModels.Salary;
@@ -29,11 +30,6 @@
             var result = await this.db.EmployeeContracts.FirstOrDefaultAsync(x => x.UserId == model.Employee.UserId && x.Id == model.EmployeeContractId);
             if (result != null)
             {
-                if (result.IsDeleted)
-                {
-                    throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
-                }
-
                 result.DepartmentId = model.DepartmentId;
                 result.UserId = model.Employee.UserId;
                 result.PossitionId = model.PositionId;
@@ -46,8 +42,16 @@
                 result.PaidLeavesAllowedPerYear = model.PaidLeavesAllowedPerYear;
                 result.UnpaidLeavesAllowedPerYear = model.UnpaidLeavesAllowedPerYear;
 
-                var salary = await this.salaryService.AddAsync(model.Salary);
-                result.Salary = salary;
+                var salary = await this.salaryService.EditAsync(new SalaryEditViewModel
+                {
+                    Id = result.SalaryId,
+                    PaymentIntervalId = model.Salary.PaymentIntervalId,
+                    PaymentIntervalType = model.Salary.PaymentIntervalType,
+                    CurrencyId = model.Salary.CurrencyId,
+                    CurrencyDescription = model.Salary.CurrencyDescription,
+                    GrossSalary = model.Salary.GrossSalary,
+                    NetSalary = model.Salary.NetSalary,
+                });
 
                 await this.db.SaveChangesAsync();
                 return true;
@@ -125,11 +129,6 @@
                 .OrderByDescending(x => x.CreatedOn)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (dbModel.IsDeleted)
-            {
-                throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
-            }
-
             var result = new EmployeeContractViewModel
             {
                 EmployeeContractId = dbModel.Id,
@@ -201,6 +200,7 @@
                  .OrderByDescending(x => x.CreatedOn)
                  .Select(x => new EmployeeContractViewModel
                  {
+                     EmployeeContractId = x.Id,
                      DepartmentId = x.DepartmentId,
                      DepartmentName = x.Department.Name,
                      DepartmentCompanyName = x.Department.Company.Name,
@@ -231,9 +231,92 @@
             return result;
         }
 
-        public Task<bool> CreateForEmployeeAsync(string employeeId)
+        public async Task<bool> CreateAsync(EmployeeContractAddViewModel model)
         {
-            throw new NotImplementedException();
+            var employee = await this.usersService.GetUserByUserId(model.UserId);
+
+            if (employee == null)
+            {
+                throw new ArgumentException("Cannot create emlpoyee contract. Invalid employee id.");
+            }
+
+            var salary = await this.salaryService.AddAsync(new SalaryAddViewModel
+            {
+                PaymentIntervalId = model.Salary.PaymentIntervalId,
+                PaymentIntervalType = model.Salary.PaymentIntervalType,
+                CurrencyId = model.Salary.CurrencyId,
+                CurrencyDescription = model.Salary.CurrencyDescription,
+                GrossSalary = model.Salary.GrossSalary,
+                NetSalary = model.Salary.NetSalary,
+            });
+            var contract = new EmployeeContract
+            {
+                DepartmentId = model.DepartmentId,
+                PossitionId = model.PositionId,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                StartOfTheWorkingHours = model.StartOfTheWorkingHours,
+                EndOfTheWorkingHours = model.EndOfTheWorkingHours,
+                AreWorkingHoursFlexible = model.AreWorkingHoursFlexible,
+                IsContractTypeFullTime = model.IsContractTypeFullTime,
+                PaidLeavesAllowedPerYear = model.PaidLeavesAllowedPerYear,
+                UnpaidLeavesAllowedPerYear = model.UnpaidLeavesAllowedPerYear,
+                Salary = salary,
+                User = employee,
+            };
+            await db.EmployeeContracts.AddAsync(contract);
+            await db.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<ICollection<EmployeeContractViewModel>> GetAllByEmployeeUsernameAsync(string employeeUsername)
+        {
+            var result = await this.db.EmployeeContracts
+                 .Include(x => x.Department)
+                 .Include(x => x.Possition)
+                 .Include(x => x.Salary)
+                 .Include(x => x.Salary.Currency)
+                 .Include(x => x.User)
+                 .Where(x => x.User.Username == employeeUsername)
+                 .OrderByDescending(x => x.CreatedOn)
+                 .Select(x => new EmployeeContractViewModel
+                 {
+                     EmployeeContractId = x.Id,
+                     DepartmentId = x.DepartmentId,
+                     DepartmentName = x.Department.Name,
+                     DepartmentCompanyName = x.Department.Company.Name,
+                     Employee = new EmployeeInformationBaseViewModel
+                     {
+                         FirstName = x.User.FirstName,
+                         LastName = x.User.LastName,
+                         UserId = x.User.Id,
+                         Gender = x.User.Gender.Type,
+                         PhoneNumber = x.User.PhoneNumber,
+                         Email = x.User.Email,
+                         Username = x.User.Username,
+                         AvatarUrl = x.User.Portrait,
+                         IsBanned = x.User.IsBanned,
+                         IdentityRoleType = x.User.Role.Type,
+                     },
+                     Salary = new SalaryAddViewModel
+                     {
+                         NetSalary = x.Salary.NetSalary,
+                         GrossSalary = x.Salary.GrossSalary,
+                         CurrencyDescription = x.Salary.Currency.Description,
+                     },
+                     PositionName = x.Possition.Name,
+                     PositionId = x.PossitionId,
+                     StartDate = x.StartDate,
+                     EndDate = x.EndDate,
+                     StartOfTheWorkingHours = x.StartOfTheWorkingHours,
+                     EndOfTheWorkingHours = x.EndOfTheWorkingHours,
+                     AreWorkingHoursFlexible = x.AreWorkingHoursFlexible,
+                     IsContractTypeFullTime = x.IsContractTypeFullTime,
+                     PaidLeavesAllowedPerYear = x.PaidLeavesAllowedPerYear,
+                     UnpaidLeavesAllowedPerYear = x.UnpaidLeavesAllowedPerYear,
+                 }).ToListAsync();
+
+            return result;
         }
     }
 }

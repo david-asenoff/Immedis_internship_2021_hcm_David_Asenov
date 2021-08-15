@@ -1,0 +1,122 @@
+﻿@using HCM.Web.ViewModels.EmployeeContract
+@using HCM.Data.Common;
+@model EmployeeContractAddViewModel
+@{
+    var departments = Model.Departments.Select(x => new SelectListItem(x.Name + " (" + x.CompanyName + ")", x.Id));
+    var positions = Model.Positions.Select(x => new SelectListItem(x.Name , x.Id));
+    var paymentIntervals = Model.Salary.PaymentIntervals.Select(x => new SelectListItem(x.Type, x.Id.ToString()));
+    var currencies = Model.Salary.Currencies.Select(x => new SelectListItem(x.Description, x.Id.ToString()));
+    var employees = Model.Employees.Select(x => new SelectListItem(x.ShortInfo, x.UserId.ToString()));
+    ViewData["Title"] = "Edit Contract";
+}
+
+<form class="form text-left"
+      asp-area=@GlobalConstants.ManagerRoleName
+      asp-controller="EmployeeContract"
+      asp-action="Add"
+      method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="modal-body">
+        <!-- Employee details -->
+
+        <div class="mb-3">
+            <label asp-for="@Model.UserId"></label>
+            <span asp-validation-for="@Model.UserId"></span>
+            <select asp-for="@Model.UserId" asp-items="@employees" class="form-control"></select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.DepartmentId"></label>
+            <span asp-validation-for="@Model.DepartmentId"></span>
+            <select asp-for="@Model.DepartmentId" asp-items="@departments" class="form-control" data-live-search="true"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.PositionId"></label>
+            <span asp-validation-for="@Model.PositionId"></span>
+            <select asp-for="@Model.PositionId" asp-items="@positions" class="form-control"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Salary.PaymentIntervalId"></label>
+            <span asp-validation-for="@Model.Salary.PaymentIntervalId"></span>
+            <select asp-for="@Model.Salary.PaymentIntervalId" asp-items="@paymentIntervals" class="form-control"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Salary.CurrencyId"></label>
+            <span asp-validation-for="@Model.Salary.CurrencyId"></span>
+            <select asp-for="@Model.Salary.CurrencyId" asp-items="@currencies" class="form-control"></select>
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Salary.NetSalary"></label>
+            <span asp-validation-for="@Model.Salary.NetSalary"></span>
+            <input asp-for="@Model.Salary.NetSalary" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.Salary.GrossSalary"></label>
+            <span asp-validation-for="@Model.Salary.GrossSalary"></span>
+            <input asp-for="@Model.Salary.GrossSalary" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.StartDate"></label>
+            <span asp-validation-for="@Model.StartDate"></span>
+            <input asp-for="@Model.StartDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0" asp-for="@Model.EndDate"></label>
+            <span asp-validation-for="@Model.EndDate"></span>
+            <input asp-for="@Model.EndDate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0" asp-for="@Model.StartOfTheWorkingHours"></label>
+            <span asp-validation-for="@Model.StartOfTheWorkingHours"></span>
+            <input asp-for="@Model.StartOfTheWorkingHours" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0" asp-for="@Model.EndOfTheWorkingHours"></label>
+            <span asp-validation-for="@Model.EndOfTheWorkingHours"></span>
+            <input asp-for="@Model.EndOfTheWorkingHours" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.AreWorkingHoursFlexible"></label>
+            <span asp-validation-for="@Model.AreWorkingHoursFlexible"></span>
+            <input type="checkbox" asp-for="@Model.AreWorkingHoursFlexible" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0 required" asp-for="@Model.IsContractTypeFullTime"></label>
+            <span asp-validation-for="@Model.IsContractTypeFullTime"></span>
+            <input type="checkbox" asp-for="@Model.IsContractTypeFullTime" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0" asp-for="@Model.PaidLeavesAllowedPerYear"></label>
+            <span asp-validation-for="@Model.PaidLeavesAllowedPerYear"></span>
+            <input asp-for="@Model.PaidLeavesAllowedPerYear" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="text mb-0" asp-for="@Model.UnpaidLeavesAllowedPerYear"></label>
+            <span asp-validation-for="@Model.UnpaidLeavesAllowedPerYear"></span>
+            <input asp-for="@Model.UnpaidLeavesAllowedPerYear" class="form-control" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <i class="far fa-save"></i>
+        Save changes
+    </button>
+    <a type="button" class="btn btn-info"
+       asp-area=@GlobalConstants.ManagerRoleName
+       asp-controller="EmployeeContract"
+       asp-action="Index">
+        <i class="far fa-window-close"></i>
+        Return to All Contracts
+    </a>
+
+    <a type="button" class="btn btn-secondary"
+       asp-area=@GlobalConstants.ManagerRoleName
+       asp-controller="EmployeeContract"
+       asp-action="Add">
+        <i class="far fa-window-close"></i>
+        Reset
+    </a>
+</form>
+
+    @section Scripts{
+        <script src="~/js/trainingTable.js"></script>
+    }

@@ -18,6 +18,6 @@
 
         Task<CurrencyEditViewModel> GetAsync(int id);
 
-        Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync();
+        Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false);
     }
 }
