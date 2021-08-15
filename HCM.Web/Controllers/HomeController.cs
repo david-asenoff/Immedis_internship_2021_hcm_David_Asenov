@@ -1,8 +1,10 @@
-﻿using HCM.Services.Contracts;
+﻿using HCM.Data.Common;
+using HCM.Services.Contracts;
 using HCM.Web.Models;
 using HCM.Web.ViewModels.Employee;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -26,21 +28,40 @@ namespace HCM.Web.Controllers
             this.usersService = usersService;
         }
 
+        [Authorize]
         public IActionResult Index()
+        {
+            if (!this.User.IsInRole(GlobalConstants.EmployeeRoleName))
+            {
+                return RedirectToAction("ManagementStatistics", "Home");
+            }
+
+            return this.View();
+        }
+
+        [Authorize]
+        public IActionResult ManagementStatistics()
         {
             return View();
         }
+
+        [Authorize]
+        public IActionResult MyStatistics()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
 
         public IActionResult StatusCodeError(int errorCode)
         {
@@ -91,7 +112,7 @@ namespace HCM.Web.Controllers
         {
             await HttpContext.SignOutAsync();
             TempData["SuccessMessage"] = "Successfull logout";
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
 
         [HttpGet]

@@ -200,6 +200,7 @@
                  .OrderByDescending(x => x.CreatedOn)
                  .Select(x => new EmployeeContractViewModel
                  {
+                     EmployeeContractId = x.Id,
                      DepartmentId = x.DepartmentId,
                      DepartmentName = x.Department.Name,
                      DepartmentCompanyName = x.Department.Company.Name,
@@ -266,6 +267,56 @@
             await db.EmployeeContracts.AddAsync(contract);
             await db.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<ICollection<EmployeeContractViewModel>> GetAllByEmployeeUsernameAsync(string employeeUsername)
+        {
+            var result = await this.db.EmployeeContracts
+                 .Include(x => x.Department)
+                 .Include(x => x.Possition)
+                 .Include(x => x.Salary)
+                 .Include(x => x.Salary.Currency)
+                 .Include(x => x.User)
+                 .Where(x => x.User.Username == employeeUsername)
+                 .OrderByDescending(x => x.CreatedOn)
+                 .Select(x => new EmployeeContractViewModel
+                 {
+                     EmployeeContractId = x.Id,
+                     DepartmentId = x.DepartmentId,
+                     DepartmentName = x.Department.Name,
+                     DepartmentCompanyName = x.Department.Company.Name,
+                     Employee = new EmployeeInformationBaseViewModel
+                     {
+                         FirstName = x.User.FirstName,
+                         LastName = x.User.LastName,
+                         UserId = x.User.Id,
+                         Gender = x.User.Gender.Type,
+                         PhoneNumber = x.User.PhoneNumber,
+                         Email = x.User.Email,
+                         Username = x.User.Username,
+                         AvatarUrl = x.User.Portrait,
+                         IsBanned = x.User.IsBanned,
+                         IdentityRoleType = x.User.Role.Type,
+                     },
+                     Salary = new SalaryAddViewModel
+                     {
+                         NetSalary = x.Salary.NetSalary,
+                         GrossSalary = x.Salary.GrossSalary,
+                         CurrencyDescription = x.Salary.Currency.Description,
+                     },
+                     PositionName = x.Possition.Name,
+                     PositionId = x.PossitionId,
+                     StartDate = x.StartDate,
+                     EndDate = x.EndDate,
+                     StartOfTheWorkingHours = x.StartOfTheWorkingHours,
+                     EndOfTheWorkingHours = x.EndOfTheWorkingHours,
+                     AreWorkingHoursFlexible = x.AreWorkingHoursFlexible,
+                     IsContractTypeFullTime = x.IsContractTypeFullTime,
+                     PaidLeavesAllowedPerYear = x.PaidLeavesAllowedPerYear,
+                     UnpaidLeavesAllowedPerYear = x.UnpaidLeavesAllowedPerYear,
+                 }).ToListAsync();
+
+            return result;
         }
     }
 }

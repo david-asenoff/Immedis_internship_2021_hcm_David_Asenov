@@ -158,5 +158,35 @@
         {
             return await this.db.Projects.Select(x => new ProjectDropDownViewModel { Id = x.Id, Name = x.Name }).ToArrayAsync();
         }
+
+        public async Task<ICollection<ProjectViewModel>> GetAllByUsernameAsync(string username)
+        {
+            var result = await this.db.Projects
+                .Include(x => x.ProjectUsers)
+                .ThenInclude(x => x.User)
+                .Where(x => x.ProjectUsers.Any(x => x.User.Username == username))
+                .Include(x => x.OrdererCompany)
+                .Include(x => x.ProjectStatuses)
+                .ThenInclude(x => x.ProjectStatusCategory)
+                .Select(x => new ProjectViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    EstimatedWorkHours = x.EstimatedWorkHours,
+                    FinalWorkHours = x.FinalWorkHours,
+                    EstimatedBudget = x.EstimatedBudget,
+                    FinalBudget = x.FinalBudget,
+                    OrdererCompanyId = x.OrdererCompany.Id,
+                    CreatedOn = x.CreatedOn,
+                    ModifiedOn = x.ModifiedOn,
+                    DeletedOn = x.DeletedOn,
+                    IsDeleted = x.IsDeleted,
+                    CompanyName = x.OrdererCompany.Name,
+                    ProjectStatus = x.ProjectStatuses.OrderByDescending(x => x.CreatedOn).ThenByDescending(x => x.ModifiedOn).Select(x => x.ProjectStatusCategory.Type).FirstOrDefault(),
+                }).ToListAsync();
+
+            return result;
+        }
     }
 }

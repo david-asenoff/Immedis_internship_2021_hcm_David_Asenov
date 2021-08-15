@@ -7,6 +7,7 @@ var estimatedBudget
 var finalBudget
 var companyName
 var deletedOn;
+var status;
 
 $(document).ready(function () {
     $('#myTable').DataTable({
@@ -18,7 +19,7 @@ $(document).ready(function () {
     });
 });
 
-$('#deleteModal,#restoreModal').on('show.bs.modal', function (e) {
+$('#deleteModal,#restoreModal,#detailsModal').on('show.bs.modal', function (e) {
 
     projectId = $(e.relatedTarget).data('project-id');
     name = $(e.relatedTarget).data('project-name');
@@ -29,6 +30,7 @@ $('#deleteModal,#restoreModal').on('show.bs.modal', function (e) {
     finalBudget = $(e.relatedTarget).data('project-finalbudget');
     companyName = $(e.relatedTarget).data('project-companyname');
     deletedOn = $(e.relatedTarget).data('project-deletedon');
+    status = $(e.relatedTarget).data('project-status');
 
     $(e.currentTarget).find('input[name="Id"]').val(projectId);
     $(e.currentTarget).find('input[name="Name"]').val(name);
@@ -39,4 +41,5 @@ $('#deleteModal,#restoreModal').on('show.bs.modal', function (e) {
     $(e.currentTarget).find('input[name="FinalBudget"]').val(finalBudget);
     $(e.currentTarget).find('input[name="CompanyName"]').val(companyName);
     $(e.currentTarget).find('input[name="DeletedOn"]')?.val(deletedOn);
+    $(e.currentTarget).find('input[name="ProjectStatus"]')?.val(status);
 });

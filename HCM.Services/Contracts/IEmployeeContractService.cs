@@ -17,6 +17,8 @@
 
         Task<ICollection<EmployeeContractViewModel>> GetAllByEmployeeIdAsync(string employeeId);
 
+        Task<ICollection<EmployeeContractViewModel>> GetAllByEmployeeUsernameAsync(string employeeUsername);
+
         Task<bool> CreateAsync(EmployeeContractAddViewModel model);
     }
 }

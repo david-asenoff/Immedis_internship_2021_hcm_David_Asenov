@@ -1,0 +1,160 @@
+﻿@using HCM.Web.ViewModels.EmployeeContract
+@using HCM.Data.Common;
+@model List<EmployeeContractViewModel>
+@{
+    ViewData["Title"] = "Trainings";
+    string[] TableHeaders = new string[] {
+                        "Contract Id",
+                        "Employee",
+                        "Department",
+                        "Company",
+                        "Position",
+                        "Net Salary",
+                        "Gross Salary",
+                        "Currency",
+                        "Start Date",
+                        "End Date",
+                        "Actions",
+    };
+}
+<!-- Contract Table-->
+<div class="table">
+    <table id="myTable" class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr style="text-decoration:@(Data.EndDate != null ? "line-through":"none")">
+                            <td>@Data.EmployeeContractId</td>
+                            <td>@Data.Employee.FullName</td>
+                            <td>@Data.DepartmentName</td>
+                            <td>@Data.DepartmentCompanyName</td>
+                            <td>@Data.PositionName</td>
+                            <td>@Data.Salary.NetSalary</td>
+                            <td>@Data.Salary.GrossSalary</td>
+                            <td>@Data.Salary.CurrencyDescription</td>
+                            <td><time datetime="@Data.StartDate.ToString("yyyy-MM-dd")"></time></td>
+                            <td><time datetime="@Data.EndDate?.ToString("yyyy-MM-dd")"></time></td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                        data-employeecontract-id="@Data.EmployeeContractId"
+                                        data-employeecontract-employeefullname="@Data.Employee.FullName"
+                                        data-employeecontract-company="@Data.DepartmentCompanyName"
+                                        data-employeecontract-department="@Data.DepartmentName"
+                                        data-employeecontract-netsalary="@Data.Salary.GrossSalary"
+                                        data-employeecontract-grosssalary="@Data.Salary.NetSalary"
+                                        data-employeecontract-currency="@Data.Salary.CurrencyDescription"
+                                        data-employeecontract-startdate="@Data.StartDate"
+                                        data-employeecontract-enddate="@Data.EndDate">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal End-->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Contract Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label>Contract Id</label>
+                    <input name="contractId" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Employee Names
+                    </label>
+                    <input name="EmployeeFullName" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Company
+                    </label>
+                    <input name="DepartmentCompanyName" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Department Name
+                    </label>
+                    <input name="DepartmentName" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Gross Salary
+                    </label>
+                    <input name="GrossSalary" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Net Salary
+                    </label>
+                    <input name="NetSalary" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Currency
+                    </label>
+                    <input name="Currency" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        Start Date
+                    </label>
+                    <input name="StartDate" class="form-control" readonly />
+
+                </div>
+                <div class="mb-3">
+                    <label>
+                        End Date
+                    </label>
+                    <input name="EndDate" class="form-control" readonly />
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                    <i class="far fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <!-- Modal JS Edit-->
+    <script src="~/js/employeeContractTable.js"></script>
+} 
