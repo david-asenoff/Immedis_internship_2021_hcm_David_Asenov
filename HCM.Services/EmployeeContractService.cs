@@ -46,8 +46,15 @@
                 result.PaidLeavesAllowedPerYear = model.PaidLeavesAllowedPerYear;
                 result.UnpaidLeavesAllowedPerYear = model.UnpaidLeavesAllowedPerYear;
 
-                var salary = await this.salaryService.AddAsync(model.Salary);
-                result.Salary = salary;
+                var salary = await this.salaryService.EditAsync(new SalaryEditViewModel {
+                    Id = result.SalaryId,
+                    PaymentIntervalId = model.Salary.PaymentIntervalId,
+                    PaymentIntervalType = model.Salary.PaymentIntervalType,
+                    CurrencyId = model.Salary.CurrencyId,
+                    CurrencyDescription = model.Salary.CurrencyDescription,
+                    GrossSalary = model.Salary.GrossSalary,
+                    NetSalary = model.Salary.NetSalary,
+                });
 
                 await this.db.SaveChangesAsync();
                 return true;

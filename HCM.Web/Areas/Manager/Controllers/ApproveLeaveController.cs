@@ -29,7 +29,6 @@ using System.Threading.Tasks;
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            string username = this.User.Identity.Name;
             var model = await approveLeaveService.GetAsync(id);
             TempData["SuccessMessage"] = "Requested Leave is loaded";
 

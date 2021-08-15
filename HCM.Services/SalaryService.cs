@@ -25,19 +25,6 @@
             var currency = this.db.Currencies.FirstOrDefault(x => x.Id == model.CurrencyId);
             var paymentInterval = this.db.PaymentIntervals.FirstOrDefault(x => x.Id == model.PaymentIntervalId);
 
-            var dublicate = this.db.Salaries
-                .Include(x => x.PaymentInterval)
-                .Include(x => x.Currency)
-                .Any(x => x.GrossSalary == model.GrossSalary &&
-                          x.NetSalary == model.NetSalary &&
-                          x.PaymentInterval == paymentInterval &&
-                          x.Currency == currency);
-
-            if (dublicate)
-            {
-                throw new ArgumentException(ExceptionMessages.CannotCreateDublicateObject);
-            }
-
             var result = new Salary
             {
                 GrossSalary = model.GrossSalary,

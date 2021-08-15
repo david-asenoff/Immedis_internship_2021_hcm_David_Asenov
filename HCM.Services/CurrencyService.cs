@@ -128,9 +128,14 @@
             return false;
         }
 
-        public async Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync()
+        public async Task<ICollection<CurrencyDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false)
         {
-            return await this.db.Currencies.Select(x => new CurrencyDropDownViewModel { Id = x.Id, Description = x.Description }).ToArrayAsync();
+            return await this.db.Currencies
+                 .Where(x => getDeleted ?
+                           x.IsDeleted == true || x.IsDeleted == false :
+                           x.IsDeleted == false)
+                .Select(x => new CurrencyDropDownViewModel { Id = x.Id, Description = x.Description })
+                .ToArrayAsync();
         }
     }
 }

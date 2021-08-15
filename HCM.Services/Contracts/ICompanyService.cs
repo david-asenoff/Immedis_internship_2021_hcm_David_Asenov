@@ -20,6 +20,6 @@
 
         Task<CompanyEditViewModel> GetAsync(string id);
 
-        Task<ICollection<CompanyDropDownViewModel>> GetAllAsDropDownAsync();
+        Task<ICollection<CompanyDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false);
     }
 }

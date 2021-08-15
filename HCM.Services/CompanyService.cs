@@ -181,9 +181,14 @@
             return false;
         }
 
-        public async Task<ICollection<CompanyDropDownViewModel>> GetAllAsDropDownAsync()
+        public async Task<ICollection<CompanyDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false)
         {
-            return await this.db.Companies.Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name }).ToArrayAsync();
+            return await this.db.Companies
+                 .Where(x => getDeleted ?
+                           x.IsDeleted == true || x.IsDeleted == false :
+                           x.IsDeleted == false)
+                .Select(x => new CompanyDropDownViewModel { Id = x.Id, Name = x.Name })
+                .ToArrayAsync();
         }
     }
 }

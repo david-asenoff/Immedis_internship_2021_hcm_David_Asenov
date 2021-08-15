@@ -37,8 +37,8 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var departments = await this.departmentService.GetAllAsDropDownAsync();
-            var addresses = await this.addressService.GetAllAsDropDownAsync();
+            var departments = await this.departmentService.GetAllAsDropDownAsync(true);
+            var addresses = await this.addressService.GetAllAsDropDownAsync(true);
             var viewModel = new DepartmentAddressAddViewModel
             {
                 Departments = departments,
@@ -51,8 +51,8 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var departments = await this.departmentService.GetAllAsDropDownAsync();
-            var addresses = await this.addressService.GetAllAsDropDownAsync();
+            var departments = await this.departmentService.GetAllAsDropDownAsync(true);
+            var addresses = await this.addressService.GetAllAsDropDownAsync(true);
             var model = await departmentAddressService.GetAsync(id);
             model.Departments = departments;
             model.Addresses = addresses;
@@ -64,8 +64,8 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(DepartmentAddressEditViewModel model)
         {
-            var departments = await this.departmentService.GetAllAsDropDownAsync();
-            var addresses = await this.addressService.GetAllAsDropDownAsync();
+            var departments = await this.departmentService.GetAllAsDropDownAsync(true);
+            var addresses = await this.addressService.GetAllAsDropDownAsync(true);
             model.Departments = departments;
             model.Addresses = addresses;
             if (ModelState.IsValid)
@@ -114,8 +114,8 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(DepartmentAddressAddViewModel model)
         {
-            var departments = await this.departmentService.GetAllAsDropDownAsync();
-            var addresses = await this.addressService.GetAllAsDropDownAsync();
+            var departments = await this.departmentService.GetAllAsDropDownAsync(true);
+            var addresses = await this.addressService.GetAllAsDropDownAsync(true);
             model.Departments = departments;
             model.Addresses = addresses;
             if (ModelState.IsValid)

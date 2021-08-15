@@ -31,7 +31,7 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var companies = await this.companyService.GetAllAsDropDownAsync();
+            var companies = await this.companyService.GetAllAsDropDownAsync(true);
             var viewModel = new DepartmentAddViewModel
             {
                 Companies = companies,
@@ -43,7 +43,7 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            var companies = await this.companyService.GetAllAsDropDownAsync();
+            var companies = await this.companyService.GetAllAsDropDownAsync(true);
             var model = await departmentService.GetAsync(id);
             model.Companies = companies;
             TempData["SuccessMessage"] = "Department is loaded";
@@ -102,7 +102,7 @@ namespace HCM.Web.Areas.Administrator.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(DepartmentAddViewModel model)
         {
-            var companies = await this.companyService.GetAllAsDropDownAsync();
+            var companies = await this.companyService.GetAllAsDropDownAsync(true);
             model.Companies = companies;
             if (ModelState.IsValid)
             {

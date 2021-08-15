@@ -18,6 +18,6 @@
 
         Task<AddressEditViewModel> GetAsync(string id);
 
-        Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync();
+        Task<ICollection<AddressDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false);
     }
 }
