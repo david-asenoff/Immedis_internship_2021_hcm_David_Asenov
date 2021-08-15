@@ -1,28 +1,30 @@
 ﻿@using HCM.Web.ViewModels.EmployeeContract
 @using HCM.Data.Common;
-@model EmployeeContractViewModel
+@model EmployeeContractAddViewModel
 @{
     var departments = Model.Departments.Select(x => new SelectListItem(x.Name + " (" + x.CompanyName + ")", x.Id));
     var positions = Model.Positions.Select(x => new SelectListItem(x.Name , x.Id));
     var paymentIntervals = Model.Salary.PaymentIntervals.Select(x => new SelectListItem(x.Type, x.Id.ToString()));
     var currencies = Model.Salary.Currencies.Select(x => new SelectListItem(x.Description, x.Id.ToString()));
+    var employees = Model.Employees.Select(x => new SelectListItem(x.ShortInfo, x.UserId.ToString()));
     ViewData["Title"] = "Edit Contract";
 }
 
 <form class="form text-left"
       asp-area=@GlobalConstants.ManagerRoleName
       asp-controller="EmployeeContract"
-      asp-action="Edit"
+      asp-action="Add"
       method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="modal-body">
         <!-- Employee details -->
-        <partial name="~/Views/Shared/_EmployeeDetailsPartial.cshtml" for="Employee" />
+
         <div class="mb-3">
-            <label asp-for="@Model.EmployeeContractId"></label>
-            <span asp-validation-for="@Model.EmployeeContractId"></span>
-            <input asp-for="@Model.EmployeeContractId" class="form-control" readonly/>
+            <label asp-for="@Model.UserId"></label>
+            <span asp-validation-for="@Model.UserId"></span>
+            <select asp-for="@Model.UserId" asp-items="@employees" class="form-control"></select>
         </div>
+
         <div class="mb-3">
             <label asp-for="@Model.DepartmentId"></label>
             <span asp-validation-for="@Model.DepartmentId"></span>
@@ -109,8 +111,7 @@
     <a type="button" class="btn btn-secondary"
        asp-area=@GlobalConstants.ManagerRoleName
        asp-controller="EmployeeContract"
-       asp-action="Edit"
-       asp-route-contractId="@Model.EmployeeContractId">
+       asp-action="Add">
         <i class="far fa-window-close"></i>
         Reset
     </a>

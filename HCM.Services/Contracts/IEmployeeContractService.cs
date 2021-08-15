@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using HCM.Data.Models;
     using HCM.Web.ViewModels.EmployeeContract;
 
     public interface IEmployeeContractService
@@ -16,6 +17,6 @@
 
         Task<ICollection<EmployeeContractViewModel>> GetAllByEmployeeIdAsync(string employeeId);
 
-        Task<bool> CreateForEmployeeAsync(string employeeId);
+        Task<bool> CreateAsync(EmployeeContractAddViewModel model);
     }
 }

@@ -59,12 +59,12 @@
             if (ModelState.IsValid)
             {
                     await employeeContractService.EditAsync(model);
-                    TempData["SuccessMessage"] = "Requested Leave is edited";
+                    TempData["SuccessMessage"] = "Contract is edited";
                     return RedirectToAction("Index", "EmployeeContract");
                 
             }
 
-            TempData["ErrorMessage"] = "Requested Leave is not edited. Invalid data.";
+            TempData["ErrorMessage"] = "Contract is not edited. Invalid data.";
             return this.View(model);
         }
 
@@ -80,6 +80,34 @@
 
             TempData["ErrorMessage"] = "Contract cannot be ended. Invalid data.";
             return RedirectToAction("Index", "EmployeeContract");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var viewModel = new EmployeeContractAddViewModel();
+            viewModel.Employees = await this.usersService.GetAllAsDropDownAsync();
+            viewModel.Departments = await departmentService.GetAllAsDropDownAsync();
+            viewModel.Positions = await positionService.GetAllAsDropDownAsync();
+            viewModel.Salary.PaymentIntervals = await paymentInterval.GetAllAsDropDownAsync();
+            viewModel.Salary.Currencies = await currencyService.GetAllAsDropDownAsync();
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(EmployeeContractAddViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await employeeContractService.CreateAsync(model);
+                TempData["SuccessMessage"] = "Contract is added";
+                return RedirectToAction("Index", "EmployeeContract");
+            }
+
+            TempData["ErrorMessage"] = "Contract is not added. Invalid data.";
+
+            return this.View(model);
         }
 
     }

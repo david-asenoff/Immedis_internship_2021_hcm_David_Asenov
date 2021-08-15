@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using HCM.Data;
     using HCM.Data.Common;
+    using HCM.Data.Models;
     using HCM.Web.ViewModels.Employee;
     using HCM.Web.ViewModels.EmployeeContract;
     using HCM.Web.ViewModels.Salary;
@@ -29,11 +30,6 @@
             var result = await this.db.EmployeeContracts.FirstOrDefaultAsync(x => x.UserId == model.Employee.UserId && x.Id == model.EmployeeContractId);
             if (result != null)
             {
-                if (result.IsDeleted)
-                {
-                    throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
-                }
-
                 result.DepartmentId = model.DepartmentId;
                 result.UserId = model.Employee.UserId;
                 result.PossitionId = model.PositionId;
@@ -46,7 +42,8 @@
                 result.PaidLeavesAllowedPerYear = model.PaidLeavesAllowedPerYear;
                 result.UnpaidLeavesAllowedPerYear = model.UnpaidLeavesAllowedPerYear;
 
-                var salary = await this.salaryService.EditAsync(new SalaryEditViewModel {
+                var salary = await this.salaryService.EditAsync(new SalaryEditViewModel
+                {
                     Id = result.SalaryId,
                     PaymentIntervalId = model.Salary.PaymentIntervalId,
                     PaymentIntervalType = model.Salary.PaymentIntervalType,
@@ -131,11 +128,6 @@
                 .Include(x => x.User.Gender)
                 .OrderByDescending(x => x.CreatedOn)
                 .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (dbModel.IsDeleted)
-            {
-                throw new ArgumentException(ExceptionMessages.CannotEditDeletedObject);
-            }
 
             var result = new EmployeeContractViewModel
             {
@@ -238,9 +230,42 @@
             return result;
         }
 
-        public Task<bool> CreateForEmployeeAsync(string employeeId)
+        public async Task<bool> CreateAsync(EmployeeContractAddViewModel model)
         {
-            throw new NotImplementedException();
+            var employee = await this.usersService.GetUserByUserId(model.UserId);
+
+            if (employee == null)
+            {
+                throw new ArgumentException("Cannot create emlpoyee contract. Invalid employee id.");
+            }
+
+            var salary = await this.salaryService.AddAsync(new SalaryAddViewModel
+            {
+                PaymentIntervalId = model.Salary.PaymentIntervalId,
+                PaymentIntervalType = model.Salary.PaymentIntervalType,
+                CurrencyId = model.Salary.CurrencyId,
+                CurrencyDescription = model.Salary.CurrencyDescription,
+                GrossSalary = model.Salary.GrossSalary,
+                NetSalary = model.Salary.NetSalary,
+            });
+            var contract = new EmployeeContract
+            {
+                DepartmentId = model.DepartmentId,
+                PossitionId = model.PositionId,
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                StartOfTheWorkingHours = model.StartOfTheWorkingHours,
+                EndOfTheWorkingHours = model.EndOfTheWorkingHours,
+                AreWorkingHoursFlexible = model.AreWorkingHoursFlexible,
+                IsContractTypeFullTime = model.IsContractTypeFullTime,
+                PaidLeavesAllowedPerYear = model.PaidLeavesAllowedPerYear,
+                UnpaidLeavesAllowedPerYear = model.UnpaidLeavesAllowedPerYear,
+                Salary = salary,
+                User = employee,
+            };
+            await db.EmployeeContracts.AddAsync(contract);
+            await db.SaveChangesAsync();
+            return true;
         }
     }
 }

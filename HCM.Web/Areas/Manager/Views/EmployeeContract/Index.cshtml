@@ -16,7 +16,16 @@
                         "Actions",
     };
 }
-<!-- Trainings Table-->
+<!-- Button Add -->
+<a type="button" class="btn btn-dark"
+   asp-area=@GlobalConstants.ManagerRoleName
+   asp-controller="EmployeeContract"
+   asp-action="Add">
+    <i class="fas fa-plus"></i>
+    Add @ViewData["Title"]
+</a>
+
+<!-- Contract Table-->
 <div class="table">
     <table id="myTable" class="table table-bordered table-hover table-sm">
         <thead>
@@ -50,19 +59,19 @@
                             <td><time datetime="@Data.EndDate?.ToString("yyyy-MM-dd")"></time></td>
                             <td>
 
-                                
+
                                 @if (Data.EndDate == null)
                                 {
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#endModal"
-                                        data-employeecontract-id="@Data.EmployeeContractId"
-                                        data-employeecontract-employeefullname="@Data.Employee.FullName"
-                                        data-employeecontract-company="@Data.DepartmentCompanyName"
-                                        data-employeecontract-department="@Data.DepartmentName"
-                                        data-employeecontract-startdate="@Data.StartDate"
-                                        data-employeecontract-enddate="@Data.EndDate">
-                                    <i class="far fa-trash-alt"></i>
-                                    End
-                                </button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#endModal"
+                                            data-employeecontract-id="@Data.EmployeeContractId"
+                                            data-employeecontract-employeefullname="@Data.Employee.FullName"
+                                            data-employeecontract-company="@Data.DepartmentCompanyName"
+                                            data-employeecontract-department="@Data.DepartmentName"
+                                            data-employeecontract-startdate="@Data.StartDate"
+                                            data-employeecontract-enddate="@Data.EndDate">
+                                        <i class="far fa-trash-alt"></i>
+                                        End
+                                    </button>
                                 }
                                 <!-- Button End -->
                                 <a type="button" class="btn btn-primary"
@@ -92,13 +101,13 @@
             </div>
             <form class="form text-left"
                   asp-area=@GlobalConstants.ManagerRoleName
-                                   asp-controller="EmployeeContract"
-                                   asp-action="EndTheContract"
-                                   method="post">
+                  asp-controller="EmployeeContract"
+                  asp-action="EndTheContract"
+                  method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input name="contractId" class="form-control" readonly/>
+                        <input name="contractId" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
                         <input name="EmployeeFullName" class="form-control" readonly />

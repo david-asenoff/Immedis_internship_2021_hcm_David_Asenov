@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using HCM.Data;
     using HCM.Data.Common;
@@ -115,9 +116,34 @@
             throw new NotImplementedException();
         }
 
-        public async Task<ICollection<User>> GetAllEmployees()
+        public async Task<ICollection<EmployeeDropDownViewModel>> GetAllAsDropDownAsync(bool getDeleted = false)
         {
-            throw new NotImplementedException();
+            return await this.db.Users
+                 .Where(x => getDeleted ?
+                           x.IsDeleted == true || x.IsDeleted == false :
+                           x.IsDeleted == false)
+                .Include(x => x.Gender)
+                .Select(x => new EmployeeDropDownViewModel
+                {
+                    UserId = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    MiddleName = x.MiddleName,
+                    Gender = x.Gender.Type,
+                    PhoneNumber = x.PhoneNumber,
+                    Email = x.Email,
+                    DateOfBirth = x.DateOfBirth,
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task<User> GetUserByUserId(string userId)
+        {
+            var result = await this.db.Users
+                .Include(x => x.Role)
+                .FirstOrDefaultAsync(x => x.Id == userId);
+
+            return result;
         }
     }
 }

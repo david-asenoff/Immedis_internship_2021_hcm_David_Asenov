@@ -8,6 +8,12 @@ namespace HCM.Web.ViewModels.Salary
 {
     public abstract class SalaryBaseViewModel
     {
+        public SalaryBaseViewModel()
+        {
+            PaymentIntervals = new List<PaymentIntervalDropDownViewModel>();
+            Currencies = new List<CurrencyDropDownViewModel>();
+        }
+
         /// <summary>
         /// Gets or sets the payment interval of the salary.
         /// </summary>
