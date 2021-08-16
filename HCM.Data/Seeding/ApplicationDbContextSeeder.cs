@@ -34,6 +34,12 @@
                               new AdminSeeder(),
                               new EmployeeSeeder(),
                               new DepartmentSeeder(),
+                              new LeavesSeeder(),
+                              new TrainingSeeder(),
+                              new ProjectSeeder(),
+                              new PositionSeeder(),
+                              new SalarySeeder(),
+                              new ContractSeeder(),
                           };
 
             foreach (var seeder in seeders)

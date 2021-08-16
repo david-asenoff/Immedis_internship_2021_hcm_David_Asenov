@@ -18,7 +18,8 @@
             }
 
             var gender = await dbContext.Genders.FirstOrDefaultAsync(x => x.Type == "Man");
-            var role = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.AdministratorRoleName);
+            var admin = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.AdministratorRoleName);
+            var manager = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.ManagerRoleName);
             var users = new List<User>
             {
                 new User
@@ -26,13 +27,27 @@
                     FirstName = "David",
                     MiddleName = "Rosenov",
                     LastName = "Asenov",
+                    Portrait = "https://avatars.githubusercontent.com/u/49104423?v=4",
                     Gender = gender,
                     PhoneNumber = "+359876543210",
                     Email = GlobalConstants.SystemEmail,
                     Password = SecurePasswordHasher.Hash("123456"),
                     Username = GlobalConstants.AdministratorRoleName,
-                    DateOfBirth = DateTime.UtcNow.AddYears(-20),
-                    Role = role,
+                    DateOfBirth = DateTime.UtcNow.AddYears(-30),
+                    Role = admin,
+                },
+                new User
+                {
+                    FirstName = "Ruairi",
+                    LastName = "Kelleher",
+                    Portrait = "https://i.ibb.co/bz3LvxG/ruairi-kelleher-immedis-web2.gif",
+                    Gender = gender,
+                    PhoneNumber = "+359876543210",
+                    Email = "manager@immedis.com",
+                    Password = SecurePasswordHasher.Hash("123456"),
+                    Username = GlobalConstants.ManagerRoleName,
+                    DateOfBirth = DateTime.UtcNow.AddYears(-30),
+                    Role = manager,
                 },
             };
 

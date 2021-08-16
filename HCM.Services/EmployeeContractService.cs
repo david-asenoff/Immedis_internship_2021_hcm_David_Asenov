@@ -89,6 +89,7 @@
                         AvatarUrl = x.User.Portrait,
                         IsBanned = x.User.IsBanned,
                         IdentityRoleType = x.User.Role.Type,
+                        DateOfBirth = x.User.DateOfBirth,
                     },
                     PositionName = x.Possition.Name,
                     PositionId = x.PossitionId,
@@ -147,6 +148,7 @@
                     AvatarUrl = dbModel.User.Portrait,
                     IsBanned = dbModel.User.IsBanned,
                     IdentityRoleType = dbModel.User.Role.Type,
+                    DateOfBirth = dbModel.User.DateOfBirth,
                 },
                 Salary = new SalaryAddViewModel
                 {

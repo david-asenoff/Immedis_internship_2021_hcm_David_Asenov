@@ -12,10 +12,6 @@ namespace HCM.Web.ViewModels.Summary
 
         public int PaidLeavesAllowed { get; set; }
 
-        public IEnumerable<int> UnpaidLeavesUsed { get; set; }
-
-        public int UnPaidLeavesAllowed { get; set; }
-
         public decimal GrossSalary { get; set; }
 
         public decimal NetSalary { get; set; }

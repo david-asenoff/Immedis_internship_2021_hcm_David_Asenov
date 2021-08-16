@@ -3,23 +3,6 @@
 @using HCM.Data.Common;
 @{
     ViewData["Title"] = "Index";
-
-    // adding elements
-    var menuItems = new[] {
-        new { destination= "Currency", title="Currencies", icon= "fas fa-yen-sign" },
-        new { destination= "Gender", title="Genders", icon= "fas fa-venus-mars" },
-        new { destination= "PaymentInterval", title="Payment Intervals", icon= "fas fa-money-check-alt" },
-        new { destination= "EvaluationScore", title="Evaluation Scores", icon= "fas fa-star-half-alt" },
-        new { destination= "MaritalStatus", title="Marital Statuses", icon= "fas fa-ring" },
-        new { destination= "ParentalStatus", title="Parental Statuses", icon= "fas fa-child" },
-        new { destination= "Training", title="Trainings", icon= "fas fa-chalkboard-teacher" },
-        new { destination= "ProjectStatusCategory", title="Project Status Categories", icon= "fas fa-project-diagram" },
-        new { destination= "Address", title="Addresses", icon= "fas fa-location-arrow" },
-        new { destination= "Department", title="Departments", icon= "fas fa-building" },
-        new { destination= "Company", title="Companies", icon= "fas fa-business-time" },
-        new { destination= "Salary", title="Salaries", icon= "fas fa-money-bill-alt" },
-        new { destination= "DepartmentAddress", title="Department Addresses", icon= "fas fa-globe-europe" },
-    };
 }
 
 <!-- Employee details -->
@@ -61,9 +44,9 @@
         <input asp-for="@Model.FullName" class="form-control" readonly />
     </div>
     <div class="mb-3">
-        <label class="datepicker mb-0 required" asp-for="@Model.DateOfBirth"></label>
+        <label class="mb-0 required" asp-for="@Model.DateOfBirth"></label>
         <span asp-validation-for="@Model.DateOfBirth" ></span>
-        <input type="date" asp-for="@Model.DateOfBirth" class="form-control" disabled />
+        <input type="date" asp-for="@Model.DateOfBirth" class="form-control" readonly />
     </div>
     <div class="mb-3">
         <label class="text mb-0 required" asp-for="@Model.PhoneNumber"></label>

@@ -38,11 +38,7 @@
                      PaidLeavesUsed = x.User.RequestedLeaves
                                         .Where(x => x.IsPaidLeave == true)
                                         .Select(x => (x.EndDate - x.StartDate).Days),
-                     UnpaidLeavesUsed = x.User.RequestedLeaves
-                                        .Where(x => x.IsPaidLeave == false)
-                                        .Select(x => (x.EndDate - x.StartDate).Days),
                      PaidLeavesAllowed = x.PaidLeavesAllowedPerYear,
-                     UnPaidLeavesAllowed = x.UnpaidLeavesAllowedPerYear,
                      GrossSalary = x.Salary.GrossSalary,
                      NetSalary = x.Salary.NetSalary,
                      SalaryAbbreviation = x.Salary.Currency.Abbreviation,
@@ -62,18 +58,11 @@
                  .Select(x => new ManagerCompanySummaryViewModel
                  {
                      CompanyName = x.Name,
-                     EffectiveContractsCount = x.Departments.Select(x => x.EmployeeContracts.Where(x => x.EndDate == null)).Count(),
-                     ConcludedContractsCount = x.Departments.Select(x => x.EmployeeContracts.Where(x => x.EndDate != null)).Count(),
+                     ContractsCount = x.Departments.Select(x => x.EmployeeContracts).Count(),
                      ProjectsCount = x.OrderedProjects.Count(),
                      ProjectsWithCompletedStatus = x.OrderedProjects.Select(x => x.ProjectStatuses.Select(x => x.ProjectStatusCategory.Type == "completed")).Count(),
-
-                     // To do: Salary abbreviation
-                     // To do: use Group by Department, in order to take average salary for every department separately
-                     //AverageSalary = x.Departments
-                     //.Select(ec => ec.EmployeeContracts.Select(x => x.Salary.GrossSalary).Average()).Average(),
                      TopProjectName = x.OrderedProjects.OrderByDescending(x => x.FinalBudget).Select(x => x.Name).FirstOrDefault(),
                      TopProjectFinalBudget = x.OrderedProjects.OrderByDescending(x => x.FinalBudget).Select(x => x.FinalBudget).FirstOrDefault(),
-                     TopProjectEmlpoyeesCount = x.OrderedProjects.OrderByDescending(x => x.FinalBudget).Select(x => x.ProjectUsers).FirstOrDefault().Count(),
                  }).ToListAsync();
 
             return result;

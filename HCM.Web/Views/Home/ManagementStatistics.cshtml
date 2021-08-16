@@ -8,31 +8,8 @@
 @foreach (var item in Model)
 {
     <h4>@item.CompanyName</h4>
-    <div style="display: flex; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-around;">
 
-        <div class="infocard">
-            <i class="fas fa-info-circle"></i>
-            <div class="container">
-                <h4><b>Effective contracts</b></h4>
-                <p>@item.EffectiveContractsCount</p>
-            </div>
-        </div>
-
-        <div class="infocard">
-            <i class="fas fa-info-circle"></i>
-            <div class="container">
-                <h4><b>Concluded contracts</b></h4>
-                <p>@item.ConcludedContractsCount</p>
-            </div>
-        </div>
-
-        @*<div class="infocard">
-            <i class="fas fa-info-circle"></i>
-            <div class="container">
-                <h4><b>Average salary</b></h4>
-                <p>@item.AverageSalary</p>
-            </div>
-        </div>*@
         @if (item.TopProjectName == null)
         {
             <div class="infocard">
@@ -61,15 +38,8 @@
                 <p>@item.TopProjectFinalBudget</p>
             </div>
         </div>
-
-        <div class="infocard">
-            <i class="fas fa-info-circle"></i>
-            <div class="container">
-                <h4><b>Top project employees count</b></h4>
-                <p>@item.TopProjectEmlpoyeesCount</p>
-            </div>
         </div>
-    </div>
+
 }
 <!-- End  Start Content -->
 
