@@ -55,7 +55,7 @@ using Microsoft.Extensions.Hosting;
             services.AddMvc();
 
             // Application services
-            services.AddTransient<IDashboardService, GenderService>();
+            services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<IPaymentIntervalService, PaymentIntervalService>();
@@ -80,6 +80,7 @@ using Microsoft.Extensions.Hosting;
             services.AddTransient<IEmployeeTrainingService, EmployeeTrainingService>();
             services.AddTransient<IEmployeeContractService, EmployeeContractService>();
             services.AddTransient<IEmployeeProjectService, EmployeeProjectService>();
+            services.AddTransient<IDashboardService, DashboardService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

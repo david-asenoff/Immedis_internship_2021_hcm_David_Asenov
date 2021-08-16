@@ -18,31 +18,34 @@ namespace HCM.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IDashboardService genderService;
+        private readonly IGenderService genderService;
         private readonly IUsersService usersService;
+        private readonly IDashboardService dashboardService;
 
-        public HomeController(ILogger<HomeController> logger, IDashboardService genderService, IUsersService usersService)
+        public HomeController(ILogger<HomeController> logger, IGenderService genderService, IUsersService usersService, IDashboardService dashboardService)
         {
             _logger = logger;
             this.genderService = genderService;
             this.usersService = usersService;
+            this.dashboardService = dashboardService;
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (!this.User.IsInRole(GlobalConstants.EmployeeRoleName))
             {
                 return RedirectToAction("ManagementStatistics", "Home");
             }
-
-            return this.View();
+            var model = await this.dashboardService.GetEmployeeAllContractsSummaryAsync(this.User.Identity.Name);
+            return this.View(model);
         }
 
         [Authorize]
-        public IActionResult ManagementStatistics()
+        public async Task<IActionResult> ManagementStatistics()
         {
-            return View();
+            var model = await this.dashboardService.GetManagementSummaryAsync();
+            return this.View(model);
         }
 
         [Authorize]

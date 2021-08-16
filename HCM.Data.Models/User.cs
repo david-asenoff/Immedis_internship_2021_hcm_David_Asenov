@@ -17,6 +17,8 @@
             this.UserParentalStatuses = new HashSet<UserParentalStatus>();
             this.ProjectUsers = new HashSet<ProjectUser>();
             this.TrainingUsers = new HashSet<TrainingUser>();
+            this.RequestedLeaves = new HashSet<RequestedLeave>();
+            this.ApprovedLeaves = new HashSet<RequestedLeave>();
         }
 
         [Display(Name = GlobalConstants.FirstNameDisplay)]
@@ -59,5 +61,9 @@
         public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
 
         public virtual ICollection<TrainingUser> TrainingUsers { get; set; }
+
+        public virtual ICollection<RequestedLeave> RequestedLeaves{ get; set; }
+
+        public virtual ICollection<RequestedLeave> ApprovedLeaves { get; set; }
     }
 }
