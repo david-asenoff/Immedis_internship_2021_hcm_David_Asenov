@@ -29,6 +29,7 @@
         [ForeignKey(nameof(User))]
         public string RequestedByUserId { get; set; }
 
+        [InverseProperty("RequestedLeaves")]
         public virtual User RequestedByUser { get; set; }
 
         /// <summary>
@@ -44,6 +45,7 @@
         [ForeignKey(nameof(User))]
         public string RevisedByManagerId { get; set; }
 
+        [InverseProperty("ApprovedLeaves")]
         public virtual User RevisedByManager { get; set; }
 
         /// <summary>

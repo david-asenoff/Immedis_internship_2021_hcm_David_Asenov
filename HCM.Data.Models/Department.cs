@@ -15,6 +15,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.DepartmentAddresses = new HashSet<DepartmentAddress>();
+            this.EmployeeContracts = new HashSet<EmployeeContract>();
         }
 
         /// <summary>
@@ -50,5 +51,7 @@
         public virtual User DepartmentDeputyManager { get; set; }
 
         public virtual ICollection<DepartmentAddress> DepartmentAddresses { get; set; }
+
+        public virtual ICollection<EmployeeContract> EmployeeContracts { get; set; }
     }
 }
