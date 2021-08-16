@@ -18,7 +18,8 @@
             }
 
             var gender = await dbContext.Genders.FirstOrDefaultAsync(x => x.Type == "Man");
-            var role = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.AdministratorRoleName);
+            var admin = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.AdministratorRoleName);
+            var manager = await dbContext.IdentityRoles.FirstOrDefaultAsync(x => x.Type == GlobalConstants.ManagerRoleName);
             var users = new List<User>
             {
                 new User
@@ -33,7 +34,7 @@
                     Password = SecurePasswordHasher.Hash("123456"),
                     Username = GlobalConstants.AdministratorRoleName,
                     DateOfBirth = DateTime.UtcNow.AddYears(-30),
-                    Role = role,
+                    Role = admin,
                 },
                 new User
                 {
@@ -46,7 +47,7 @@
                     Password = SecurePasswordHasher.Hash("123456"),
                     Username = GlobalConstants.ManagerRoleName,
                     DateOfBirth = DateTime.UtcNow.AddYears(-30),
-                    Role = role,
+                    Role = manager,
                 },
             };
 
