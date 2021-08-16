@@ -75,7 +75,7 @@
             await dbContext.Projects.AddRangeAsync(projects);
             await dbContext.SaveChangesAsync();
             var projectUsers = new List<ProjectUser>();
-            var dbProjects = dbContext.Projects.Select(x => x.Id).ToList();
+            var dbProjectsIds = dbContext.Projects.Select(x => x.Id).ToList();
             for (int i = 0; i < projects.Count; i++)
             {
                 for (int j = 0; j < userIds.Count; j++)
@@ -85,10 +85,23 @@
                         continue;
                     }
 
-                    projectUsers.Add(new ProjectUser { UserId = userIds[j], ProjectId = dbProjects[i] });
+                    projectUsers.Add(new ProjectUser { UserId = userIds[j], ProjectId = dbProjectsIds[i] });
                 }
             }
 
+            var dbProjectStatusCategoryIds = dbContext.ProjectStatusCategories.Select(x => x.Id).ToList();
+            var projectStatuses = new List<ProjectStatus>();
+            for (int i = 0; i < projects.Count; i++)
+            {
+                for (int j = 0; j < dbProjectStatusCategoryIds.Count; j++)
+                {
+                    // Project status category may be "not started", "cancelled", "in progress", "on hold" and "completed".
+                    // All seeded project will have all the statuses with a year  difference between the change.
+                    projectStatuses.Add(new ProjectStatus { ProjectId = dbProjectsIds[i], ProjectStatusCategoryId = dbProjectStatusCategoryIds[j], StartDate = DateTime.UtcNow.AddYears(-5 - i).AddMonths(j).AddDays(i * j) });
+                }
+            }
+
+            await dbContext.ProjectStatuses.AddRangeAsync(projectStatuses);
             await dbContext.ProjectUsers.AddRangeAsync(projectUsers);
             await dbContext.SaveChangesAsync();
         }
