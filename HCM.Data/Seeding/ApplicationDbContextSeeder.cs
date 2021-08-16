@@ -35,6 +35,7 @@
                               new EmployeeSeeder(),
                               new DepartmentSeeder(),
                               new LeavesSeeder(),
+                              new TrainingSeeder(),
                           };
 
             foreach (var seeder in seeders)
