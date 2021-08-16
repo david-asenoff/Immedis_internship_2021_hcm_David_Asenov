@@ -16,4 +16,4 @@ The application should hold people records, which are the main app entities. The
   
 ## Overview :mag:
 * Database diagram:
-<img src="https://i.ibb.co/hBjxQBS/diagram.jpg" alt="diagram" border="0">
+https://i.ibb.co/XSLwWs6/diagram.jpg
