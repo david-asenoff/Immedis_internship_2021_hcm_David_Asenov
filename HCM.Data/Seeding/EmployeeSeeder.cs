@@ -25,15 +25,19 @@
 
             for (int i = 0; i < 100; i++)
             {
+                var person = FakeNamesGenerator.Get();
                 var age = i <= 50 ? 18 + i : 118 - i;
                 User user = new User
                 {
-                    FirstName = $"First{i}",
-                    MiddleName = $"Middle{i}",
-                    LastName = $"Last{i}",
+                    FirstName = person.FirstName,
+                    MiddleName = person.MiddleName,
+                    Portrait = i < 50 ?
+                    $@"https://randomuser.me/api/portraits/men/{i}.jpg" :
+                    $@"https://randomuser.me/api/portraits/women/{i}.jpg",
+                    LastName = person.LastName,
                     Gender = i < 50 ? man : woman,
                     PhoneNumber = $"+3598765432{i}",
-                    Email = $"test{i}@gmail.com",
+                    Email = $"{person.FirstName}.{person.LastName}{i}@gmail.com",
                     Password = SecurePasswordHasher.Hash("123456"),
                     Username = $"username{i}",
                     DateOfBirth = DateTime.UtcNow.AddYears(-age),
