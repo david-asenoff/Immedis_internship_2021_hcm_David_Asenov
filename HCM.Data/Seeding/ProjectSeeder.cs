@@ -27,8 +27,8 @@
                    Description="It started with a Zoom call. As COVID-19 began its spread across the United States, a group of technologists got to talking about how the pandemic could stretch local government resources to the breaking point. The group—which included three former U.S. deputy chief technology officers—hatched a plan to recruit volunteer software engineers, data scientists, interaction designers and project managers to provide free, fast help to public agencies struggling to keep pace with rising community needs.",
                    EstimatedWorkHours = 4000,
                    FinalWorkHours = 4300,
-                   EstimatedBudget = 8760780M,
-                   FinalBudget = 9897676M,
+                   EstimatedBudget = 500780M,
+                   FinalBudget = 507676M,
                    OrdererCompanyId = immedis,
                },
                new Project
@@ -37,8 +37,8 @@
                    Description="Data is moving faster in South America after Google successfully installed Curie, a submerged cable stretching from Los Angeles, California, USA to Valparíso, Chile. Roughly 10,500 kilometers (6,524 miles) long, the subsea cable has been delivering 72 terabits per second of much-needed bandwidth to the continent since late 2019—after a team of divers and engineers tested then buried it. Google announced in November it would be extending a branch to Panama.",
                    EstimatedWorkHours = 7000,
                    FinalWorkHours = 6300,
-                   EstimatedBudget = 9760780M,
-                   FinalBudget = 8897676M,
+                   EstimatedBudget = 460780M,
+                   FinalBudget = 450676M,
                    OrdererCompanyId = immedis,
                },
                new Project
