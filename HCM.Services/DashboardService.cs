@@ -63,6 +63,9 @@
                      ProjectsWithCompletedStatus = x.OrderedProjects.Select(x => x.ProjectStatuses.Select(x => x.ProjectStatusCategory.Type == "completed")).Count(),
                      TopProjectName = x.OrderedProjects.OrderByDescending(x => x.FinalBudget).Select(x => x.Name).FirstOrDefault(),
                      TopProjectFinalBudget = x.OrderedProjects.OrderByDescending(x => x.FinalBudget).Select(x => x.FinalBudget).FirstOrDefault(),
+                     EmployeesCount = x.Departments.SelectMany(x => x.EmployeeContracts).Count(),
+                     AverageSalary = x.Departments.SelectMany(x => x.EmployeeContracts.Select(x => x.Salary.GrossSalary)).Average(),
+                     AverageAge = x.Departments.SelectMany(x => x.EmployeeContracts.Select(x => DateTime.UtcNow.Year - x.User.DateOfBirth.Year)).Average(),
                  }).ToListAsync();
 
             return result;

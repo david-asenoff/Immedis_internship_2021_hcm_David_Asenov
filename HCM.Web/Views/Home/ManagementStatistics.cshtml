@@ -35,10 +35,34 @@
             <i class="fas fa-info-circle"></i>
             <div class="container">
                 <h4><b>Top project final budget</b></h4>
-                <p>@item.TopProjectFinalBudget</p>
+                <p>@item.TopProjectFinalBudget.ToString("C")</p>
             </div>
         </div>
+
+        <div class="infocard">
+            <i class="fas fa-info-circle"></i>
+            <div class="container">
+                <h4><b>Employees Count</b></h4>
+                <p>@item.EmployeesCount</p>
+            </div>
         </div>
+
+        <div class="infocard">
+            <i class="fas fa-info-circle"></i>
+            <div class="container">
+                <h4><b>Average salary</b></h4>
+                <p>@item.AverageSalary.ToString("C")</p>
+            </div>
+        </div>
+
+        <div class="infocard">
+            <i class="fas fa-info-circle"></i>
+            <div class="container">
+                <h4><b>Average age</b></h4>
+                <p>@item.AverageAge.ToString("F")</p>
+            </div>
+        </div>
+    </div>
 
 }
 <!-- End  Start Content -->

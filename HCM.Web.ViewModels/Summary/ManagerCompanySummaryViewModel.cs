@@ -15,5 +15,11 @@ namespace HCM.Web.ViewModels.Summary
         public string TopProjectName { get; set; }
 
         public decimal TopProjectFinalBudget { get; set; }
+
+        public int EmployeesCount { get; set; }
+
+        public decimal AverageSalary { get; set; }
+
+        public double AverageAge { get; set; }
     }
 }
