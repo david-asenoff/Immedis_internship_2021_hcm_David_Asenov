@@ -14,6 +14,31 @@ The application should hold people records, which are the main app entities. The
 * <a href="https://jquery.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png" alt="HTML5" width="30"><b>HTML5</b></a>
 * <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS" width="30"><b>CSS</b></a>
   
+## Test accounts :closed_lock_with_key:
+* Administrator
+````
+Username: 'Administrator'
+Password: '123456'
+`````
+* Manager
+````
+Username: 'Manager'
+Password: '123456'
+`````
+* Employee
+````
+Username: 'username0'
+Password: '123456'
+Username: 'username1'
+Password: '123456'
+...
+Username: 'username99'
+Password: '123456'
+`````
+
+
 ## Overview :mag:
 * Database diagram:
 * <img src="https://i.ibb.co/XSLwWs6/diagram.jpg" alt="diagram" border="0">
+
+
